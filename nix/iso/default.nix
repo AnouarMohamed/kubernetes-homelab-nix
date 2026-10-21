@@ -5,4 +5,3 @@
   networking.hostName = "homelab-installer";
   system.stateVersion = "26.05";
 }
-

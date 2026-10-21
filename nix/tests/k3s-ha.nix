@@ -9,7 +9,10 @@ let
     name = "test.local/pause";
     tag = "local";
     copyToRoot = pauseRoot;
-    config.Entrypoint = [ "/bin/sleep" "infinity" ];
+    config.Entrypoint = [
+      "/bin/sleep"
+      "infinity"
+    ];
   };
   deployment = (pkgs.formats.yaml { }).generate "reschedule.yaml" {
     apiVersion = "apps/v1";
@@ -22,19 +25,27 @@ let
         metadata.labels.app = "reschedule-test";
         spec = {
           terminationGracePeriodSeconds = 0;
-          containers = [ {
-            name = "pause";
-            image = "test.local/pause:local";
-            imagePullPolicy = "Never";
-          } ];
+          containers = [
+            {
+              name = "pause";
+              image = "test.local/pause:local";
+              imagePullPolicy = "Never";
+            }
+          ];
         };
       };
     };
   };
   common = { config, ... }: {
-    virtualisation = { memorySize = 1536; diskSize = 4096; };
+    virtualisation = {
+      memorySize = 1536;
+      diskSize = 4096;
+    };
     networking.firewall.enable = false;
-    environment.systemPackages = [ pkgs.kubectl pkgs.jq ];
+    environment.systemPackages = [
+      pkgs.kubectl
+      pkgs.jq
+    ];
     environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     services.k3s = {
       enable = true;
@@ -42,7 +53,12 @@ let
       inherit tokenFile;
       images = [ pauseImage ];
       nodeIP = config.networking.primaryIPAddress;
-      disable = [ "local-storage" "metrics-server" "servicelb" "traefik" ];
+      disable = [
+        "local-storage"
+        "metrics-server"
+        "servicelb"
+        "traefik"
+      ];
       extraFlags = [
         "--flannel-iface=eth1"
         "--kube-controller-manager-arg=node-monitor-grace-period=10s"
@@ -93,4 +109,3 @@ pkgs.testers.runNixOSTest {
     assert replacement != original, f"pod did not reschedule: {original}"
   '';
 }
-

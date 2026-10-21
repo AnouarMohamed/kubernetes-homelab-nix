@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   # Build-only layout. A real deployment must override the disk by-id value.
   disko.devices.disk.main = {
     type = "disk";
@@ -29,4 +28,3 @@
     };
   };
 }
-

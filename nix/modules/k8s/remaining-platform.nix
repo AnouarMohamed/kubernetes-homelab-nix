@@ -1,6 +1,13 @@
-{ kubenix, lib, homelab, ... }:
-let substitute = import ../../lib/substitute.nix { inherit lib homelab; };
-in {
+{
+  kubenix,
+  lib,
+  homelab,
+  ...
+}:
+let
+  substitute = import ../../lib/substitute.nix { inherit lib homelab; };
+in
+{
   imports = [
     kubenix.modules.k8s
     (import ./lib/resources.nix {
@@ -13,4 +20,3 @@ in {
     version = "1.36";
   };
 }
-

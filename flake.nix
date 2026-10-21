@@ -22,7 +22,5 @@
     };
   };
 
-  outputs = inputs:
-    import ./nix/flake-outputs.nix { inherit inputs; };
+  outputs = inputs: import ./nix/flake-outputs.nix { inherit inputs; };
 }
-

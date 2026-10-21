@@ -1,8 +1,9 @@
 # GENERATED - DO NOT EDIT
-stages: [validate]
 nix:flake-check:
-  stage: validate
-  tags: [nix]
   script:
-    - nix flake check --keep-going --print-build-logs
-
+  - nix flake check --keep-going --print-build-logs
+  stage: validate
+  tags:
+  - nix
+stages:
+- validate

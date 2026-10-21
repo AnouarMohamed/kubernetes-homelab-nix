@@ -1,8 +1,16 @@
 { config, pkgs, ... }:
 {
   time.timeZone = config.homelab.timezone;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  environment.systemPackages = with pkgs; [ curl git jq kubectl ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    jq
+    kubectl
+  ];
 
   users.mutableUsers = false;
   users.users.root.openssh.authorizedKeys.keys = [ config.homelab.sshAuthorizedKey ];
@@ -15,4 +23,3 @@
     };
   };
 }
-

@@ -1,7 +1,9 @@
 { config, lib, ... }:
 let
   cfg = config.homelab;
-  node = lib.findFirst (item: item.name == config.networking.hostName) (builtins.head cfg.nodes) cfg.nodes;
+  node = lib.findFirst (
+    item: item.name == config.networking.hostName
+  ) (builtins.head cfg.nodes) cfg.nodes;
 in
 {
   services.k3s = {
@@ -12,7 +14,11 @@ in
     tokenFile = config.sops.secrets.k3s-token.path;
     nodeName = node.name;
     nodeIP = node.address;
-    disable = [ "local-storage" "servicelb" "traefik" ];
+    disable = [
+      "local-storage"
+      "servicelb"
+      "traefik"
+    ];
     extraFlags = [
       "--advertise-address=${node.address}"
       "--tls-san=${cfg.network.controlPlaneVip}"
@@ -32,4 +38,3 @@ in
     ];
   };
 }
-

@@ -1,9 +1,8 @@
 title = "kubernetes-homelab-nix"
 
-[extend]
-useDefault = true
-
 [allowlist]
 description = "Build-only placeholder ciphertext"
 paths = ["secrets/placeholder.json"]
 
+[extend]
+useDefault = true

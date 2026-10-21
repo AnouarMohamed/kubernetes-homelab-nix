@@ -16,7 +16,5 @@
 
   enabled = config: name: config.components.${name} or false;
 
-  sanitizeName = value:
-    lib.toLower (builtins.replaceStrings [ "/" "_" "." ] [ "-" "-" "-" ] value);
+  sanitizeName = value: lib.toLower (builtins.replaceStrings [ "/" "_" "." ] [ "-" "-" "-" ] value);
 }
-

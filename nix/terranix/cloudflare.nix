@@ -1,4 +1,9 @@
-{ config, lib, homelab, ... }:
+{
+  config,
+  lib,
+  homelab,
+  ...
+}:
 {
   terraform.required_providers.cloudflare = {
     source = "cloudflare/cloudflare";
@@ -24,8 +29,14 @@
       account_id = config.variable.cloudflare_account_id;
       tunnel_id = config.resource.cloudflare_zero_trust_tunnel_cloudflared.homelab "id";
       config.ingress = [
-        { hostname = "whoami.${homelab.domain}"; service = "http://cilium-gateway-public.gateways.svc.cluster.local:80"; }
-        { hostname = "status.${homelab.domain}"; service = "http://cilium-gateway-public.gateways.svc.cluster.local:80"; }
+        {
+          hostname = "whoami.${homelab.domain}";
+          service = "http://cilium-gateway-public.gateways.svc.cluster.local:80";
+        }
+        {
+          hostname = "status.${homelab.domain}";
+          service = "http://cilium-gateway-public.gateways.svc.cluster.local:80";
+        }
         { service = "http_status:404"; }
       ];
     };
@@ -45,4 +56,3 @@
     });
   };
 }
-

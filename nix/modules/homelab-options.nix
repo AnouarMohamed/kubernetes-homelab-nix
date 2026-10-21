@@ -7,7 +7,10 @@ let
       name = mkOption { type = types.str; };
       address = mkOption { type = types.str; };
       interface = mkOption { type = types.str; };
-      clusterInit = mkOption { type = types.bool; default = false; };
+      clusterInit = mkOption {
+        type = types.bool;
+        default = false;
+      };
     };
   };
 in
@@ -15,7 +18,10 @@ in
   options.homelab = {
     domain = mkOption { type = types.str; };
     acmeEmail = mkOption { type = types.str; };
-    timezone = mkOption { type = types.str; default = "UTC"; };
+    timezone = mkOption {
+      type = types.str;
+      default = "UTC";
+    };
     repository = mkOption { type = types.str; };
     projectPath = mkOption { type = types.str; };
     registryPath = mkOption { type = types.str; };
@@ -34,16 +40,34 @@ in
       };
     };
     storage = {
-      defaultClass = mkOption { type = types.str; default = "longhorn"; };
-      databaseClass = mkOption { type = types.str; default = "longhorn-database"; };
-      longhornDiskPath = mkOption { type = types.str; default = "/var/lib/longhorn"; };
+      defaultClass = mkOption {
+        type = types.str;
+        default = "longhorn";
+      };
+      databaseClass = mkOption {
+        type = types.str;
+        default = "longhorn-database";
+      };
+      longhornDiskPath = mkOption {
+        type = types.str;
+        default = "/var/lib/longhorn";
+      };
       s3Endpoint = mkOption { type = types.str; };
       s3Bucket = mkOption { type = types.str; };
     };
     replicas = {
-      controlPlane = mkOption { type = types.ints.positive; default = 3; };
-      platform = mkOption { type = types.ints.positive; default = 2; };
-      databases = mkOption { type = types.ints.positive; default = 3; };
+      controlPlane = mkOption {
+        type = types.ints.positive;
+        default = 3;
+      };
+      platform = mkOption {
+        type = types.ints.positive;
+        default = 2;
+      };
+      databases = mkOption {
+        type = types.ints.positive;
+        default = 3;
+      };
     };
     components = mkOption {
       type = types.attrsOf types.bool;
@@ -66,4 +90,3 @@ in
     }
   ];
 }
-

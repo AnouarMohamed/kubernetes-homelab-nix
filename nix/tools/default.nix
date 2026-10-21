@@ -1,15 +1,20 @@
 { homelab }:
 {
   sops = {
-    creation_rules = [ {
-      path_regex = "secrets/.*\\.(json|yaml)$";
-      age = homelab.ageRecipient;
-    } ];
+    creation_rules = [
+      {
+        path_regex = "secrets/.*\\.(json|yaml)$";
+        age = homelab.ageRecipient;
+      }
+    ];
   };
   renovate = {
     extends = [ "config:recommended" ];
     dependencyDashboard = true;
-    labels = [ "dependencies" "nix" ];
+    labels = [
+      "dependencies"
+      "nix"
+    ];
     nix.enabled = true;
     schedule = [ "before 6am on monday" ];
   };
@@ -27,4 +32,3 @@
     MD033 = false;
   };
 }
-

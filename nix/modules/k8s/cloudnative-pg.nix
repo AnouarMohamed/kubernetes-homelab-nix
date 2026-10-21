@@ -1,4 +1,9 @@
-{ kubenix, lib, homelab, ... }:
+{
+  kubenix,
+  lib,
+  homelab,
+  ...
+}:
 let
   substitute = import ../../lib/substitute.nix { inherit lib homelab; };
 in
@@ -15,4 +20,3 @@ in
     version = "1.36";
   };
 }
-

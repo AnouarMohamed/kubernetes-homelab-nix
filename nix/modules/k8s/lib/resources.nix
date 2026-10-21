@@ -22,21 +22,35 @@ let
     "scheduling.k8s.io"
     "storage.k8s.io"
   ];
-  parse = object:
-    let parts = lib.splitString "/" object.apiVersion;
-    in {
+  parse =
+    object:
+    let
+      parts = lib.splitString "/" object.apiVersion;
+    in
+    {
       group = if builtins.length parts == 1 then "core" else builtins.head parts;
       version = builtins.elemAt parts (builtins.length parts - 1);
       inherit (object) kind;
     };
-  sanitize = value: lib.toLower (builtins.replaceStrings [ "/" "." "_" ":" ] [ "-" "-" "-" "-" ] value);
-  typesByKey = builtins.listToAttrs (map (object:
-    let type = parse object; key = "${type.group}-${type.version}-${type.kind}";
-    in {
-      name = key;
-      value = type // { attrName = sanitize key; };
-    }) (builtins.filter (object: !(builtins.elem (parse object).group nativeGroups)) resources));
-  definitions = lib.imap0 (index: object:
+  sanitize =
+    value: lib.toLower (builtins.replaceStrings [ "/" "." "_" ":" ] [ "-" "-" "-" "-" ] value);
+  typesByKey = builtins.listToAttrs (
+    map (
+      object:
+      let
+        type = parse object;
+        key = "${type.group}-${type.version}-${type.kind}";
+      in
+      {
+        name = key;
+        value = type // {
+          attrName = sanitize key;
+        };
+      }
+    ) (builtins.filter (object: !(builtins.elem (parse object).group nativeGroups)) resources)
+  );
+  definitions = lib.imap0 (
+    index: object:
     let
       type = parse object;
       namespace = object.metadata.namespace or "cluster";
@@ -52,4 +66,3 @@ in
   kubernetes.customTypes = builtins.attrValues typesByKey;
   kubernetes.api.resources = lib.mkMerge definitions;
 }
-

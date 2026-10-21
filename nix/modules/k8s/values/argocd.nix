@@ -31,10 +31,12 @@
         "admin.enabled" = true;
         "accounts.platform-reader" = "login";
         "exec.enabled" = false;
-        "resource.customizations.health.argoproj.io_Application" = "hs = {}\nhs.status = \"Progressing\"\nhs.message = \"Waiting for child application health\"\nif obj.status ~= nil and obj.status.health ~= nil then\n  hs.status = obj.status.health.status\n  if obj.status.health.message ~= nil then\n    hs.message = obj.status.health.message\n  end\nend\nreturn hs\n";
+        "resource.customizations.health.argoproj.io_Application" =
+          "hs = {}\nhs.status = \"Progressing\"\nhs.message = \"Waiting for child application health\"\nif obj.status ~= nil and obj.status.health ~= nil then\n  hs.status = obj.status.health.status\n  if obj.status.health.message ~= nil then\n    hs.message = obj.status.health.message\n  end\nend\nreturn hs\n";
         "statusbadge.enabled" = false;
         "timeout.reconciliation" = "180s";
-        "oidc.config" = "name: Keycloak\nissuer: https://keycloak.\${CONFIG_DOMAIN}/realms/homelab\nclientID: argocd\nclientSecret: $argocd-oidc:client-secret\nrequestedScopes:\n  - openid\n  - profile\n  - email\n  - groups\n";
+        "oidc.config" =
+          "name: Keycloak\nissuer: https://keycloak.\${CONFIG_DOMAIN}/realms/homelab\nclientID: argocd\nclientSecret: $argocd-oidc:client-secret\nrequestedScopes:\n  - openid\n  - profile\n  - email\n  - groups\n";
       };
       params = {
         "applicationsetcontroller.enable.scm.providers" = "false";
@@ -42,7 +44,8 @@
       };
       rbac = {
         "policy.default" = "role:readonly";
-        "policy.csv" = "g, platform-reader, role:readonly\ng, homelab-viewers, role:readonly\ng, homelab-admins, role:admin\n";
+        "policy.csv" =
+          "g, platform-reader, role:readonly\ng, homelab-viewers, role:readonly\ng, homelab-admins, role:admin\n";
         scopes = "[groups]";
       };
       cmp = {
@@ -135,14 +138,18 @@
         enabled = true;
       };
       notifiers = {
-        "service.webhook.platform" = "url: $webhook-url\nheaders:\n  - name: Content-Type\n    value: application/json";
+        "service.webhook.platform" =
+          "url: $webhook-url\nheaders:\n  - name: Content-Type\n    value: application/json";
       };
       templates = {
-        "template.platform-sync-status" = "webhook:\n  platform:\n    method: POST\n    body: |\n      {\"application\":\"{{.app.metadata.name}}\",\"sync\":\"{{.app.status.sync.status}}\",\"health\":\"{{.app.status.health.status}}\"}";
+        "template.platform-sync-status" =
+          "webhook:\n  platform:\n    method: POST\n    body: |\n      {\"application\":\"{{.app.metadata.name}}\",\"sync\":\"{{.app.status.sync.status}}\",\"health\":\"{{.app.status.health.status}}\"}";
       };
       triggers = {
-        "trigger.on-platform-degraded" = "- description: Application health is degraded.\n  send:\n    - platform-sync-status\n  when: app.status.health.status == 'Degraded'";
-        "trigger.on-platform-out-of-sync" = "- description: Application remains out of sync.\n  send:\n    - platform-sync-status\n  when: app.status.sync.status == 'OutOfSync'";
+        "trigger.on-platform-degraded" =
+          "- description: Application health is degraded.\n  send:\n    - platform-sync-status\n  when: app.status.health.status == 'Degraded'";
+        "trigger.on-platform-out-of-sync" =
+          "- description: Application remains out of sync.\n  send:\n    - platform-sync-status\n  when: app.status.sync.status == 'OutOfSync'";
       };
       subscriptions = [
         {

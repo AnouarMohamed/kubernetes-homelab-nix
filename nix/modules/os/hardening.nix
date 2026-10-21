@@ -1,7 +1,26 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   peerAddresses = map (node: node.address) config.homelab.nodes;
-  peerTcpPorts = [ 2379 2380 2381 4240 4244 6443 9100 9962 9963 9964 9965 9966 10250 ];
+  peerTcpPorts = [
+    2379
+    2380
+    2381
+    4240
+    4244
+    6443
+    9100
+    9962
+    9963
+    9964
+    9965
+    9966
+    10250
+  ];
 in
 {
   security.auditd.enable = true;
@@ -19,9 +38,17 @@ in
     allowPing = false;
     # Global ports are limited to SSH and the API; application ingress is via
     # Cloudflare Tunnel and Cilium, never an inbound router port.
-    allowedTCPPorts = [ 22 6443 ];
+    allowedTCPPorts = [
+      22
+      6443
+    ];
     extraInputRules = lib.concatStringsSep "\n" (
-      map (address: "ip saddr ${address} tcp dport { ${lib.concatMapStringsSep ", " toString peerTcpPorts} } accept comment \"k3s peer\"") peerAddresses
+      map (
+        address:
+        "ip saddr ${address} tcp dport { ${
+          lib.concatMapStringsSep ", " toString peerTcpPorts
+        } } accept comment \"k3s peer\""
+      ) peerAddresses
       ++ [
         "ip saddr ${config.homelab.network.podCidr} accept comment \"pod network\""
         "ip saddr ${config.homelab.network.serviceCidr} accept comment \"service network\""
@@ -32,4 +59,3 @@ in
 
   environment.systemPackages = [ pkgs.audit ];
 }
-

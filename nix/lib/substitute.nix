@@ -12,7 +12,9 @@ let
     CONFIG_LOAD_BALANCER_POOL_STOP = homelab.network.loadBalancerPool.stop;
     CONFIG_LOAD_BALANCER_START = homelab.network.loadBalancerPool.start;
     CONFIG_LOAD_BALANCER_STOP = homelab.network.loadBalancerPool.stop;
-    CONFIG_NODE_INTERFACE_PATTERN = "^(${lib.concatStringsSep "|" (map (node: node.interface) homelab.nodes)})$";
+    CONFIG_NODE_INTERFACE_PATTERN = "^(${
+      lib.concatStringsSep "|" (map (node: node.interface) homelab.nodes)
+    })$";
     CONFIG_NODE_1_ADDRESS = (builtins.elemAt homelab.nodes 0).address;
     CONFIG_NODE_2_ADDRESS = (builtins.elemAt homelab.nodes 1).address;
     CONFIG_NODE_3_ADDRESS = (builtins.elemAt homelab.nodes 2).address;
@@ -36,11 +38,15 @@ let
   names = builtins.attrNames replacements;
   from = map (name: "\${${name}}") names;
   to = map (name: replacements.${name}) names;
-  substitute = value:
-    if builtins.isString value then builtins.replaceStrings from to value
-    else if builtins.isList value then map substitute value
-    else if builtins.isAttrs value then lib.mapAttrs (_: substitute) value
-    else value;
+  substitute =
+    value:
+    if builtins.isString value then
+      builtins.replaceStrings from to value
+    else if builtins.isList value then
+      map substitute value
+    else if builtins.isAttrs value then
+      lib.mapAttrs (_: substitute) value
+    else
+      value;
 in
 substitute
-

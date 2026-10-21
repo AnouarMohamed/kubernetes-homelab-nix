@@ -8,7 +8,10 @@
 
   networking.hostName = node.name;
   homelab = (import ../config.nix) // {
-    nodes = [ node ] ++ builtins.filter (candidate: candidate.name != node.name) (import ../config.nix).nodes;
+    nodes = [
+      node
+    ]
+    ++ builtins.filter (candidate: candidate.name != node.name) (import ../config.nix).nodes;
   };
 
   boot.loader.systemd-boot.enable = true;
@@ -16,4 +19,3 @@
   networking.useDHCP = true;
   system.stateVersion = "26.05";
 }
-

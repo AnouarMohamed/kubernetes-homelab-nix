@@ -20,9 +20,24 @@
   };
 
   nodes = [
-    { name = "node1"; address = "192.0.2.11"; interface = "enp1s0"; clusterInit = true; }
-    { name = "node2"; address = "192.0.2.12"; interface = "enp1s0"; clusterInit = false; }
-    { name = "node3"; address = "192.0.2.13"; interface = "enp1s0"; clusterInit = false; }
+    {
+      name = "node1";
+      address = "192.0.2.11";
+      interface = "enp1s0";
+      clusterInit = true;
+    }
+    {
+      name = "node2";
+      address = "192.0.2.12";
+      interface = "enp1s0";
+      clusterInit = false;
+    }
+    {
+      name = "node3";
+      address = "192.0.2.13";
+      interface = "enp1s0";
+      clusterInit = false;
+    }
   ];
 
   storage = {
@@ -74,4 +89,3 @@
     sentinel = true;
   };
 }
-
