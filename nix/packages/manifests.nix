@@ -52,4 +52,5 @@ pkgs.runCommand "kubernetes-homelab-manifests.yaml" { } ''
     cat ${kubernetes.config.kubernetes.resultYAML}
     ${lib.concatMapStringsSep "\n" (chart: "cat ${chart}") renderedCharts}
   } > "$out"
+''
 
