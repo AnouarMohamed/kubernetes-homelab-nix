@@ -26,6 +26,8 @@
     defaultClass = "longhorn";
     databaseClass = "longhorn-database";
     longhornDiskPath = "/var/lib/longhorn";
+    s3Endpoint = "https://s3.PLACEHOLDER.example.invalid";
+    s3Bucket = "PLACEHOLDER-homelab-backups";
   };
 
   replicas = {

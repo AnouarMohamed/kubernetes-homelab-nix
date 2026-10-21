@@ -11,6 +11,9 @@ let
     CONFIG_POD_CIDR = homelab.network.podCidr;
     CONFIG_SERVICE_CIDR = homelab.network.serviceCidr;
     CONFIG_LONGHORN_DISK_PATH = homelab.storage.longhornDiskPath;
+    CONFIG_TIMEZONE = homelab.timezone;
+    CONFIG_S3_ENDPOINT = homelab.storage.s3Endpoint;
+    CONFIG_S3_BUCKET = homelab.storage.s3Bucket;
   };
   names = builtins.attrNames replacements;
   from = map (name: "\${${name}}") names;

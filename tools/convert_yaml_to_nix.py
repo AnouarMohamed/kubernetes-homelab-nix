@@ -12,9 +12,9 @@ import yaml
 
 
 def nix_string(value: str) -> str:
-    return json.dumps(value.replace("${", "\\u0024{"), ensure_ascii=False).replace(
-        "\\u0024{", "''${"
-    )
+    # Double-quoted Nix strings escape interpolation as \${. JSON escaping is
+    # otherwise compatible with Nix for the source material used here.
+    return json.dumps(value, ensure_ascii=False).replace("${", "\\${")
 
 
 def key(value: object) -> str:

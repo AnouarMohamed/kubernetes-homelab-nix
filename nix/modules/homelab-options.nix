@@ -33,6 +33,8 @@ in
       defaultClass = mkOption { type = types.str; default = "longhorn"; };
       databaseClass = mkOption { type = types.str; default = "longhorn-database"; };
       longhornDiskPath = mkOption { type = types.str; default = "/var/lib/longhorn"; };
+      s3Endpoint = mkOption { type = types.str; };
+      s3Bucket = mkOption { type = types.str; };
     };
     replicas = {
       controlPlane = mkOption { type = types.ints.positive; default = 3; };

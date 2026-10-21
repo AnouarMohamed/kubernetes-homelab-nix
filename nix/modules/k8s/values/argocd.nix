@@ -1,0 +1,508 @@
+# Generated once from /home/anouar/kubernetes-homelab/platform/argocd/configure-argocd.yaml
+[
+  {
+    global = {
+      domain = "argocd.\${CONFIG_DOMAIN}";
+      image = {
+        repository = "quay.io/argoproj/argocd";
+        tag = "v3.5.4";
+        imagePullPolicy = "IfNotPresent";
+      };
+      logging = {
+        format = "json";
+        level = "info";
+      };
+      networkPolicy = {
+        create = true;
+        defaultDenyIngress = true;
+      };
+      securityContext = {
+        runAsNonRoot = true;
+        runAsUser = 999;
+        runAsGroup = 999;
+        fsGroup = 999;
+        seccompProfile = {
+          type = "RuntimeDefault";
+        };
+      };
+    };
+    configs = {
+      cm = {
+        "admin.enabled" = true;
+        "accounts.platform-reader" = "login";
+        "exec.enabled" = false;
+        "resource.customizations.health.argoproj.io_Application" = "hs = {}\nhs.status = \"Progressing\"\nhs.message = \"Waiting for child application health\"\nif obj.status ~= nil and obj.status.health ~= nil then\n  hs.status = obj.status.health.status\n  if obj.status.health.message ~= nil then\n    hs.message = obj.status.health.message\n  end\nend\nreturn hs\n";
+        "statusbadge.enabled" = false;
+        "timeout.reconciliation" = "180s";
+        "oidc.config" = "name: Keycloak\nissuer: https://keycloak.\${CONFIG_DOMAIN}/realms/homelab\nclientID: argocd\nclientSecret: $argocd-oidc:client-secret\nrequestedScopes:\n  - openid\n  - profile\n  - email\n  - groups\n";
+      };
+      params = {
+        "applicationsetcontroller.enable.scm.providers" = "false";
+        "server.insecure" = false;
+      };
+      rbac = {
+        "policy.default" = "role:readonly";
+        "policy.csv" = "g, platform-reader, role:readonly\ng, homelab-viewers, role:readonly\ng, homelab-admins, role:admin\n";
+        scopes = "[groups]";
+      };
+      cmp = {
+        create = true;
+        plugins = {
+          homelab-renderer-v1 = {
+            preserveFileMode = false;
+            provideGitCreds = false;
+            generate = {
+              command = [
+                "bash"
+                "-c"
+              ];
+              args = [
+                "repository_root=\"\${PWD%/\${ARGOCD_APP_SOURCE_PATH}}\"\nexport HOMELAB_REPOSITORY_ROOT=\"\${repository_root}\"\nexport HOMELAB_CACHE_ROOT=/tmp/homelab-cache\nexec bash \"\${repository_root}/scripts/render-gitops.sh\" \"$PWD\"\n"
+              ];
+            };
+          };
+        };
+      };
+    };
+    controller = {
+      replicas = 1;
+      resources = {
+        requests = {
+          cpu = "200m";
+          memory = "768Mi";
+        };
+        limits = {
+          cpu = 1;
+          memory = "2Gi";
+        };
+      };
+      metrics = {
+        enabled = true;
+      };
+    };
+    applicationSet = {
+      replicas = 2;
+      pdb = {
+        enabled = true;
+        maxUnavailable = 1;
+        unhealthyPodEvictionPolicy = "AlwaysAllow";
+      };
+      resources = {
+        requests = {
+          cpu = "50m";
+          memory = "128Mi";
+        };
+        limits = {
+          cpu = "500m";
+          memory = "512Mi";
+        };
+      };
+      metrics = {
+        enabled = true;
+      };
+    };
+    dex = {
+      enabled = false;
+    };
+    notifications = {
+      enabled = true;
+      image = {
+        repository = "quay.io/argoproj/argocd";
+        tag = "v3.5.4@sha256:49dff79439bb38b1b942b19a113fe1fec7e6b6c671ddf9fe6a4a7c46bde0b77b";
+        imagePullPolicy = "IfNotPresent";
+      };
+      secret = {
+        create = false;
+        name = "argocd-notifications-secret";
+      };
+      metrics = {
+        enabled = true;
+      };
+      resources = {
+        requests = {
+          cpu = "25m";
+          memory = "64Mi";
+        };
+        limits = {
+          cpu = "250m";
+          memory = "256Mi";
+        };
+      };
+      readinessProbe = {
+        enabled = true;
+      };
+      livenessProbe = {
+        enabled = true;
+      };
+      notifiers = {
+        "service.webhook.platform" = "url: $webhook-url\nheaders:\n  - name: Content-Type\n    value: application/json";
+      };
+      templates = {
+        "template.platform-sync-status" = "webhook:\n  platform:\n    method: POST\n    body: |\n      {\"application\":\"{{.app.metadata.name}}\",\"sync\":\"{{.app.status.sync.status}}\",\"health\":\"{{.app.status.health.status}}\"}";
+      };
+      triggers = {
+        "trigger.on-platform-degraded" = "- description: Application health is degraded.\n  send:\n    - platform-sync-status\n  when: app.status.health.status == 'Degraded'";
+        "trigger.on-platform-out-of-sync" = "- description: Application remains out of sync.\n  send:\n    - platform-sync-status\n  when: app.status.sync.status == 'OutOfSync'";
+      };
+      subscriptions = [
+        {
+          recipients = [
+            "platform"
+          ];
+          triggers = [
+            "on-platform-degraded"
+            "on-platform-out-of-sync"
+          ];
+        }
+      ];
+    };
+    server = {
+      replicas = 2;
+      pdb = {
+        enabled = true;
+        maxUnavailable = 1;
+        unhealthyPodEvictionPolicy = "AlwaysAllow";
+      };
+      resources = {
+        requests = {
+          cpu = "100m";
+          memory = "128Mi";
+        };
+        limits = {
+          cpu = "500m";
+          memory = "512Mi";
+        };
+      };
+      metrics = {
+        enabled = true;
+      };
+      service = {
+        type = "ClusterIP";
+      };
+      ingress = {
+        enabled = false;
+      };
+      ingressGrpc = {
+        enabled = false;
+      };
+      httproute = {
+        enabled = false;
+      };
+      grpcroute = {
+        enabled = false;
+      };
+    };
+    repoServer = {
+      replicas = 2;
+      automountServiceAccountToken = false;
+      serviceAccount = {
+        automountServiceAccountToken = false;
+      };
+      pdb = {
+        enabled = true;
+        maxUnavailable = 1;
+        unhealthyPodEvictionPolicy = "AlwaysAllow";
+      };
+      resources = {
+        requests = {
+          cpu = "100m";
+          memory = "256Mi";
+        };
+        limits = {
+          cpu = 1;
+          memory = "1Gi";
+        };
+      };
+      metrics = {
+        enabled = true;
+      };
+      initContainers = [
+        {
+          name = "install-curl";
+          image = "docker.io/curlimages/curl:8.16.0@sha256:463eaf6072688fe96ac64fa623fe73e1dbe25d8ad6c34404a669ad3ce1f104b6";
+          imagePullPolicy = "IfNotPresent";
+          command = [
+            "/bin/sh"
+            "-c"
+            "set -eu\nmkdir -p /custom-tools/curl-lib\ncp /usr/bin/curl /custom-tools/curl.bin\ncp /lib/ld-musl-x86_64.so.1 /custom-tools/curl-lib/\ncp /usr/lib/*.so* /custom-tools/curl-lib/\nprintf '%s\\n' \\\n  '#!/bin/sh' \\\n  'exec /custom-tools/curl-lib/ld-musl-x86_64.so.1 \\' \\\n  '  --library-path /custom-tools/curl-lib \\' \\\n  '  /custom-tools/curl.bin \"$@\"' \\\n  > /custom-tools/curl\nchmod 0555 /custom-tools/curl /custom-tools/curl.bin\n"
+          ];
+          resources = {
+            requests = {
+              cpu = "10m";
+              memory = "32Mi";
+            };
+            limits = {
+              cpu = "100m";
+              memory = "64Mi";
+            };
+          };
+          securityContext = {
+            allowPrivilegeEscalation = false;
+            capabilities = {
+              drop = [
+                "ALL"
+              ];
+            };
+            readOnlyRootFilesystem = true;
+            runAsNonRoot = true;
+            seccompProfile = {
+              type = "RuntimeDefault";
+            };
+          };
+          volumeMounts = [
+            {
+              name = "custom-tools";
+              mountPath = "/custom-tools";
+            }
+          ];
+        }
+        {
+          name = "install-ksops";
+          image = "docker.io/viaductoss/ksops:v4.5.1@sha256:4def9fdd4e2f850265740ebe9592c5455d19b76891e88e602df8b52d74b95334";
+          imagePullPolicy = "IfNotPresent";
+          command = [
+            "/usr/local/bin/ksops"
+            "install"
+            "--with-kustomize"
+            "/custom-tools"
+          ];
+          resources = {
+            requests = {
+              cpu = "10m";
+              memory = "32Mi";
+            };
+            limits = {
+              cpu = "100m";
+              memory = "128Mi";
+            };
+          };
+          securityContext = {
+            allowPrivilegeEscalation = false;
+            capabilities = {
+              drop = [
+                "ALL"
+              ];
+            };
+            readOnlyRootFilesystem = true;
+            runAsNonRoot = true;
+            seccompProfile = {
+              type = "RuntimeDefault";
+            };
+          };
+          volumeMounts = [
+            {
+              name = "custom-tools";
+              mountPath = "/custom-tools";
+            }
+          ];
+        }
+        {
+          name = "install-yq";
+          image = "docker.io/mikefarah/yq:4.54.1@sha256:4b3d9475d65571d28cbb19544d3820ec2945e4c8b2f18279394282b8dc3a592e";
+          imagePullPolicy = "IfNotPresent";
+          command = [
+            "/bin/sh"
+            "-c"
+            "cp /usr/bin/yq /custom-tools/yq"
+          ];
+          resources = {
+            requests = {
+              cpu = "10m";
+              memory = "16Mi";
+            };
+            limits = {
+              cpu = "100m";
+              memory = "64Mi";
+            };
+          };
+          securityContext = {
+            allowPrivilegeEscalation = false;
+            capabilities = {
+              drop = [
+                "ALL"
+              ];
+            };
+            readOnlyRootFilesystem = true;
+            runAsNonRoot = true;
+            seccompProfile = {
+              type = "RuntimeDefault";
+            };
+          };
+          volumeMounts = [
+            {
+              name = "custom-tools";
+              mountPath = "/custom-tools";
+            }
+          ];
+        }
+      ];
+      extraContainers = [
+        {
+          name = "homelab-renderer";
+          image = "quay.io/argoproj/argocd:v3.5.4@sha256:49dff79439bb38b1b942b19a113fe1fec7e6b6c671ddf9fe6a4a7c46bde0b77b";
+          imagePullPolicy = "IfNotPresent";
+          command = [
+            "/var/run/argocd/argocd-cmp-server"
+          ];
+          env = [
+            {
+              name = "PATH";
+              value = "/custom-tools:/usr/local/bin:/usr/bin:/bin";
+            }
+            {
+              name = "XDG_CONFIG_HOME";
+              value = "/home/argocd/.config";
+            }
+            {
+              name = "SOPS_AGE_KEY_FILE";
+              value = "/home/argocd/.config/sops/age/keys.txt";
+            }
+          ];
+          readinessProbe = {
+            exec = {
+              command = [
+                "/bin/sh"
+                "-c"
+                "test -x /custom-tools/curl && test -x /custom-tools/ksops && test -x /custom-tools/yq"
+              ];
+            };
+            initialDelaySeconds = 5;
+            periodSeconds = 10;
+          };
+          livenessProbe = {
+            exec = {
+              command = [
+                "/bin/sh"
+                "-c"
+                "test -d /home/argocd/cmp-server/plugins"
+              ];
+            };
+            initialDelaySeconds = 10;
+            periodSeconds = 20;
+          };
+          resources = {
+            requests = {
+              cpu = "50m";
+              memory = "128Mi";
+            };
+            limits = {
+              cpu = "500m";
+              memory = "512Mi";
+            };
+          };
+          securityContext = {
+            allowPrivilegeEscalation = false;
+            capabilities = {
+              drop = [
+                "ALL"
+              ];
+            };
+            readOnlyRootFilesystem = true;
+            runAsNonRoot = true;
+            runAsUser = 999;
+            seccompProfile = {
+              type = "RuntimeDefault";
+            };
+          };
+          volumeMounts = [
+            {
+              name = "var-files";
+              mountPath = "/var/run/argocd";
+            }
+            {
+              name = "plugins";
+              mountPath = "/home/argocd/cmp-server/plugins";
+            }
+            {
+              name = "renderer-config";
+              mountPath = "/home/argocd/cmp-server/config/plugin.yaml";
+              subPath = "homelab-renderer-v1.yaml";
+            }
+            {
+              name = "renderer-tmp";
+              mountPath = "/tmp";
+            }
+            {
+              name = "custom-tools";
+              mountPath = "/custom-tools";
+              readOnly = true;
+            }
+            {
+              name = "sops-age";
+              mountPath = "/home/argocd/.config/sops/age";
+              readOnly = true;
+            }
+          ];
+        }
+      ];
+      volumes = [
+        {
+          name = "renderer-config";
+          configMap = {
+            name = "argocd-cmp-cm";
+          };
+        }
+        {
+          name = "renderer-tmp";
+          emptyDir = {
+            sizeLimit = "1Gi";
+          };
+        }
+        {
+          name = "custom-tools";
+          emptyDir = {
+            sizeLimit = "128Mi";
+          };
+        }
+        {
+          name = "sops-age";
+          secret = {
+            secretName = "sops-age";
+            defaultMode = 288;
+          };
+        }
+      ];
+    };
+    redis = {
+      enabled = true;
+      automountServiceAccountToken = false;
+      readinessProbe = {
+        enabled = true;
+      };
+      livenessProbe = {
+        enabled = true;
+      };
+      resources = {
+        requests = {
+          cpu = "50m";
+          memory = "64Mi";
+        };
+        limits = {
+          cpu = "250m";
+          memory = "256Mi";
+        };
+      };
+      pdb = {
+        enabled = true;
+        maxUnavailable = 1;
+        unhealthyPodEvictionPolicy = "AlwaysAllow";
+      };
+    };
+    redisSecretInit = {
+      enabled = true;
+      resources = {
+        requests = {
+          cpu = "10m";
+          memory = "32Mi";
+        };
+        limits = {
+          cpu = "100m";
+          memory = "128Mi";
+        };
+      };
+    };
+    test = {
+      enabled = false;
+    };
+  }
+]
