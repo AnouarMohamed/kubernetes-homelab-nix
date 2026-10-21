@@ -62,7 +62,9 @@ in
 {
   # CRDs vary between spec-based objects and top-level CSI/Gateway shapes. A
   # freeform whole-object module preserves both without inventing schemas.
-  kubernetes.customTypesModuleDefinesCRDSpec = false;
-  kubernetes.customTypes = builtins.attrValues typesByKey;
-  kubernetes.api.resources = lib.mkMerge definitions;
+  kubernetes = {
+    customTypesModuleDefinesCRDSpec = false;
+    customTypes = builtins.attrValues typesByKey;
+    api.resources = lib.mkMerge definitions;
+  };
 }

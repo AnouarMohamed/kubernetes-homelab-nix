@@ -102,10 +102,14 @@ pkgs.testers.runNixOSTest {
     survivor = node2 if original != "node2" else node3
     survivor.wait_until_succeeds("kubectl get --raw=/readyz", timeout=120)
     survivor.wait_until_succeeds(
-      "test $(kubectl get pod -l app=reschedule-test --field-selector=status.phase=Running -o name | wc -l) -eq 1",
+      f'''kubectl get pod -l app=reschedule-test -o json | jq -e --arg old '{original}' \
+        '[.items[] | select(.status.phase == "Running" and .spec.nodeName != $old)] | length == 1' ''',
       timeout=420,
     )
-    replacement = survivor.succeed("kubectl get pod -l app=reschedule-test -o jsonpath='{.items[?(@.status.phase==\"Running\")].spec.nodeName}'").strip()
+    replacement = survivor.succeed(
+      f'''kubectl get pod -l app=reschedule-test -o json | jq -r --arg old '{original}' \
+        '.items[] | select(.status.phase == "Running" and .spec.nodeName != $old) | .spec.nodeName' '''
+    ).strip()
     assert replacement != original, f"pod did not reschedule: {original}"
   '';
 }
