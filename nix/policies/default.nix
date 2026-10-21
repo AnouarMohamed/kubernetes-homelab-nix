@@ -11,8 +11,8 @@ let
 in
 {
   imports = [ kubenix.modules.k8s kubenix.modules.helm ];
+  kubenix.project = "kubernetes-homelab-nix";
   kubernetes = {
-    project = "kubernetes-homelab-nix";
     version = "1.36";
     customResources = map substitute (import ./resources.nix);
     helm.releases = {

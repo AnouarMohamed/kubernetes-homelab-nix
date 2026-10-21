@@ -4,8 +4,8 @@ let
 in
 {
   imports = [ kubenix.modules.k8s ] ++ lib.optional (chart != null) kubenix.modules.helm;
+  kubenix.project = "kubernetes-homelab-nix";
   kubernetes = {
-    project = "kubernetes-homelab-nix";
     version = "1.36";
     customResources = map substitute resources;
     helm.releases = lib.optionalAttrs (chart != null) {
