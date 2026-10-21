@@ -123,7 +123,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         cp -R --dereference ${inputs.self}/. source/
         chmod -R u+w source
         cd source
-        treefmt --ci
+        treefmt --ci --tree-root "$PWD"
         touch "$out"
       '';
       statix = pkgs.runCommand "statix" { nativeBuildInputs = [ pkgs.statix ]; } ''
