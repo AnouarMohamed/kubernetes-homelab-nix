@@ -17,6 +17,10 @@ in
     acmeEmail = mkOption { type = types.str; };
     timezone = mkOption { type = types.str; default = "UTC"; };
     repository = mkOption { type = types.str; };
+    projectPath = mkOption { type = types.str; };
+    registryPath = mkOption { type = types.str; };
+    ciIdentity = mkOption { type = types.str; };
+    images = mkOption { type = types.attrsOf types.str; };
     nodes = mkOption { type = types.listOf nodeType; };
     network = {
       adminCidr = mkOption { type = types.str; };

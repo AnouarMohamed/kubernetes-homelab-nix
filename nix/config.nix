@@ -3,6 +3,9 @@
   acmeEmail = "admin@PLACEHOLDER.example.invalid";
   timezone = "Africa/Casablanca";
   repository = "https://github.com/AnouarMohamed/kubernetes-homelab-nix.git";
+  projectPath = "AnouarMohamed/kubernetes-homelab-nix";
+  registryPath = "ghcr.io/anouarmohamed";
+  ciIdentity = "https://github.com/AnouarMohamed/kubernetes-homelab-nix/.github/workflows/ci.yaml@refs/heads/main";
 
   network = {
     adminCidr = "192.0.2.0/24";
@@ -40,6 +43,18 @@
   ageRecipient = "REPLACE_WITH_AGE_RECIPIENT";
   cloudflareAccountId = "REPLACE_WITH_CLOUDFLARE_ACCOUNT_ID";
   cloudflareZoneId = "REPLACE_WITH_CLOUDFLARE_ZONE_ID";
+
+  images = {
+    cnpg = "ghcr.io/cloudnative-pg/postgresql:17.6-system-trixie@sha256:6ae4a22c14bdc66e5feaafd38d12c3956fabf9ce9582189e6aa4ee767d981d1b";
+    snapshotController = "registry.k8s.io/sig-storage/snapshot-controller:v8.6.0@sha256:81e79f205083f105e573ba2ebfe5964ede7f69a154e8627f53ebbbccd3ed9f70";
+    veleroAwsPlugin = "docker.io/velero/velero-plugin-for-aws:v1.14.4@sha256:c85a7fa803569e3128c33e4f5766f84ab156c8d171c9f1dd2715581d45ce98fa";
+    keycloak = "quay.io/keycloak/keycloak:26.8.0@sha256:27b3230fbabb8c9ff3c66c864cf09dcd8a41aca82e5100679d109ef0eeb05741";
+    vaultwarden = "docker.io/vaultwarden/server:1.37.4-alpine@sha256:19ea2b669945d842dadc3d500f2d6a795866a003330f59a47b9634658bae98bb";
+    homepage = "ghcr.io/gethomepage/homepage:v2.5.0@sha256:57c4a0531937889c0b968b120fe9c2560bbe036b5c9e18c49a9e2479de9975d1";
+    uptimeKuma = "docker.io/louislam/uptime-kuma:2.5.5-rootless@sha256:c4e17ce033deb811aff8a61a5f8f736f35b1bd937458ddeec46c59ca190f0e03";
+    sentinelApi = "ghcr.io/anouarmohamed/homelab-sentinel-api@sha256:d6b4b896e667534f995614d2ebb6a8953a0dd4a7cf68b3122c5bbd9ae400e715";
+    sentinelWorker = "ghcr.io/anouarmohamed/homelab-sentinel-worker@sha256:52a3b2596520fbb0199b4eaaa93b6e2cc60f3b37bab767e6d11e3463eda47532";
+  };
 
   components = {
     cilium = true;

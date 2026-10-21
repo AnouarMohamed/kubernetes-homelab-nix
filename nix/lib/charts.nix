@@ -79,5 +79,13 @@ in
     url = "https://github.com/slok/sloth/releases/download/sloth-helm-chart-0.16.0/sloth-0.16.0.tgz";
     sha256 = "616acb580eefc2e9836cc1b430cac6d424e0e4210130786b6ec883657217c6db";
   };
+  kyverno = fetch {
+    url = "https://kyverno.github.io/kyverno/kyverno-3.9.1.tgz";
+    sha256 = "7b7fe51a431b5b133b0ce7eb9dcb222b6a37fb967c163223cf480054ad14d752";
+  };
+  trivy = fetch {
+    url = "https://github.com/aquasecurity/helm-charts/releases/download/trivy-operator-0.37.0/trivy-operator-0.37.0.tgz";
+    sha256 = "6d23f16d950496d17253258ca2e52bd068959041298e66c0652bf0841ccedf69";
+  };
 }
 
