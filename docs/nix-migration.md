@@ -43,29 +43,42 @@ the file is generated from Nix: `rendered/**/*.yaml`, `.github/workflows/*.yaml`
   artifact.
 - Longhorn remains the highest-risk component because of host iSCSI/FHS and
   kernel dependencies. Hardware behavior cannot be confirmed in CI.
-- Kubeconform is strict for schemas present in `nix/checks/schemas`. Custom
-  resources without a verified pinned schema are skipped and remain
-  UNVERIFIED rather than using an unpinned online catalog.
-- CI runners may not expose KVM. The VM test is still built and is run only
-  when virtualization is available.
+- Kubeconform uses a hash-verified, commit-pinned subset of Kubernetes 1.34.12
+  and CRD Catalog schemas assembled by `nix/checks/schemas.nix`. Resources
+  without a bundled schema are reported as skipped and remain schema-
+  unverified rather than using an unpinned online catalog.
+- GitHub's Ubuntu runner exposes KVM and executes the three-node HA test.
+- Build, evaluation, schema, and VM-test status below does not imply a live
+  deployment to physical nodes, Cloudflare, object storage, or Kubernetes.
 
 ## Component status
 
 | Component | Status | Notes |
 | --- | --- | --- |
 | Source inventory | done | 299 configuration files recorded |
-| Typed homelab options | unverified | Awaiting CI Nix evaluation |
-| Three NixOS hosts | unverified | Build-only, no hardware deployment |
-| Cilium and kube-vip | unverified | Render/build validation only |
-| Argo CD and Rollouts | unverified | Generated repository targets |
-| Longhorn | unverified | Highest-risk component |
-| CloudNativePG and Velero | unverified | No live S3 tests |
-| OpenBao and External Secrets | unverified | Placeholder secrets only |
-| Kyverno and Trivy | unverified | CLI validation delegated to CI |
-| Observability | unverified | Prometheus, Loki, Alloy, Tempo, OTel, Sloth, blackbox |
-| Applications | unverified | Keycloak, Vaultwarden, Homepage, Uptime Kuma, Whoami, Sentinel |
-| Chaos Mesh | unverified | No experiments are executed |
-| Cloudflare Terranix | unverified | Evaluation only; no plan/apply |
+| Typed homelab options | CI evaluated | Placeholder coverage passes |
+| Three NixOS hosts | CI built | All toplevels build; no hardware deployment |
+| Cilium and kube-vip | rendered | Nix evaluation and manifest checks; no live VIP test |
+| Argo CD and Rollouts | schema verified | Application tree and Rollout use pinned schemas |
+| Longhorn | rendered | Host prerequisites build; hardware behavior unverified |
+| CloudNativePG and Velero | partly schema verified | CNPG core schemas pass; no live S3 tests |
+| OpenBao and External Secrets | partly schema verified | Placeholder secrets only; ESO core schemas pass |
+| Kyverno and Trivy | CLI verified | Ten Kyverno policy tests pass in CI |
+| Observability | partly schema verified | Prometheus CRDs pass; remaining operators render |
+| Applications | CI built/rendered | Sentinel tests and images build; application manifests render |
+| Chaos Mesh | rendered | No destructive experiments are executed |
+| Cloudflare Terranix | CI evaluated | Configuration builds; no plan/apply |
 | AWS validation environment | skipped | Disposable source-only infrastructure |
-| Normalized parity | unverified | CI parity report is authoritative |
+| Normalized parity | CI checked | 299-file baseline, module presence, and rendered component markers |
+
+## Validation evidence
+
+- GitHub Actions run `39632545116` completed the full flake check, all three
+  host builds, installer ISO, Sentinel package/images, Kyverno tests, secret
+  scan, and the three-node k3s failure/rescheduling test.
+- Local non-Nix checks cover Go tests, handwritten-YAML policy, placeholder
+  documentation, semantic parity, and whitespace errors. Local Nix execution
+  remains **UNVERIFIED** because Nix is intentionally not installed.
+- Live infrastructure and physical-node behavior remain **UNVERIFIED** by
+  design; this repository performs build-only validation.
 

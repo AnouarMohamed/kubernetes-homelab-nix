@@ -9,7 +9,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: volumesnapshotclasses.snapshot.storage.k8s.io
 spec:
   group: snapshot.storage.k8s.io
@@ -152,7 +152,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: volumesnapshotcontents.snapshot.storage.k8s.io
 spec:
   group: snapshot.storage.k8s.io
@@ -602,7 +602,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: volumesnapshots.snapshot.storage.k8s.io
 spec:
   group: snapshot.storage.k8s.io
@@ -944,7 +944,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -964,7 +964,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: sentinel
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -986,7 +986,7 @@ metadata:
     app.kubernetes.io/component: staging-application
     app.kubernetes.io/name: sentinel
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1008,7 +1008,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1028,7 +1028,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1050,7 +1050,7 @@ metadata:
     app.kubernetes.io/name: whoami
     app.kubernetes.io/part-of: homelab-applications
     homelab.anouar.dev/public-gateway-access: "true"
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1070,7 +1070,7 @@ metadata:
     app.kubernetes.io/component: progressive-delivery
     app.kubernetes.io/name: argo-rollouts
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1089,7 +1089,7 @@ metadata:
     app.kubernetes.io/component: gitops-controller
     app.kubernetes.io/name: argocd
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1108,7 +1108,7 @@ metadata:
   labels:
     app.kubernetes.io/name: cert-manager
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1127,7 +1127,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: chaos-mesh
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: privileged
@@ -1148,7 +1148,7 @@ metadata:
     app.kubernetes.io/component: test-namespace
     app.kubernetes.io/name: chaos-testing
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1168,7 +1168,7 @@ metadata:
     app.kubernetes.io/component: tunnel
     app.kubernetes.io/name: cloudflare
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1186,7 +1186,7 @@ metadata:
   labels:
     app.kubernetes.io/name: cloudflare
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1205,7 +1205,7 @@ metadata:
     app.kubernetes.io/component: database-operator
     app.kubernetes.io/name: cnpg-system
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1223,7 +1223,7 @@ metadata:
   labels:
     app.kubernetes.io/name: external-dns
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1242,7 +1242,7 @@ metadata:
     app.kubernetes.io/component: secrets-controller
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1261,7 +1261,7 @@ metadata:
     app.kubernetes.io/component: edge-routing
     app.kubernetes.io/name: gateways
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1280,7 +1280,7 @@ metadata:
     app.kubernetes.io/component: identity
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1301,7 +1301,7 @@ metadata:
     app.kubernetes.io/component: policy-engine
     app.kubernetes.io/name: kyverno
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1320,7 +1320,7 @@ metadata:
     app.kubernetes.io/component: storage
     app.kubernetes.io/name: longhorn-system
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: privileged
@@ -1339,7 +1339,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: monitoring
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: privileged
@@ -1359,7 +1359,7 @@ metadata:
     app.kubernetes.io/component: secrets-server
     app.kubernetes.io/name: openbao
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1378,7 +1378,7 @@ metadata:
     app.kubernetes.io/component: test
     app.kubernetes.io/name: storage-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1397,7 +1397,7 @@ metadata:
     app.kubernetes.io/component: vulnerability-scanner
     app.kubernetes.io/name: trivy-operator
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1416,7 +1416,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: velero
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/enforce: restricted
@@ -1435,7 +1435,7 @@ metadata:
     app.kubernetes.io/component: sacrificial-workload
     app.kubernetes.io/name: chaos-target
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-target
   namespace: chaos-testing
 spec:
@@ -1518,7 +1518,7 @@ metadata:
     app.kubernetes.io/component: tunnel
     app.kubernetes.io/name: cloudflared
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cloudflared
   namespace: cloudflare
 spec:
@@ -1622,7 +1622,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage
 spec:
   replicas: 2
@@ -1650,7 +1650,7 @@ spec:
             - server.js
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
-              value: homepage.PLACEHOLDER.example.invalid
+              value: homepage.placeholder.example.invalid
           image: ghcr.io/gethomepage/homepage:v2.5.0@sha256:57c4a0531937889c0b968b120fe9c2560bbe036b5c9e18c49a9e2479de9975d1
           imagePullPolicy: IfNotPresent
           livenessProbe:
@@ -1728,7 +1728,7 @@ metadata:
     app.kubernetes.io/component: identity
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   replicas: 2
@@ -1754,7 +1754,7 @@ spec:
         - args:
             - start
             - --import-realm
-            - --hostname=https://keycloak.PLACEHOLDER.example.invalid
+            - --hostname=https://keycloak.placeholder.example.invalid
             - --proxy-headers=xforwarded
             - --http-enabled=true
             - --health-enabled=true
@@ -1852,7 +1852,7 @@ metadata:
     app.kubernetes.io/component: probe-worker
     app.kubernetes.io/name: sentinel-worker
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-worker
 spec:
   replicas: 1
@@ -1936,7 +1936,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma
 spec:
   replicas: 1
@@ -2019,7 +2019,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden
 spec:
   replicas: 1
@@ -2041,7 +2041,7 @@ spec:
             - /vaultwarden
           env:
             - name: DOMAIN
-              value: https://vaultwarden.PLACEHOLDER.example.invalid
+              value: https://vaultwarden.placeholder.example.invalid
             - name: ROCKET_ADDRESS
               value: 0.0.0.0
             - name: ROCKET_PORT
@@ -2120,7 +2120,7 @@ metadata:
     app.kubernetes.io/component: diagnostic-endpoint
     app.kubernetes.io/name: whoami
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: whoami
 spec:
   replicas: 2
@@ -2199,7 +2199,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: snapshot-controller
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller
   namespace: kube-system
 spec:
@@ -2269,7 +2269,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller
   namespace: kube-system
 spec:
@@ -2307,7 +2307,7 @@ metadata:
     app.kubernetes.io/component: test
     app.kubernetes.io/name: storage-reschedule-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: storage-reschedule-verification
   namespace: storage-verification
 spec:
@@ -2384,7 +2384,7 @@ metadata:
     app.kubernetes.io/component: rollout-analysis
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api-health
 spec:
   metrics:
@@ -2410,7 +2410,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: applications-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: applications
   namespace: argocd
 spec:
@@ -2488,7 +2488,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: default-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: default
   namespace: argocd
 spec:
@@ -2512,7 +2512,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: delivery-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: delivery
   namespace: argocd
 spec:
@@ -2567,7 +2567,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: edge-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: edge
   namespace: argocd
 spec:
@@ -2660,7 +2660,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: gitops-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: gitops
   namespace: argocd
 spec:
@@ -2722,7 +2722,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: identity-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: identity
   namespace: argocd
 spec:
@@ -2784,7 +2784,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: observability-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: observability
   namespace: argocd
 spec:
@@ -2875,7 +2875,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: platform-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: platform
   namespace: argocd
 spec:
@@ -2952,7 +2952,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: policy-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: policy
   namespace: argocd
 spec:
@@ -3025,7 +3025,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: resilience-testing-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: resilience-testing
   namespace: argocd
 spec:
@@ -3093,7 +3093,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: runtime-secrets-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: runtime-secrets
   namespace: argocd
 spec:
@@ -3164,7 +3164,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: storage-project
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: storage
   namespace: argocd
 spec:
@@ -3335,7 +3335,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: alloy
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: alloy
   namespace: argocd
 spec:
@@ -3370,7 +3370,7 @@ metadata:
     app.kubernetes.io/component: progressive-delivery
     app.kubernetes.io/name: argo-rollouts
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: argo-rollouts
   namespace: argocd
 spec:
@@ -3406,7 +3406,7 @@ metadata:
     app.kubernetes.io/component: gitops-controller
     app.kubernetes.io/name: argocd
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: argocd
   namespace: argocd
 spec:
@@ -3443,7 +3443,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: argocd-notifications
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: argocd-notifications
   namespace: argocd
 spec:
@@ -3478,7 +3478,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: blackbox-exporter
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: blackbox-exporter
   namespace: argocd
 spec:
@@ -3513,7 +3513,7 @@ metadata:
     app.kubernetes.io/component: repository-credentials
     app.kubernetes.io/name: bootstrap-secrets
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: bootstrap-secrets
   namespace: argocd
 spec:
@@ -3550,7 +3550,7 @@ metadata:
     app.kubernetes.io/component: certificate-controller
     app.kubernetes.io/name: cert-manager
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cert-manager
   namespace: argocd
 spec:
@@ -3586,7 +3586,7 @@ metadata:
     app.kubernetes.io/component: resilience-testing
     app.kubernetes.io/name: chaos-mesh
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-mesh
   namespace: argocd
 spec:
@@ -3622,7 +3622,7 @@ metadata:
     app.kubernetes.io/component: cni
     app.kubernetes.io/name: cilium
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cilium
   namespace: argocd
 spec:
@@ -3665,7 +3665,7 @@ metadata:
     app.kubernetes.io/component: tunnel
     app.kubernetes.io/name: cloudflared
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cloudflared
   namespace: argocd
 spec:
@@ -3701,7 +3701,7 @@ metadata:
     app.kubernetes.io/component: database-operator
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cloudnative-pg
   namespace: argocd
 spec:
@@ -3737,7 +3737,7 @@ metadata:
     app.kubernetes.io/component: secret-bootstrap
     app.kubernetes.io/name: edge-secrets
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: edge-secrets
   namespace: argocd
 spec:
@@ -3773,7 +3773,7 @@ metadata:
     app.kubernetes.io/component: dns-controller
     app.kubernetes.io/name: external-dns
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: external-dns
   namespace: argocd
 spec:
@@ -3809,7 +3809,7 @@ metadata:
     app.kubernetes.io/component: secrets-controller
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: external-secrets
   namespace: argocd
 spec:
@@ -3845,7 +3845,7 @@ metadata:
     app.kubernetes.io/component: edge-routing
     app.kubernetes.io/name: gateways
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: gateways
   namespace: argocd
 spec:
@@ -3880,7 +3880,7 @@ metadata:
     app.kubernetes.io/component: app-of-apps
     app.kubernetes.io/name: homelab-root
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homelab-root
   namespace: argocd
 spec:
@@ -3917,7 +3917,7 @@ metadata:
     app.kubernetes.io/component: identity
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
   namespace: argocd
 spec:
@@ -3953,7 +3953,7 @@ metadata:
     app.kubernetes.io/component: policy-engine
     app.kubernetes.io/name: kyverno
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: kyverno
   namespace: argocd
 spec:
@@ -3989,7 +3989,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: loki
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: loki
   namespace: argocd
 spec:
@@ -4024,7 +4024,7 @@ metadata:
     app.kubernetes.io/component: storage
     app.kubernetes.io/name: longhorn
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: longhorn
   namespace: argocd
 spec:
@@ -4060,7 +4060,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: monitoring-namespace
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: monitoring-namespace
   namespace: argocd
 spec:
@@ -4095,7 +4095,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: monitoring-secrets
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: monitoring-secrets
   namespace: argocd
 spec:
@@ -4130,7 +4130,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: observability-resources
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: observability-resources
   namespace: argocd
 spec:
@@ -4165,7 +4165,7 @@ metadata:
     app.kubernetes.io/component: secrets-server
     app.kubernetes.io/name: openbao
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
   namespace: argocd
 spec:
@@ -4201,7 +4201,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: otel-collector
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: otel-collector
   namespace: argocd
 spec:
@@ -4236,7 +4236,7 @@ metadata:
     app.kubernetes.io/component: namespace-bootstrap
     app.kubernetes.io/name: policy-namespaces
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: policy-namespaces
   namespace: argocd
 spec:
@@ -4271,7 +4271,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: prometheus-stack
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: prometheus-stack
   namespace: argocd
 spec:
@@ -4307,7 +4307,7 @@ metadata:
     app.kubernetes.io/component: bootstrap
     app.kubernetes.io/name: runtime-secret-prerequisites
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: runtime-secret-prerequisites
   namespace: argocd
 spec:
@@ -4343,7 +4343,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: runtime-secret-stores
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: runtime-secret-stores
   namespace: argocd
 spec:
@@ -4379,7 +4379,7 @@ metadata:
     app.kubernetes.io/component: monitoring
     app.kubernetes.io/name: security-posture
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: security-posture
   namespace: argocd
 spec:
@@ -4414,7 +4414,7 @@ metadata:
     app.kubernetes.io/component: staging-application
     app.kubernetes.io/name: sentinel
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-staging
   namespace: argocd
 spec:
@@ -4450,7 +4450,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: sloth
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sloth
   namespace: argocd
 spec:
@@ -4485,7 +4485,7 @@ metadata:
     app.kubernetes.io/component: storage-api
     app.kubernetes.io/name: snapshot-controller
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller
   namespace: argocd
 spec:
@@ -4521,7 +4521,7 @@ metadata:
     app.kubernetes.io/component: secret-bootstrap
     app.kubernetes.io/name: storage-secrets
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: storage-secrets
   namespace: argocd
 spec:
@@ -4557,7 +4557,7 @@ metadata:
     app.kubernetes.io/component: test
     app.kubernetes.io/name: storage-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: storage-verification
   namespace: argocd
 spec:
@@ -4593,7 +4593,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/name: tempo
     app.kubernetes.io/part-of: homelab
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: tempo
   namespace: argocd
 spec:
@@ -4628,7 +4628,7 @@ metadata:
     app.kubernetes.io/component: vulnerability-scanner
     app.kubernetes.io/name: trivy-operator
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: trivy-operator
   namespace: argocd
 spec:
@@ -4664,7 +4664,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: velero
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: velero
   namespace: argocd
 spec:
@@ -4700,7 +4700,7 @@ metadata:
     app.kubernetes.io/component: admission-policy
     app.kubernetes.io/name: workload-standards
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: workload-standards
   namespace: argocd
 spec:
@@ -4736,7 +4736,7 @@ metadata:
     app.kubernetes.io/component: application-generator
     app.kubernetes.io/name: production-applications
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: production-applications
   namespace: argocd
 spec:
@@ -4790,7 +4790,7 @@ metadata:
     app.kubernetes.io/component: status-api
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api
 spec:
   progressDeadlineAbort: true
@@ -4916,7 +4916,7 @@ metadata:
     app.kubernetes.io/component: autoscaling
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api
 spec:
   behavior:
@@ -4948,15 +4948,15 @@ metadata:
     app.kubernetes.io/component: database-backup
     app.kubernetes.io/name: keycloak-backups
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-backups
 spec:
   configuration:
     data:
       compression: gzip
       jobs: 2
-    destinationPath: s3://PLACEHOLDER-homelab-backups/keycloak
-    endpointURL: https://s3.PLACEHOLDER.example.invalid
+    destinationPath: s3://placeholder-homelab-backups/keycloak
+    endpointURL: https://s3.placeholder.example.invalid
     s3Credentials:
       accessKeyId:
         key: ACCESS_KEY_ID
@@ -4988,15 +4988,15 @@ metadata:
     app.kubernetes.io/component: database-backup
     app.kubernetes.io/name: sentinel-backups
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-backups
 spec:
   configuration:
     data:
       compression: gzip
       jobs: 2
-    destinationPath: s3://PLACEHOLDER-homelab-backups/sentinel
-    endpointURL: https://s3.PLACEHOLDER.example.invalid
+    destinationPath: s3://placeholder-homelab-backups/sentinel
+    endpointURL: https://s3.placeholder.example.invalid
     s3Credentials:
       accessKeyId:
         key: ACCESS_KEY_ID
@@ -5028,15 +5028,15 @@ metadata:
     app.kubernetes.io/component: database-backup
     app.kubernetes.io/name: vaultwarden-backups
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-backups
 spec:
   configuration:
     data:
       compression: gzip
       jobs: 2
-    destinationPath: s3://PLACEHOLDER-homelab-backups/vaultwarden
-    endpointURL: https://s3.PLACEHOLDER.example.invalid
+    destinationPath: s3://placeholder-homelab-backups/vaultwarden
+    endpointURL: https://s3.placeholder.example.invalid
     s3Credentials:
       accessKeyId:
         key: ACCESS_KEY_ID
@@ -5068,7 +5068,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: homelab-s3
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homelab-s3
   namespace: storage-verification
 spec:
@@ -5076,8 +5076,8 @@ spec:
     data:
       compression: gzip
       jobs: 2
-    destinationPath: s3://PLACEHOLDER-homelab-backups/cnpg
-    endpointURL: https://s3.PLACEHOLDER.example.invalid
+    destinationPath: s3://placeholder-homelab-backups/cnpg
+    endpointURL: https://s3.placeholder.example.invalid
     s3Credentials:
       accessKeyId:
         key: ACCESS_KEY_ID
@@ -5110,14 +5110,14 @@ metadata:
     app.kubernetes.io/component: certificate
     app.kubernetes.io/name: edge-wildcard
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: edge-wildcard
   namespace: gateways
 spec:
   dnsNames:
-    - PLACEHOLDER.example.invalid
-    - '*.PLACEHOLDER.example.invalid'
-    - '*.internal.PLACEHOLDER.example.invalid'
+    - placeholder.example.invalid
+    - '*.placeholder.example.invalid'
+    - '*.internal.placeholder.example.invalid'
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
@@ -5135,7 +5135,7 @@ metadata:
     app.kubernetes.io/component: certificate
     app.kubernetes.io/name: openbao-tls
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-root-ca
   namespace: openbao
 spec:
@@ -5162,7 +5162,7 @@ metadata:
     app.kubernetes.io/component: certificate
     app.kubernetes.io/name: openbao-tls
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-server
   namespace: openbao
 spec:
@@ -5206,11 +5206,11 @@ metadata:
     app.kubernetes.io/component: certificate-issuer
     app.kubernetes.io/name: letsencrypt-production
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: letsencrypt-production
 spec:
   acme:
-    email: admin@PLACEHOLDER.example.invalid
+    email: admin@placeholder.example.invalid
     privateKeySecretRef:
       name: letsencrypt-production-account
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -5222,7 +5222,7 @@ spec:
               name: cloudflare-api-token
         selector:
           dnsZones:
-            - PLACEHOLDER.example.invalid
+            - placeholder.example.invalid
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -5235,11 +5235,11 @@ metadata:
     app.kubernetes.io/component: certificate-issuer
     app.kubernetes.io/name: letsencrypt-staging
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: letsencrypt-staging
 spec:
   acme:
-    email: admin@PLACEHOLDER.example.invalid
+    email: admin@placeholder.example.invalid
     privateKeySecretRef:
       name: letsencrypt-staging-account
     server: https://acme-staging-v02.api.letsencrypt.org/directory
@@ -5251,7 +5251,7 @@ spec:
               name: cloudflare-api-token
         selector:
           dnsZones:
-            - PLACEHOLDER.example.invalid
+            - placeholder.example.invalid
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -5264,7 +5264,7 @@ metadata:
     app.kubernetes.io/component: certificate
     app.kubernetes.io/name: openbao-tls
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-bootstrap-self-signed
   namespace: openbao
 spec:
@@ -5281,7 +5281,7 @@ metadata:
     app.kubernetes.io/component: certificate
     app.kubernetes.io/name: openbao-tls
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-root-ca
   namespace: openbao
 spec:
@@ -5298,7 +5298,7 @@ metadata:
     app.kubernetes.io/component: chaos-experiment
     app.kubernetes.io/name: delay-target-filesystem
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: delay-target-filesystem
 spec:
   action: latency
@@ -5326,7 +5326,7 @@ metadata:
     app.kubernetes.io/component: chaos-experiment
     app.kubernetes.io/name: delay-target-network
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: delay-target-network
 spec:
   action: delay
@@ -5353,7 +5353,7 @@ metadata:
     app.kubernetes.io/component: chaos-experiment
     app.kubernetes.io/name: partition-target-peers
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: partition-target-peers
 spec:
   action: partition
@@ -5383,7 +5383,7 @@ metadata:
     app.kubernetes.io/component: chaos-experiment
     app.kubernetes.io/name: terminate-one-target
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: terminate-one-target
 spec:
   action: pod-kill
@@ -5405,7 +5405,7 @@ metadata:
     app.kubernetes.io/component: chaos-experiment
     app.kubernetes.io/name: stress-one-target-cpu
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: stress-one-target-cpu
 spec:
   duration: 2m
@@ -5427,7 +5427,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homelab-lan
 spec:
   blocks:
@@ -5444,7 +5444,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: argo-rollouts
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-controller-kubernetes-api
   namespace: argo-rollouts
 spec:
@@ -5465,7 +5465,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: vaultwarden-database
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-database-kubernetes-api
 spec:
   egress:
@@ -5485,7 +5485,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: sentinel-database
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-database-kubernetes-api
 spec:
   egress:
@@ -5505,7 +5505,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: keycloak-database
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-database-kubernetes-api
 spec:
   egress:
@@ -5522,7 +5522,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: whoami-gateway
 spec:
   endpointSelector:
@@ -5546,7 +5546,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: storage-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-database-kubernetes-api
   namespace: storage-verification
 spec:
@@ -5564,7 +5564,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homelab-lan
 spec:
   externalIPs: false
@@ -5587,23 +5587,23 @@ data:
   services.yaml: |
     - Platform:
         - Argo CD:
-            href: https://argocd.PLACEHOLDER.example.invalid
+            href: https://argocd.placeholder.example.invalid
             description: GitOps reconciliation
         - Grafana:
-            href: https://grafana.PLACEHOLDER.example.invalid
+            href: https://grafana.placeholder.example.invalid
             description: Metrics, logs, and traces
         - Keycloak:
-            href: https://keycloak.PLACEHOLDER.example.invalid
+            href: https://keycloak.placeholder.example.invalid
             description: Identity and access
     - Applications:
         - Vaultwarden:
-            href: https://vaultwarden.PLACEHOLDER.example.invalid
+            href: https://vaultwarden.placeholder.example.invalid
             description: Password vault
         - Uptime Kuma:
-            href: https://uptime.PLACEHOLDER.example.invalid
+            href: https://uptime.placeholder.example.invalid
             description: Internal service checks
         - Status:
-            href: https://status.PLACEHOLDER.example.invalid
+            href: https://status.placeholder.example.invalid
             description: Public selected-service status
   settings.yaml: |
     title: Anouar's Homelab
@@ -5621,7 +5621,7 @@ metadata:
     app.kubernetes.io/component: configuration
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage-configuration
 ---
 apiVersion: v1
@@ -5657,8 +5657,8 @@ data:
           "enabled": true,
           "clientAuthenticatorType": "client-secret",
           "secret": "${ARGOCD_CLIENT_SECRET}",
-          "redirectUris": ["https://argocd.PLACEHOLDER.example.invalid/auth/callback"],
-          "webOrigins": ["https://argocd.PLACEHOLDER.example.invalid"],
+          "redirectUris": ["https://argocd.placeholder.example.invalid/auth/callback"],
+          "webOrigins": ["https://argocd.placeholder.example.invalid"],
           "standardFlowEnabled": true,
           "directAccessGrantsEnabled": false,
           "publicClient": false,
@@ -5685,8 +5685,8 @@ data:
           "enabled": true,
           "clientAuthenticatorType": "client-secret",
           "secret": "${GRAFANA_CLIENT_SECRET}",
-          "redirectUris": ["https://grafana.PLACEHOLDER.example.invalid/login/generic_oauth"],
-          "webOrigins": ["https://grafana.PLACEHOLDER.example.invalid"],
+          "redirectUris": ["https://grafana.placeholder.example.invalid/login/generic_oauth"],
+          "webOrigins": ["https://grafana.placeholder.example.invalid"],
           "standardFlowEnabled": true,
           "directAccessGrantsEnabled": false,
           "publicClient": false,
@@ -5718,7 +5718,7 @@ metadata:
     app.kubernetes.io/component: realm-configuration
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-homelab-realm
 ---
 apiVersion: v1
@@ -5734,12 +5734,12 @@ metadata:
     app.kubernetes.io/name: sentinel-dashboard
     app.kubernetes.io/part-of: homelab-sentinel
     grafana_dashboard: "1"
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-dashboard
 ---
 apiVersion: v1
 data:
-  targets.json: '[{"id":"whoami","name":"Public edge","url":"https://whoami.PLACEHOLDER.example.invalid/health","public":true}]'
+  targets.json: '[{"id":"whoami","name":"Public edge","url":"https://whoami.placeholder.example.invalid/health","public":true}]'
 kind: ConfigMap
 metadata:
   annotations:
@@ -5749,7 +5749,7 @@ metadata:
     app.kubernetes.io/component: probe-configuration
     app.kubernetes.io/name: sentinel-worker
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-probe-targets
 ---
 apiVersion: v1
@@ -6296,7 +6296,7 @@ metadata:
     app.kubernetes.io/name: homelab-platform-dashboards
     app.kubernetes.io/part-of: observability
     grafana_dashboard: "1"
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homelab-platform-dashboards
   namespace: monitoring
 ---
@@ -6328,7 +6328,7 @@ metadata:
     app.kubernetes.io/name: homelab-security-posture-dashboard
     app.kubernetes.io/part-of: homelab-security
     grafana_dashboard: "1"
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homelab-security-posture-dashboard
   namespace: monitoring
 ---
@@ -6342,7 +6342,7 @@ metadata:
     app.kubernetes.io/component: data
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma-data
 spec:
   accessModes:
@@ -6362,7 +6362,7 @@ metadata:
     app.kubernetes.io/component: data
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-data
 spec:
   accessModes:
@@ -6382,7 +6382,7 @@ metadata:
     app.kubernetes.io/component: test
     app.kubernetes.io/name: storage-reschedule-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: reschedule-marker
   namespace: storage-verification
 spec:
@@ -6403,7 +6403,7 @@ metadata:
     app.kubernetes.io/component: sacrificial-workload
     app.kubernetes.io/name: chaos-target
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-target
   namespace: chaos-testing
 spec:
@@ -6424,7 +6424,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage
 spec:
   ports:
@@ -6444,7 +6444,7 @@ metadata:
     app.kubernetes.io/component: identity
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   ports:
@@ -6467,7 +6467,7 @@ metadata:
     app.kubernetes.io/component: status-api
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api
 spec:
   ports:
@@ -6487,7 +6487,7 @@ metadata:
     app.kubernetes.io/component: probe-worker
     app.kubernetes.io/name: sentinel-worker
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-worker
 spec:
   ports:
@@ -6507,7 +6507,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma
 spec:
   ports:
@@ -6527,7 +6527,7 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden
 spec:
   ports:
@@ -6547,7 +6547,7 @@ metadata:
     app.kubernetes.io/component: diagnostic-endpoint
     app.kubernetes.io/name: whoami
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: whoami
 spec:
   ports:
@@ -6568,7 +6568,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-auth
   namespace: argocd
 ---
@@ -6583,7 +6583,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: vaultwarden-openbao-auth
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-auth
 ---
 apiVersion: v1
@@ -6597,7 +6597,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: sentinel-openbao-auth
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-auth
 ---
 apiVersion: v1
@@ -6611,7 +6611,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: keycloak-openbao-auth
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-auth
 ---
 apiVersion: v1
@@ -6625,7 +6625,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-auth
   namespace: external-secrets
 ---
@@ -6636,7 +6636,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller
   namespace: kube-system
 ---
@@ -6651,7 +6651,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-auth
   namespace: monitoring
 ---
@@ -6666,7 +6666,7 @@ metadata:
     app.kubernetes.io/component: trust-distribution
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-ca-reader
   namespace: openbao
 ---
@@ -6680,7 +6680,7 @@ metadata:
     app.kubernetes.io/component: trust-distribution
     app.kubernetes.io/name: openbao-ca
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: replicate-openbao-ca
 spec:
   externalSecretMetadata:
@@ -6724,7 +6724,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: openbao
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
 spec:
   conditions:
@@ -6760,7 +6760,7 @@ metadata:
     app.kubernetes.io/component: trust-distribution
     app.kubernetes.io/name: openbao-ca-source
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao-ca-source
 spec:
   provider:
@@ -6787,7 +6787,7 @@ metadata:
     app.kubernetes.io/component: notification
     app.kubernetes.io/name: argocd-notifications
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: argocd-notifications
   namespace: argocd
 spec:
@@ -6815,7 +6815,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: argocd-oidc
     app.kubernetes.io/part-of: argocd
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: argocd-oidc
   namespace: argocd
 spec:
@@ -6847,7 +6847,7 @@ metadata:
     app.kubernetes.io/component: database-credentials
     app.kubernetes.io/name: keycloak-database-owner
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-database-owner
 spec:
   data:
@@ -6883,7 +6883,7 @@ metadata:
     app.kubernetes.io/component: runtime-credentials
     app.kubernetes.io/name: keycloak-runtime
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-runtime
 spec:
   data:
@@ -6939,7 +6939,7 @@ metadata:
     app.kubernetes.io/component: backup-credentials
     app.kubernetes.io/name: keycloak-s3-credentials
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-s3-credentials
 spec:
   data:
@@ -6970,7 +6970,7 @@ metadata:
     app.kubernetes.io/component: database-credentials
     app.kubernetes.io/name: sentinel-database-owner
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-database-owner
 spec:
   data:
@@ -7007,7 +7007,7 @@ metadata:
     app.kubernetes.io/component: backup-credentials
     app.kubernetes.io/name: sentinel-s3-credentials
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-s3-credentials
 spec:
   data:
@@ -7038,7 +7038,7 @@ metadata:
     app.kubernetes.io/component: database-credentials
     app.kubernetes.io/name: vaultwarden-database-owner
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-database-owner
 spec:
   data:
@@ -7074,7 +7074,7 @@ metadata:
     app.kubernetes.io/component: runtime-credentials
     app.kubernetes.io/name: vaultwarden-runtime
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-runtime
 spec:
   data:
@@ -7111,7 +7111,7 @@ metadata:
     app.kubernetes.io/component: backup-credentials
     app.kubernetes.io/name: vaultwarden-s3-credentials
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-s3-credentials
 spec:
   data:
@@ -7142,7 +7142,7 @@ metadata:
     app.kubernetes.io/component: notification
     app.kubernetes.io/name: alertmanager-notification
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: alertmanager-notification
   namespace: monitoring
 spec:
@@ -7170,7 +7170,7 @@ metadata:
     app.kubernetes.io/component: authentication
     app.kubernetes.io/name: grafana-admin
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: grafana-admin
   namespace: monitoring
 spec:
@@ -7206,7 +7206,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: openbao
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
   namespace: argocd
 spec:
@@ -7238,7 +7238,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: vaultwarden-openbao-store
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
 spec:
   provider:
@@ -7269,7 +7269,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: sentinel-openbao-store
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
 spec:
   provider:
@@ -7300,7 +7300,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: keycloak-openbao-store
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
 spec:
   provider:
@@ -7331,7 +7331,7 @@ metadata:
     app.kubernetes.io/component: secret-store
     app.kubernetes.io/name: openbao
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: openbao
   namespace: monitoring
 spec:
@@ -7363,7 +7363,7 @@ metadata:
     app.kubernetes.io/component: edge-routing
     app.kubernetes.io/name: internal-gateway
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: internal
   namespace: gateways
 spec:
@@ -7378,7 +7378,7 @@ spec:
           selector:
             matchLabels:
               homelab.anouar.dev/internal-gateway-access: "true"
-      hostname: '*.internal.PLACEHOLDER.example.invalid'
+      hostname: '*.internal.placeholder.example.invalid'
       name: https
       port: 443
       protocol: HTTPS
@@ -7399,7 +7399,7 @@ metadata:
     app.kubernetes.io/component: edge-routing
     app.kubernetes.io/name: public-gateway
     app.kubernetes.io/part-of: edge-access
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: public
   namespace: gateways
 spec:
@@ -7411,7 +7411,7 @@ spec:
           selector:
             matchLabels:
               homelab.anouar.dev/public-gateway-access: "true"
-      hostname: '*.PLACEHOLDER.example.invalid'
+      hostname: '*.placeholder.example.invalid'
       name: tunnel-http
       port: 80
       protocol: HTTP
@@ -7421,7 +7421,7 @@ spec:
           selector:
             matchLabels:
               homelab.anouar.dev/public-gateway-access: "true"
-      hostname: '*.PLACEHOLDER.example.invalid'
+      hostname: '*.placeholder.example.invalid'
       name: https
       port: 443
       protocol: HTTPS
@@ -7442,11 +7442,11 @@ metadata:
     app.kubernetes.io/component: internal-route
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage
 spec:
   hostnames:
-    - homepage.PLACEHOLDER.example.invalid
+    - homepage.placeholder.example.invalid
   parentRefs:
     - name: internal
       namespace: gateways
@@ -7466,11 +7466,11 @@ metadata:
     app.kubernetes.io/component: internal-route
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   hostnames:
-    - keycloak.PLACEHOLDER.example.invalid
+    - keycloak.placeholder.example.invalid
   parentRefs:
     - name: internal
       namespace: gateways
@@ -7490,11 +7490,11 @@ metadata:
     app.kubernetes.io/component: public-status
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-status
 spec:
   hostnames:
-    - status.PLACEHOLDER.example.invalid
+    - status.placeholder.example.invalid
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -7532,11 +7532,11 @@ metadata:
     app.kubernetes.io/component: internal-route
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma
 spec:
   hostnames:
-    - uptime.PLACEHOLDER.example.invalid
+    - uptime.placeholder.example.invalid
   parentRefs:
     - name: internal
       namespace: gateways
@@ -7556,11 +7556,11 @@ metadata:
     app.kubernetes.io/component: internal-route
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden
 spec:
   hostnames:
-    - vaultwarden.PLACEHOLDER.example.invalid
+    - vaultwarden.placeholder.example.invalid
   parentRefs:
     - name: internal
       namespace: gateways
@@ -7580,11 +7580,11 @@ metadata:
     app.kubernetes.io/component: diagnostic-endpoint
     app.kubernetes.io/name: whoami
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: whoami
 spec:
   hostnames:
-    - whoami.PLACEHOLDER.example.invalid
+    - whoami.placeholder.example.invalid
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -7614,7 +7614,7 @@ metadata:
     policies.kyverno.io/severity: high
     policies.kyverno.io/title: Require a matching NetworkPolicy
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: require-network-policy
 spec:
   background: false
@@ -7661,7 +7661,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: daily-backup
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     recurring-job-group.longhorn.io/standard-storage-protection: enabled
   name: daily-backup
   namespace: longhorn-system
@@ -7683,7 +7683,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: hourly-snapshot
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     recurring-job-group.longhorn.io/standard-storage-protection: enabled
   name: hourly-snapshot
   namespace: longhorn-system
@@ -7703,7 +7703,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: platform-components
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: platform-controllers
   namespace: monitoring
@@ -7737,7 +7737,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: platform-components
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: platform-health
   namespace: monitoring
@@ -7763,7 +7763,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage
 spec:
   groups:
@@ -7771,7 +7771,7 @@ spec:
       rules:
         - alert: HomepageUnavailable
           annotations:
-            runbook_url: https://gitlab.PLACEHOLDER.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/operate-self-hosted-apps.md
+            runbook_url: https://gitlab.placeholder.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/operate-self-hosted-apps.md
             summary: Homepage is unavailable
           expr: kube_deployment_status_replicas_available{namespace="apps-homepage",deployment="homepage"} < 1
           for: 10m
@@ -7788,7 +7788,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   groups:
@@ -7796,7 +7796,7 @@ spec:
       rules:
         - alert: KeycloakUnavailable
           annotations:
-            runbook_url: https://gitlab.PLACEHOLDER.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/recover-sso.md
+            runbook_url: https://gitlab.placeholder.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/recover-sso.md
             summary: Keycloak has no available replica
           expr: kube_deployment_status_replicas_available{namespace="keycloak",deployment="keycloak"} < 1
           for: 10m
@@ -7813,7 +7813,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: sentinel-alerts
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: sentinel-alerts
 spec:
@@ -7839,7 +7839,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma
 spec:
   groups:
@@ -7847,7 +7847,7 @@ spec:
       rules:
         - alert: UptimeKumaUnavailable
           annotations:
-            runbook_url: https://gitlab.PLACEHOLDER.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/operate-self-hosted-apps.md
+            runbook_url: https://gitlab.placeholder.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/operate-self-hosted-apps.md
             summary: Uptime Kuma is unavailable
           expr: kube_deployment_status_replicas_available{namespace="apps-uptime-kuma",deployment="uptime-kuma"} < 1
           for: 10m
@@ -7864,7 +7864,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden
 spec:
   groups:
@@ -7872,7 +7872,7 @@ spec:
       rules:
         - alert: VaultwardenUnavailable
           annotations:
-            runbook_url: https://gitlab.PLACEHOLDER.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/operate-self-hosted-apps.md
+            runbook_url: https://gitlab.placeholder.example.invalid/AnouarMohamed/kubernetes-homelab-nix/-/blob/main/docs/runbooks/operate-self-hosted-apps.md
             summary: Vaultwarden is unavailable
           expr: kube_deployment_status_replicas_available{namespace="apps-vaultwarden",deployment="vaultwarden"} < 1
           for: 10m
@@ -7889,7 +7889,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: homelab-platform-alerts
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: homelab-platform-alerts
   namespace: monitoring
@@ -7987,7 +7987,7 @@ metadata:
     app.kubernetes.io/component: alerting
     app.kubernetes.io/name: homelab-security-findings
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: homelab-security-findings
   namespace: monitoring
@@ -8015,7 +8015,7 @@ metadata:
     app.kubernetes.io/component: monitoring
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   endpoints:
@@ -8036,7 +8036,7 @@ metadata:
     app.kubernetes.io/component: monitoring
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: sentinel-api
 spec:
@@ -8059,7 +8059,7 @@ metadata:
     app.kubernetes.io/component: monitoring
     app.kubernetes.io/name: sentinel-worker
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: sentinel-worker
 spec:
@@ -8082,7 +8082,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: platform-components
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: argocd
   namespace: monitoring
@@ -8113,7 +8113,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: platform-components
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: cilium
   namespace: monitoring
@@ -8149,7 +8149,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: platform-components
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: longhorn
   namespace: monitoring
@@ -8175,7 +8175,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: platform-components
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     release: monitoring
   name: openbao
   namespace: openbao
@@ -8211,7 +8211,7 @@ metadata:
     app.kubernetes.io/component: routing
     app.kubernetes.io/name: alertmanager
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: platform
   namespace: monitoring
 spec:
@@ -8241,7 +8241,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: argo-rollouts
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: argo-rollouts-controller
   namespace: argo-rollouts
 spec:
@@ -8293,7 +8293,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: chaos-mesh
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-mesh-control-plane
   namespace: chaos-mesh
 spec:
@@ -8344,7 +8344,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: chaos-target
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-target
   namespace: chaos-testing
 spec:
@@ -8380,7 +8380,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cloudflared
   namespace: cloudflare
 spec:
@@ -8429,7 +8429,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-dns-egress
 spec:
   egress:
@@ -8456,7 +8456,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-intra-namespace
 spec:
   egress:
@@ -8477,7 +8477,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: deny-egress-by-default
 spec:
   podSelector: {}
@@ -8491,7 +8491,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: deny-ingress-by-default
 spec:
   podSelector: {}
@@ -8508,7 +8508,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage
 spec:
   egress: []
@@ -8537,7 +8537,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   egress:
@@ -8603,7 +8603,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: keycloak-database
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-database
 spec:
   egress:
@@ -8672,7 +8672,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api
 spec:
   egress:
@@ -8728,7 +8728,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: sentinel-database
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-database
 spec:
   egress:
@@ -8801,7 +8801,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: sentinel-worker
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-worker
 spec:
   egress:
@@ -8859,7 +8859,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma
 spec:
   egress:
@@ -8905,7 +8905,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden
 spec:
   egress:
@@ -8950,7 +8950,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: vaultwarden-database
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-database
 spec:
   egress:
@@ -9019,7 +9019,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: whoami
     app.kubernetes.io/part-of: homelab-applications
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: whoami
 spec:
   egress: []
@@ -9041,7 +9041,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: plugin-barman-cloud
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: restrict-barman-cloud-controller
   namespace: cnpg-system
 spec:
@@ -9084,7 +9084,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: restrict-cloudnative-pg-operator
   namespace: cnpg-system
 spec:
@@ -9134,7 +9134,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: external-dns-egress
   namespace: external-dns
 spec:
@@ -9179,7 +9179,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: snapshot-controller
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: restrict-snapshot-controller
   namespace: kube-system
 spec:
@@ -9214,7 +9214,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: kyverno-network-boundary
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: restrict-kyverno
   namespace: kyverno
 spec:
@@ -9262,7 +9262,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: longhorn
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-monitoring-scrapes
   namespace: longhorn-system
 spec:
@@ -9290,7 +9290,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: monitoring
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-observability
   namespace: monitoring
 spec:
@@ -9361,7 +9361,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: monitoring
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: default-deny
   namespace: monitoring
 spec:
@@ -9380,7 +9380,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: storage-verification-network
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-database-operation
   namespace: storage-verification
 spec:
@@ -9420,7 +9420,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: storage-verification-network
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: deny-ingress-by-default
   namespace: storage-verification
 spec:
@@ -9439,7 +9439,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: storage-reschedule-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: isolate-storage-reschedule-verification
   namespace: storage-verification
 spec:
@@ -9460,7 +9460,7 @@ metadata:
     app.kubernetes.io/component: network-policy
     app.kubernetes.io/name: trivy-operator-network-boundary
     app.kubernetes.io/part-of: homelab-security
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: restrict-trivy-operator
   namespace: trivy-system
 spec:
@@ -9502,7 +9502,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: velero-network
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-backup-operation
   namespace: velero
 spec:
@@ -9535,7 +9535,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/name: velero-network
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-monitoring-scrapes
   namespace: velero
 spec:
@@ -9563,7 +9563,7 @@ metadata:
     app.kubernetes.io/component: policy
     app.kubernetes.io/name: velero-network
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: deny-ingress-by-default
   namespace: velero
 spec:
@@ -9582,7 +9582,7 @@ metadata:
     policies.kyverno.io/severity: high
     policies.kyverno.io/title: Verify GitLab keyless image signatures
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: verify-signed-images
 spec:
   attestors:
@@ -9632,7 +9632,7 @@ metadata:
     policies.kyverno.io/severity: high
     policies.kyverno.io/title: Require restricted container security
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: require-container-hardening
 spec:
   evaluation:
@@ -9678,7 +9678,7 @@ metadata:
     policies.kyverno.io/severity: medium
     policies.kyverno.io/title: Require container requests and limits
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: require-container-resources
 spec:
   evaluation:
@@ -9718,7 +9718,7 @@ metadata:
     policies.kyverno.io/severity: medium
     policies.kyverno.io/title: Require liveness and readiness probes
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: require-health-probes
 spec:
   evaluation:
@@ -9755,7 +9755,7 @@ metadata:
     policies.kyverno.io/severity: high
     policies.kyverno.io/title: Require digest-pinned images
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: require-immutable-images
 spec:
   evaluation:
@@ -9795,7 +9795,7 @@ metadata:
     policies.kyverno.io/severity: medium
     policies.kyverno.io/title: Require workload identity labels
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: require-workload-labels
 spec:
   evaluation:
@@ -9832,7 +9832,7 @@ metadata:
     policies.kyverno.io/severity: high
     policies.kyverno.io/title: Restrict signed application registries
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: restrict-image-registries
 spec:
   evaluation:
@@ -9872,7 +9872,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: chaos-mesh
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-controller-manager
   namespace: chaos-mesh
 spec:
@@ -9892,7 +9892,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: chaos-target
     app.kubernetes.io/part-of: resilience-testing
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: chaos-target
   namespace: chaos-testing
 spec:
@@ -9909,7 +9909,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: cloudflared
   namespace: cloudflare
 spec:
@@ -9929,7 +9929,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: homepage
     app.kubernetes.io/part-of: homepage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: homepage
 spec:
   minAvailable: 1
@@ -9948,7 +9948,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: keycloak
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak
 spec:
   minAvailable: 1
@@ -9967,7 +9967,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: sentinel-api
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api
 spec:
   minAvailable: 2
@@ -9986,7 +9986,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: uptime-kuma
     app.kubernetes.io/part-of: uptime-kuma
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: uptime-kuma
 spec:
   maxUnavailable: 1
@@ -10005,7 +10005,7 @@ metadata:
     app.kubernetes.io/component: availability
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden
 spec:
   maxUnavailable: 1
@@ -10021,7 +10021,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: whoami
 spec:
   maxUnavailable: 1
@@ -10040,7 +10040,7 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/name: keycloak-database
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: keycloak-database
 spec:
   affinity:
@@ -10093,7 +10093,7 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/name: sentinel-database
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-database
 spec:
   affinity:
@@ -10146,7 +10146,7 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/name: vaultwarden-database
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: vaultwarden-database
 spec:
   affinity:
@@ -10199,7 +10199,7 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/name: storage-verification-postgres
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: storage-verification
   namespace: storage-verification
 spec:
@@ -10245,7 +10245,7 @@ metadata:
     app.kubernetes.io/component: database-backup
     app.kubernetes.io/name: keycloak-database
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: daily-keycloak
 spec:
   backupOwnerReference: self
@@ -10267,7 +10267,7 @@ metadata:
     app.kubernetes.io/component: database-backup
     app.kubernetes.io/name: sentinel-database
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: daily-sentinel
 spec:
   backupOwnerReference: self
@@ -10289,7 +10289,7 @@ metadata:
     app.kubernetes.io/component: database-backup
     app.kubernetes.io/name: vaultwarden-database
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: daily-vaultwarden
 spec:
   backupOwnerReference: self
@@ -10311,7 +10311,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: daily-storage-verification
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: daily-storage-verification
   namespace: storage-verification
 spec:
@@ -10334,7 +10334,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: review-openbao-ca-reader-permissions
 rules:
   - apiGroups:
@@ -10351,7 +10351,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller-runner
 rules:
   - apiGroups:
@@ -10480,7 +10480,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-openbao-ca-reader-review
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -10498,7 +10498,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller-role
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -10519,7 +10519,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-auth-token
   namespace: argocd
 rules:
@@ -10542,7 +10542,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: vaultwarden-openbao-auth
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-auth-token
 rules:
   - apiGroups:
@@ -10564,7 +10564,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: sentinel-openbao-auth
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-auth-token
 rules:
   - apiGroups:
@@ -10586,7 +10586,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: keycloak-openbao-auth
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-auth-token
 rules:
   - apiGroups:
@@ -10608,7 +10608,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-auth-token
   namespace: external-secrets
 rules:
@@ -10628,7 +10628,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller-leaderelection
   namespace: kube-system
 rules:
@@ -10654,7 +10654,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-auth-token
   namespace: monitoring
 rules:
@@ -10677,7 +10677,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: mint-openbao-ca-reader-token
   namespace: openbao
 rules:
@@ -10700,7 +10700,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: read-openbao-ca
   namespace: openbao
 rules:
@@ -10723,7 +10723,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-token
   namespace: argocd
 roleRef:
@@ -10745,7 +10745,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: vaultwarden-openbao-auth
     app.kubernetes.io/part-of: vaultwarden
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-token
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -10766,7 +10766,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: sentinel-openbao-auth
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-token
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -10787,7 +10787,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: keycloak-openbao-auth
     app.kubernetes.io/part-of: homelab-platform
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-token
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -10808,7 +10808,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-token
   namespace: external-secrets
 roleRef:
@@ -10827,7 +10827,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: snapshot-controller-leaderelection
   namespace: kube-system
 roleRef:
@@ -10848,7 +10848,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-auth
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-token
   namespace: monitoring
 roleRef:
@@ -10870,7 +10870,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-external-secrets-to-mint-openbao-ca-token
   namespace: openbao
 roleRef:
@@ -10892,7 +10892,7 @@ metadata:
     app.kubernetes.io/component: authorization
     app.kubernetes.io/name: openbao-ca-reader
     app.kubernetes.io/part-of: runtime-secrets
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: allow-openbao-ca-read
   namespace: openbao
 roleRef:
@@ -10914,7 +10914,7 @@ metadata:
     app.kubernetes.io/component: slo
     app.kubernetes.io/name: sentinel-api-slo
     app.kubernetes.io/part-of: homelab-sentinel
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: sentinel-api
 spec:
   labels:
@@ -10945,7 +10945,7 @@ metadata:
     app.kubernetes.io/component: slo
     app.kubernetes.io/name: prometheus-api-slo
     app.kubernetes.io/part-of: observability
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: prometheus-api
   namespace: monitoring
 spec:
@@ -10979,7 +10979,7 @@ metadata:
     app.kubernetes.io/component: backup
     app.kubernetes.io/name: longhorn-snapshot
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
     velero.io/csi-volumesnapshot-class: "true"
   name: longhorn-snapshot
 parameters:
@@ -10996,7 +10996,7 @@ metadata:
     app.kubernetes.io/component: legacy-storage
     app.kubernetes.io/name: local-path
     app.kubernetes.io/part-of: storage
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: local-path
 provisioner: rancher.io/local-path
 reclaimPolicy: Delete
@@ -11013,7 +11013,7 @@ metadata:
     app.kubernetes.io/component: database-storage
     app.kubernetes.io/name: longhorn-database
     app.kubernetes.io/part-of: longhorn
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: longhorn-database
 parameters:
   dataLocality: best-effort
@@ -11035,7 +11035,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: edge-secrets
 ---
 apiVersion: viaduct.ai/v1
@@ -11050,7 +11050,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: gitlab-repository-credentials
 ---
 apiVersion: viaduct.ai/v1
@@ -11067,7 +11067,7 @@ metadata:
     kubenix/k8s-version: "1.36"
     kubenix/project-name: kubernetes-homelab-nix
   labels:
-    kubenix/hash: 7c9ddbe351088d85ef07851b8163ea30cf2fb365
+    kubenix/hash: 1ce30f3b2d847e162b8c70523cace0a5f60af648
   name: storage-secrets
 ---
 # Source: cilium/templates/cilium-secrets-namespace.yaml
@@ -14428,7 +14428,7 @@ data:
   exec.enabled: "false"
   oidc.config: |
     name: Keycloak
-    issuer: https://keycloak.PLACEHOLDER.example.invalid/realms/homelab
+    issuer: https://keycloak.placeholder.example.invalid/realms/homelab
     clientID: argocd
     clientSecret: $argocd-oidc:client-secret
     requestedScopes:
@@ -14544,7 +14544,7 @@ data:
   timeout.hard.reconciliation: 0s
   timeout.reconciliation: 180s
   timeout.reconciliation.jitter: 60s
-  url: https://argocd.PLACEHOLDER.example.invalid
+  url: https://argocd.placeholder.example.invalid
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-cmd-params-cm.yaml
 apiVersion: v1
@@ -14646,7 +14646,7 @@ metadata:
     app.kubernetes.io/version: "v3.5.4"
 data:
   context: |
-    argocdUrl: https://argocd.PLACEHOLDER.example.invalid
+    argocdUrl: https://argocd.placeholder.example.invalid
   service.webhook.platform: |-
     url: $webhook-url
     headers:
@@ -47000,7 +47000,7 @@ spec:
     metadata:
       annotations:
         checksum/cmd-params: 870549512782c3f54c4e9f5f48d6efe5b6cb91d71b63dcbc69bc5a11a9f0aef7
-        checksum/cm: a2d65fcdeaad856be95f56a32db50ac0365ca77a33f92ebb2aa659f914421995
+        checksum/cm: baff6cb05eba769843cc6d2e245704df5b197b5205b7c0f9faf9052ad8ce771d
         checksum/cmp-cm: b3bd338d20399587dab11336e6696887ef807d9f5849d18b694b624d10d82083
       labels:
         helm.sh/chart: argo-cd-10.10.2
@@ -47617,7 +47617,7 @@ spec:
     metadata:
       annotations:
         checksum/cmd-params: 870549512782c3f54c4e9f5f48d6efe5b6cb91d71b63dcbc69bc5a11a9f0aef7
-        checksum/cm: a2d65fcdeaad856be95f56a32db50ac0365ca77a33f92ebb2aa659f914421995
+        checksum/cm: baff6cb05eba769843cc6d2e245704df5b197b5205b7c0f9faf9052ad8ce771d
       labels:
         helm.sh/chart: argo-cd-10.10.2
         app.kubernetes.io/name: argocd-server
@@ -48215,7 +48215,7 @@ spec:
     metadata:
       annotations:
         checksum/cmd-params: 870549512782c3f54c4e9f5f48d6efe5b6cb91d71b63dcbc69bc5a11a9f0aef7
-        checksum/cm: a2d65fcdeaad856be95f56a32db50ac0365ca77a33f92ebb2aa659f914421995
+        checksum/cm: baff6cb05eba769843cc6d2e245704df5b197b5205b7c0f9faf9052ad8ce771d
       labels:
         helm.sh/chart: argo-cd-10.10.2
         app.kubernetes.io/name: argocd-application-controller
@@ -48831,7 +48831,7 @@ metadata:
     app.kubernetes.io/version: v1.12.1
 data:
   default-resource.yaml: |-
-    backup-target: s3://PLACEHOLDER-homelab-backups@us-east-1/longhorn
+    backup-target: s3://placeholder-homelab-backups@us-east-1/longhorn
     backup-target-credential-secret: longhorn-s3-credentials
     backupstore-poll-interval: 300
 ---
@@ -81092,12 +81092,12 @@ spec:
   accessMode: ReadWrite
   default: true
   objectStorage:
-    bucket: "PLACEHOLDER-homelab-backups"
+    bucket: "placeholder-homelab-backups"
     prefix: "velero"
   config:
     region: "us-east-1"
     s3ForcePathStyle: "true"
-    s3Url: "https://s3.PLACEHOLDER.example.invalid"
+    s3Url: "https://s3.placeholder.example.invalid"
 ---
 # Source: velero/templates/schedule.yaml
 apiVersion: velero.io/v1
@@ -203873,7 +203873,7 @@ spec:
             - --policy=upsert-only
             - --registry=txt
             - --txt-owner-id=homelab-external-dns
-            - --domain-filter=PLACEHOLDER.example.invalid
+            - --domain-filter=placeholder.example.invalid
             - --annotation-filter=external-dns.kubernetes.io/managed-by=homelab
             - --provider=cloudflare
             - --cloudflare-proxied
@@ -280987,14 +280987,14 @@ data:
     [auth.generic_oauth]
     allow_assign_grafana_admin = true
     allow_sign_up = true
-    api_url = https://keycloak.PLACEHOLDER.example.invalid/realms/homelab/protocol/openid-connect/userinfo
-    auth_url = https://keycloak.PLACEHOLDER.example.invalid/realms/homelab/protocol/openid-connect/auth
+    api_url = https://keycloak.placeholder.example.invalid/realms/homelab/protocol/openid-connect/userinfo
+    auth_url = https://keycloak.placeholder.example.invalid/realms/homelab/protocol/openid-connect/auth
     client_id = grafana
     enabled = true
     name = Keycloak
     role_attribute_path = contains(groups[*], 'homelab-admins') && 'Admin' || contains(groups[*], 'homelab-viewers') && 'Viewer' || 'Viewer'
     scopes = openid profile email groups
-    token_url = https://keycloak.PLACEHOLDER.example.invalid/realms/homelab/protocol/openid-connect/token
+    token_url = https://keycloak.placeholder.example.invalid/realms/homelab/protocol/openid-connect/token
     [log]
     mode = console
     [paths]
@@ -281009,7 +281009,7 @@ data:
     disable_gravatar = true
     [server]
     domain = ''
-    root_url = https://grafana.PLACEHOLDER.example.invalid
+    root_url = https://grafana.placeholder.example.invalid
     [unified_storage]
     index_path = /var/lib/grafana-search/bleve
     [users]
@@ -282522,7 +282522,7 @@ spec:
         app.kubernetes.io/instance: kube-prometheus-stack
         app.kubernetes.io/version: "13.2.3"
       annotations:
-        checksum/config: aff81120cb0165aa404efc017ee3751dc1ad064dbd915db13c8d6e3a73f12875
+        checksum/config: 7e4f55b5f92bdaec9fe0d0e83921e9bfd08e210369058a02256170c61520ee32
         checksum/sc-dashboard-provider-config: e70bf6a851099d385178a76de9757bb0bef8299da6d8443602590e44f05fdf24
         kubectl.kubernetes.io/default-container: grafana
     spec:
