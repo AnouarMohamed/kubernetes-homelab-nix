@@ -119,7 +119,9 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         ;
       inherit cloudflare;
       nixfmt = pkgs.runCommand "nixfmt" { nativeBuildInputs = [ pkgs.nixfmt-tree ]; } ''
-        cd ${inputs.self}
+        cp -R ${inputs.self} source
+        chmod -R u+w source
+        cd source
         treefmt --ci
         touch "$out"
       '';
