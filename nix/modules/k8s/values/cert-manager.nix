@@ -1,0 +1,87 @@
+# Generated once from /home/anouar/kubernetes-homelab/platform/cert-manager/configure-cert-manager.yaml
+[
+  {
+    crds = {
+      enabled = true;
+      keep = true;
+    };
+    replicaCount = 2;
+    podDisruptionBudget = {
+      enabled = true;
+      maxUnavailable = 1;
+    };
+    prometheus = {
+      enabled = true;
+      servicemonitor = {
+        enabled = false;
+      };
+    };
+    networkPolicy = {
+      enabled = true;
+    };
+    resources = {
+      requests = {
+        cpu = "20m";
+        memory = "64Mi";
+      };
+      limits = {
+        cpu = "500m";
+        memory = "256Mi";
+      };
+    };
+    webhook = {
+      replicaCount = 2;
+      podDisruptionBudget = {
+        enabled = true;
+        maxUnavailable = 1;
+      };
+      networkPolicy = {
+        enabled = true;
+      };
+      resources = {
+        requests = {
+          cpu = "20m";
+          memory = "64Mi";
+        };
+        limits = {
+          cpu = "500m";
+          memory = "256Mi";
+        };
+      };
+    };
+    cainjector = {
+      enabled = true;
+      replicaCount = 2;
+      podDisruptionBudget = {
+        enabled = true;
+        maxUnavailable = 1;
+      };
+      networkPolicy = {
+        enabled = true;
+      };
+      resources = {
+        requests = {
+          cpu = "20m";
+          memory = "64Mi";
+        };
+        limits = {
+          cpu = "500m";
+          memory = "256Mi";
+        };
+      };
+    };
+    startupapicheck = {
+      enabled = true;
+      resources = {
+        requests = {
+          cpu = "10m";
+          memory = "32Mi";
+        };
+        limits = {
+          cpu = "100m";
+          memory = "64Mi";
+        };
+      };
+    };
+  }
+]

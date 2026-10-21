@@ -35,5 +35,49 @@ in
     url = "https://github.com/external-secrets/external-secrets/releases/download/helm-chart-2.12.0/external-secrets-2.12.0.tgz";
     sha256 = "4b584136b7311c0af8c8719d377cc5b1a7ef12c2de18f1fdb30614eab75bdeb3";
   };
+  argo-rollouts = fetch {
+    url = "https://github.com/argoproj/argo-helm/releases/download/argo-rollouts-2.41.1/argo-rollouts-2.41.1.tgz";
+    sha256 = "ee4f2f7d848b5d675070fc6c3da55708507c4228da73eed22b4d7825edfccace";
+  };
+  cert-manager = fetch {
+    url = "https://charts.jetstack.io/charts/cert-manager-v1.21.1.tgz";
+    sha256 = "c27101f3f3e2349fb4a9e704316105bf7b52ad73b8c8257d3498ef7f2f6a4adc";
+  };
+  chaos-mesh = fetch {
+    url = "https://charts.chaos-mesh.org/chaos-mesh-2.8.4.tgz";
+    sha256 = "ae4abd385649771300e4d33a44627c0df3618be0780c385bf30cc2fdf2ad93fa";
+  };
+  external-dns = fetch {
+    url = "https://github.com/kubernetes-sigs/external-dns/releases/download/external-dns-helm-chart-1.22.0/external-dns-1.22.0.tgz";
+    sha256 = "ec26bba67e02f46a55ac33790ad9d9ded724a163af6f6b4a63ce68f883201f4f";
+  };
+  prometheus-stack = fetch {
+    url = "https://github.com/prometheus-community/helm-charts/releases/download/kube-prometheus-stack-92.3.0/kube-prometheus-stack-92.3.0.tgz";
+    sha256 = "48399b911fa91b353e0c3d5e32c1cb7a67a168566549723553154ffd7be5d1fa";
+  };
+  blackbox = fetch {
+    url = "https://github.com/prometheus-community/helm-charts/releases/download/prometheus-blackbox-exporter-11.20.0/prometheus-blackbox-exporter-11.20.0.tgz";
+    sha256 = "e341b17f202c7ff95cae056d23a481d8080aa3dc1dbaaa5d68296595b8b90ace";
+  };
+  loki = fetch {
+    url = "https://github.com/grafana/helm-charts/releases/download/helm-loki-7.3.0/loki-7.3.0.tgz";
+    sha256 = "04a339f712d770a1f599f05fc0a5a3cde18e43914e49ae6a49f7171be86bcc09";
+  };
+  alloy = fetch {
+    url = "https://github.com/grafana/helm-charts/releases/download/alloy-1.13.1/alloy-1.13.1.tgz";
+    sha256 = "6c2b7df23e39438bb11f1e1fcf19eb9eb7c8bfeab7d49b7c975b6212abd0f99a";
+  };
+  tempo = fetch {
+    url = "https://github.com/grafana/helm-charts/releases/download/tempo-1.24.4/tempo-1.24.4.tgz";
+    sha256 = "f1f6e318d5bca3b5097cb676077796cdf8135beb2c1f71c4d14614ccf9b0081b";
+  };
+  otel = fetch {
+    url = "https://github.com/open-telemetry/opentelemetry-helm-charts/releases/download/opentelemetry-collector-0.175.1/opentelemetry-collector-0.175.1.tgz";
+    sha256 = "33996399f5d831193603f8a56ed46b7cd3f012eeb6df4d5046c5b560a554e21d";
+  };
+  sloth = fetch {
+    url = "https://github.com/slok/sloth/releases/download/sloth-helm-chart-0.16.0/sloth-0.16.0.tgz";
+    sha256 = "616acb580eefc2e9836cc1b430cac6d424e0e4210130786b6ec883657217c6db";
+  };
 }
 
