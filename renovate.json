@@ -1,8 +1,16 @@
 {
-  "extends": ["config:recommended"],
   "dependencyDashboard": true,
-  "labels": ["dependencies", "nix"],
-  "nix": {"enabled": true},
-  "schedule": ["before 6am on monday"]
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": [
+    "dependencies",
+    "nix"
+  ],
+  "nix": {
+    "enabled": true
+  },
+  "schedule": [
+    "before 6am on monday"
+  ]
 }
-
