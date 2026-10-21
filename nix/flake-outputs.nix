@@ -39,6 +39,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
       inherit (pkgs) lib;
       inherit (inputs) kubenix;
     };
+    schemas = import ./checks/schemas.nix { inherit pkgs; };
     render = pkgs.writeShellApplication {
       name = "render";
       runtimeInputs = [
@@ -64,8 +65,8 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         '';
     kubeconform = pkgs.runCommand "kubeconform" { nativeBuildInputs = [ pkgs.kubeconform ]; } ''
       kubeconform -strict -summary -ignore-missing-schemas \
-        -schema-location 'file://${inputs.kubernetes-json-schema}/v1.34.12-standalone-strict/{{.ResourceKind}}{{.KindSuffix}}.json' \
-        -schema-location 'file://${inputs.crds-catalog}/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
+        -schema-location 'file://${schemas}/builtin/{{.ResourceKind}}{{.KindSuffix}}.json' \
+        -schema-location 'file://${schemas}/crd/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
         ${manifests}
       touch "$out"
     '';
