@@ -1,6 +1,6 @@
 {
-  domain = "PLACEHOLDER.example.invalid";
-  acmeEmail = "admin@PLACEHOLDER.example.invalid";
+  domain = "placeholder.example.invalid";
+  acmeEmail = "admin@placeholder.example.invalid";
   timezone = "Africa/Casablanca";
   repository = "https://github.com/AnouarMohamed/kubernetes-homelab-nix.git";
   projectPath = "AnouarMohamed/kubernetes-homelab-nix";
@@ -44,8 +44,8 @@
     defaultClass = "longhorn";
     databaseClass = "longhorn-database";
     longhornDiskPath = "/var/lib/longhorn";
-    s3Endpoint = "https://s3.PLACEHOLDER.example.invalid";
-    s3Bucket = "PLACEHOLDER-homelab-backups";
+    s3Endpoint = "https://s3.placeholder.example.invalid";
+    s3Bucket = "placeholder-homelab-backups";
   };
 
   replicas = {

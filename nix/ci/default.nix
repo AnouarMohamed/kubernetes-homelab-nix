@@ -65,7 +65,7 @@
           }
           {
             name = "Use locked and rendered inputs";
-            run = "cp .ci-generated/flake.lock . && cp .ci-generated/rendered/all.yaml rendered/all.yaml && cp -R .ci-generated/generated-configs/. .";
+            run = "cp .ci-generated/flake.lock . && cp .ci-generated/rendered/all.yaml rendered/all.yaml";
           }
           {
             name = "Evaluate flake";
