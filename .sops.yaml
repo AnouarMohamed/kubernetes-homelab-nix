@@ -1,0 +1,5 @@
+# GENERATED - DO NOT EDIT
+creation_rules:
+  - path_regex: 'secrets/.*\.(json|yaml)$'
+    age: REPLACE_WITH_AGE_RECIPIENT
+
