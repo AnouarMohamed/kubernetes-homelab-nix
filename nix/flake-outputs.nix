@@ -3,7 +3,7 @@ let
   inherit (inputs) nixpkgs flake-utils;
   homelab = import ./config.nix;
 in
-flake-utils.lib.eachDefaultSystem (system:
+flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
   let
     pkgs = import nixpkgs { inherit system; };
     sentinelPackages = import ./packages/sentinel.nix {
