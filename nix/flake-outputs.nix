@@ -6,6 +6,15 @@ in
 flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs { inherit system; };
+    sentinelPackages = import ./packages/sentinel.nix {
+      inherit pkgs;
+      lib = pkgs.lib;
+      self = inputs.self;
+    };
+    installer = nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules = [ ./iso ];
+    };
     kubernetes = inputs.kubenix.evalModules.${system} {
       module = import ./modules/k8s/all.nix;
       specialArgs = { inherit homelab; };
@@ -50,6 +59,8 @@ flake-utils.lib.eachDefaultSystem (system:
     formatter = pkgs.nixfmt-tree;
     packages = {
       inherit manifests;
+      inherit (sentinelPackages) sentinel sentinel-api-image sentinel-worker-image;
+      installer-iso = installer.config.system.build.isoImage;
       default = manifests;
     };
     apps = {
@@ -85,6 +96,11 @@ flake-utils.lib.eachDefaultSystem (system:
         touch "$out"
       '';
       kyverno = import ./checks/kyverno.nix { inherit pkgs; };
+      k3s-ha = import ./tests/k3s-ha.nix { inherit pkgs; };
+      node1 = inputs.self.nixosConfigurations.node1.config.system.build.toplevel;
+      node2 = inputs.self.nixosConfigurations.node2.config.system.build.toplevel;
+      node3 = inputs.self.nixosConfigurations.node3.config.system.build.toplevel;
+      installer-iso = installer.config.system.build.isoImage;
     };
   }) // {
     nixosConfigurations = builtins.listToAttrs (map (node: {
