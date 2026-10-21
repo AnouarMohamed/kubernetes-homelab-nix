@@ -18,7 +18,8 @@ let
         --namespace ${namespace} \
         --include-crds \
         --no-hooks \
-        --values ${valuesFile} > "$out"
+        --values ${valuesFile} \
+        | sed -E 's/(rollme: )"[[:alnum:]]{5}"/\1"nix-pinned"/' > "$out"
     '';
   releases = [
     { name = "cilium"; namespace = "kube-system"; chart = charts.cilium; values = import ../modules/k8s/values/cilium.nix; valuesOverride.devices = map (node: node.interface) homelab.nodes; }

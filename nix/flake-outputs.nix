@@ -83,6 +83,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
       inherit manifests;
       generated-configs = generatedConfigs;
       cloudflare = cloudflare;
+      statix = pkgs.statix;
       inherit (sentinelPackages) sentinel sentinel-api-image sentinel-worker-image;
       installer-iso = installer.config.system.build.isoImage;
       default = manifests;
@@ -95,7 +96,8 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
       inherit manifests noYaml placeholders kubeconform drift configDrift;
       cloudflare = cloudflare;
       nixfmt = pkgs.runCommand "nixfmt" { nativeBuildInputs = [ pkgs.nixfmt-tree ]; } ''
-        nixfmt --check ${inputs.self}
+        cd ${inputs.self}
+        treefmt --ci
         touch "$out"
       '';
       statix = pkgs.runCommand "statix" { nativeBuildInputs = [ pkgs.statix ]; } ''
@@ -107,19 +109,12 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
         touch "$out"
       '';
       gitleaks = pkgs.runCommand "gitleaks" { nativeBuildInputs = [ pkgs.gitleaks ]; } ''
-        gitleaks dir --no-banner --redact ${inputs.self}
+        gitleaks dir --no-banner --redact --config ${inputs.self}/.gitleaks.toml ${inputs.self}
         touch "$out"
       '';
-      sentinel = pkgs.runCommand "sentinel-tests" { nativeBuildInputs = [ pkgs.go ]; } ''
-        export HOME="$TMPDIR/home"
-        export GOCACHE="$TMPDIR/go-cache"
-        export GOPATH="$TMPDIR/go"
-        cp -R ${inputs.self}/apps/sentinel source
-        chmod -R u+w source
-        cd source
-        go test ./...
-        touch "$out"
-      '';
+      sentinel = sentinelPackages.sentinel;
+      sentinel-api-image = sentinelPackages.sentinel-api-image;
+      sentinel-worker-image = sentinelPackages.sentinel-worker-image;
       kyverno = import ./checks/kyverno.nix { inherit pkgs; };
       k3s-ha = import ./tests/k3s-ha.nix { inherit pkgs; };
       node1 = inputs.self.nixosConfigurations.node1.config.system.build.toplevel;

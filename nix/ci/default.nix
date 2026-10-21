@@ -14,13 +14,15 @@
           { uses = "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803"; }
           { uses = "cachix/install-nix-action@448cde739abec1eaf0646249e3d25bb8d9bc7702"; "with".extra_nix_config = "experimental-features = nix-command flakes"; }
           { name = "Lock inputs"; run = "nix flake lock"; }
+          { name = "Normalize Nix sources"; run = "nix run .#statix -- fix . && nix fmt"; }
           { name = "Build manifests"; run = "nix build .#manifests --print-build-logs"; }
           { name = "Build generated configuration"; run = "nix build .#generated-configs --out-link generated-result"; }
-          { name = "Collect generated artifacts"; run = "mkdir -p ci-artifact/rendered && cp flake.lock ci-artifact/ && cp --dereference result ci-artifact/rendered/all.yaml && cp -R --dereference generated-result ci-artifact/generated-configs"; }
+          { name = "Collect generated artifacts"; run = "mkdir -p ci-artifact/rendered ci-artifact/formatted-source && cp flake.lock ci-artifact/ && cp --dereference result ci-artifact/rendered/all.yaml && cp -R --dereference generated-result ci-artifact/generated-configs && cp flake.nix ci-artifact/formatted-source/ && cp -R nix ci-artifact/formatted-source/"; }
           {
             uses = "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02";
-            "with" = { name = "nix-generated"; path = "ci-artifact"; if-no-files-found = "error"; };
+            "with" = { name = "nix-generated"; path = "ci-artifact"; if-no-files-found = "error"; include-hidden-files = true; };
           }
+          { name = "Build Sentinel"; run = "nix build .#sentinel --print-build-logs"; }
         ];
       };
       checks = {

@@ -81,8 +81,8 @@ pkgs.testers.runNixOSTest {
     node1.succeed("kubectl rollout status deployment/reschedule-test --timeout=180s")
 
     original = node1.succeed("kubectl get pod -l app=reschedule-test -o jsonpath='{.items[0].spec.nodeName}'").strip()
-    machines = {"node1": node1, "node2": node2, "node3": node3}
-    machines[original].shutdown()
+    machine_by_name = {"node1": node1, "node2": node2, "node3": node3}
+    machine_by_name[original].shutdown()
     survivor = node2 if original != "node2" else node3
     survivor.wait_until_succeeds("kubectl get --raw=/readyz", timeout=120)
     survivor.wait_until_succeeds(
