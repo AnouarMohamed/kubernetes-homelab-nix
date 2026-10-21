@@ -43,6 +43,9 @@ the file is generated from Nix: `rendered/**/*.yaml`, `.github/workflows/*.yaml`
   artifact.
 - Longhorn remains the highest-risk component because of host iSCSI/FHS and
   kernel dependencies. Hardware behavior cannot be confirmed in CI.
+- Kubeconform is strict for schemas present in `nix/checks/schemas`. Custom
+  resources without a verified pinned schema are skipped and remain
+  UNVERIFIED rather than using an unpinned online catalog.
 - CI runners may not expose KVM. The VM test is still built and is run only
   when virtualization is available.
 

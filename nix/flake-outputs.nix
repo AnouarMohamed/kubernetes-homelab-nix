@@ -4,10 +4,88 @@ let
   homelab = import ./config.nix;
 in
 flake-utils.lib.eachDefaultSystem (system:
-  let pkgs = import nixpkgs { inherit system; }; in
+  let
+    pkgs = import nixpkgs { inherit system; };
+    kubernetes = inputs.kubenix.evalModules.${system} {
+      module = import ./modules/k8s/all.nix;
+      specialArgs = { inherit homelab; };
+    };
+    rawManifests = kubernetes.config.kubernetes.resultYAML;
+    manifests = pkgs.runCommand "kubernetes-homelab-manifests.yaml" { } ''
+      {
+        echo '# GENERATED - DO NOT EDIT'
+        echo '# Source: Nix modules in nix/modules/k8s'
+        cat ${rawManifests}
+      } > "$out"
+    '';
+    render = pkgs.writeShellApplication {
+      name = "render";
+      runtimeInputs = [ pkgs.coreutils pkgs.git ];
+      text = ''
+        repository_root="$(git rev-parse --show-toplevel)"
+        install -D --mode=0644 ${manifests} "$repository_root/rendered/all.yaml"
+        echo "Rendered manifests to rendered/all.yaml"
+      '';
+    };
+    noYaml = pkgs.runCommand "no-handwritten-yaml" { nativeBuildInputs = [ pkgs.findutils ]; } ''
+      ${pkgs.bash}/bin/bash ${./checks/no-handwritten-yaml.sh} ${inputs.self}
+      touch "$out"
+    '';
+    placeholders = pkgs.runCommand "documented-placeholders" { nativeBuildInputs = [ pkgs.ripgrep ]; } ''
+      ${pkgs.bash}/bin/bash ${./checks/placeholders.sh} ${inputs.self}
+      touch "$out"
+    '';
+    kubeconform = pkgs.runCommand "kubeconform" { nativeBuildInputs = [ pkgs.kubeconform ]; } ''
+      kubeconform -strict -summary -ignore-missing-schemas \
+        -schema-location 'file://${./checks/schemas}/{{.ResourceKind}}-{{.ResourceAPIVersion}}.json' \
+        ${manifests}
+      touch "$out"
+    '';
+    drift = pkgs.runCommand "rendered-manifest-drift" { nativeBuildInputs = [ pkgs.diffutils ]; } ''
+      diff -u ${inputs.self}/rendered/all.yaml ${manifests}
+      touch "$out"
+    '';
+  in
   {
     formatter = pkgs.nixfmt-tree;
-    packages.default = pkgs.writeText "scaffold" "Nix homelab scaffold\n";
+    packages = {
+      inherit manifests;
+      default = manifests;
+    };
+    apps = {
+      render = flake-utils.lib.mkApp { drv = render; };
+      default = flake-utils.lib.mkApp { drv = render; };
+    };
+    checks = {
+      inherit manifests noYaml placeholders kubeconform drift;
+      nixfmt = pkgs.runCommand "nixfmt" { nativeBuildInputs = [ pkgs.nixfmt-tree ]; } ''
+        nixfmt --check ${inputs.self}
+        touch "$out"
+      '';
+      statix = pkgs.runCommand "statix" { nativeBuildInputs = [ pkgs.statix ]; } ''
+        statix check ${inputs.self}
+        touch "$out"
+      '';
+      deadnix = pkgs.runCommand "deadnix" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
+        deadnix --fail ${inputs.self}
+        touch "$out"
+      '';
+      gitleaks = pkgs.runCommand "gitleaks" { nativeBuildInputs = [ pkgs.gitleaks ]; } ''
+        gitleaks dir --no-banner --redact ${inputs.self}
+        touch "$out"
+      '';
+      sentinel = pkgs.runCommand "sentinel-tests" { nativeBuildInputs = [ pkgs.go ]; } ''
+        export HOME="$TMPDIR/home"
+        export GOCACHE="$TMPDIR/go-cache"
+        export GOPATH="$TMPDIR/go"
+        cp -R ${inputs.self}/apps/sentinel source
+        chmod -R u+w source
+        cd source
+        go test ./...
+        touch "$out"
+      '';
+      kyverno = import ./checks/kyverno.nix { inherit pkgs; };
+    };
   }) // {
     nixosConfigurations = builtins.listToAttrs (map (node: {
       name = node.name;
@@ -26,3 +104,4 @@ flake-utils.lib.eachDefaultSystem (system:
       helpers = import ./lib { lib = nixpkgs.lib; };
     };
   }
+

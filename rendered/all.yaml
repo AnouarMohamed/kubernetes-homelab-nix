@@ -1,0 +1,6 @@
+# GENERATED - DO NOT EDIT
+# Bootstrap placeholder; replaced by the CI-rendered kubenix output.
+---
+apiVersion: v1
+kind: List
+items: []
