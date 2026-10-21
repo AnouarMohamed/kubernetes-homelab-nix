@@ -14,4 +14,9 @@ below in a private deployment overlay; never commit the real values.
 | `REPLACE_WITH_AGE_RECIPIENT` | sops age recipient |
 | `REPLACE_WITH_CLOUDFLARE_ACCOUNT_ID` | Terranix variable placeholder |
 | `REPLACE_WITH_CLOUDFLARE_ZONE_ID` | Terranix variable placeholder |
+| `REPLACE_WITH_INSTALL_DISK` | Stable disk by-id path for each host |
+| `00000000-0000-0000-0000-000000000000` | Cloudflare tunnel UUID |
+
+The committed `secrets/placeholder.json` is deliberately non-decryptable SOPS
+structure. Replace it with a genuinely encrypted file in a deployment overlay.
 
