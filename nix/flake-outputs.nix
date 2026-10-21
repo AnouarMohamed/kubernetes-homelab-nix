@@ -63,12 +63,10 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
           ${pkgs.bash}/bin/bash ${./checks/placeholders.sh} ${inputs.self}
           touch "$out"
         '';
-    semanticParity =
-      pkgs.runCommand "semantic-parity" { nativeBuildInputs = [ pkgs.ripgrep ]; }
-        ''
-          ${pkgs.bash}/bin/bash ${./checks/semantic-parity.sh} ${inputs.self}
-          touch "$out"
-        '';
+    semanticParity = pkgs.runCommand "semantic-parity" { nativeBuildInputs = [ pkgs.ripgrep ]; } ''
+      ${pkgs.bash}/bin/bash ${./checks/semantic-parity.sh} ${inputs.self}
+      touch "$out"
+    '';
     kubeconform = pkgs.runCommand "kubeconform" { nativeBuildInputs = [ pkgs.kubeconform ]; } ''
       kubeconform -strict -summary -ignore-missing-schemas \
         -schema-location 'file://${schemas}/builtin/{{.ResourceKind}}{{.KindSuffix}}.json' \
