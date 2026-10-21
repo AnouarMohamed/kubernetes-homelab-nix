@@ -21,10 +21,6 @@
             run = "nix flake lock";
           }
           {
-            name = "Normalize Nix sources";
-            run = "nix run .#statix -- fix . && nix fmt";
-          }
-          {
             name = "Build manifests";
             run = "nix build .#manifests --print-build-logs";
           }
@@ -34,7 +30,7 @@
           }
           {
             name = "Collect generated artifacts";
-            run = "mkdir -p ci-artifact/rendered ci-artifact/formatted-source && cp flake.lock ci-artifact/ && cp --dereference result ci-artifact/rendered/all.yaml && cp -R --dereference generated-result ci-artifact/generated-configs && cp flake.nix ci-artifact/formatted-source/ && cp -R nix ci-artifact/formatted-source/";
+            run = "mkdir -p ci-artifact/rendered && cp flake.lock ci-artifact/ && cp --dereference result ci-artifact/rendered/all.yaml && cp -R --dereference generated-result ci-artifact/generated-configs";
           }
           {
             uses = "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02";

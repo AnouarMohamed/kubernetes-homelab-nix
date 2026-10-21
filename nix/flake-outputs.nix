@@ -64,7 +64,8 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         '';
     kubeconform = pkgs.runCommand "kubeconform" { nativeBuildInputs = [ pkgs.kubeconform ]; } ''
       kubeconform -strict -summary -ignore-missing-schemas \
-        -schema-location 'file://${./checks/schemas}/{{.ResourceKind}}-{{.ResourceAPIVersion}}.json' \
+        -schema-location 'file://${inputs.kubernetes-json-schema}/v1.34.12-standalone-strict/{{.ResourceKind}}{{.KindSuffix}}.json' \
+        -schema-location 'file://${inputs.crds-catalog}/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
         ${manifests}
       touch "$out"
     '';
