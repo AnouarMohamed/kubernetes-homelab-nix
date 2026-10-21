@@ -34,18 +34,11 @@ flake-utils.lib.eachDefaultSystem (system:
       extraArgs = { inherit homelab; };
       modules = [ ./terranix/cloudflare.nix ];
     };
-    kubernetes = inputs.kubenix.evalModules.${system} {
-      module = import ./modules/k8s/all.nix;
-      specialArgs = { inherit homelab; };
+    manifests = import ./packages/manifests.nix {
+      inherit pkgs homelab;
+      lib = pkgs.lib;
+      kubenix = inputs.kubenix;
     };
-    rawManifests = kubernetes.config.kubernetes.resultYAML;
-    manifests = pkgs.runCommand "kubernetes-homelab-manifests.yaml" { } ''
-      {
-        echo '# GENERATED - DO NOT EDIT'
-        echo '# Source: Nix modules in nix/modules/k8s'
-        cat ${rawManifests}
-      } > "$out"
-    '';
     render = pkgs.writeShellApplication {
       name = "render";
       runtimeInputs = [ pkgs.coreutils pkgs.git ];
