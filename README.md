@@ -33,21 +33,104 @@ storage must be exercised in the target environment before serving real users.
 
 ## Architecture
 
-```text
-                     GitHub / immutable GHCR images
-                                  │
-                                  ▼
-                       Argo CD: rendered/all.yaml
-                                  │
-             ┌────────────────────┼────────────────────┐
-             ▼                    ▼                    ▼
-       node1 / k3s          node2 / k3s          node3 / k3s
-       control plane        control plane        control plane
-             └────────────────────┼────────────────────┘
-                                  │
-       Cilium + Gateway API · kube-vip · Longhorn · CloudNativePG
-       cert-manager · External Secrets · OpenBao · Kyverno · Velero
-       Prometheus/Grafana/Loki/Tempo · Argo Rollouts · applications
+```mermaid
+flowchart LR
+  operator[Operator]
+  users[Internet users]
+
+  subgraph supply[Supply chain]
+    direction TB
+    git[Git repository]
+    ci[CI security and quality gates]
+    nix[Nix build graph]
+    manifests[Rendered Kubernetes artifact]
+    registry[GHCR multi-architecture images]
+    git --> ci --> nix
+    nix --> manifests
+    nix --> registry
+  end
+
+  subgraph external[External services]
+    direction TB
+    edge[Cloudflare DNS and tunnel]
+    object[Versioned S3-compatible backup store]
+    probes[HTTPS services monitored by Sentinel]
+  end
+
+  subgraph cluster[Three identical NixOS nodes]
+    direction TB
+
+    subgraph control[Control and reconciliation]
+      direction LR
+      vip[kube-vip API endpoint]
+      k3s[k3s servers and embedded etcd quorum]
+      argo[Argo CD]
+      policy[Kyverno policy engine]
+      secrets[External Secrets and OpenBao]
+      vip --> k3s
+      argo --> k3s
+      policy --> k3s
+      secrets --> k3s
+    end
+
+    subgraph traffic[Traffic plane]
+      direction LR
+      tunnel[cloudflared connector]
+      gateway[Cilium Gateway API]
+      apps[Keycloak, Vaultwarden, Homepage, Uptime Kuma]
+      status[Sentinel API]
+      tunnel --> gateway
+      gateway --> apps
+      gateway --> status
+    end
+
+    subgraph data[State and recovery]
+      direction LR
+      longhorn[Longhorn replicated volumes]
+      postgres[CloudNativePG clusters]
+      velero[Velero backup controller]
+      longhorn --> postgres
+      postgres --> velero
+      longhorn --> velero
+    end
+
+    subgraph observe[Observability and verification]
+      direction LR
+      worker[Sentinel probe workers]
+      metrics[Prometheus]
+      dashboards[Grafana and Alertmanager]
+      worker --> status
+      worker --> metrics
+      apps --> metrics
+      k3s --> metrics
+      metrics --> dashboards
+    end
+
+    k3s --> gateway
+    k3s --> longhorn
+    apps --> postgres
+  end
+
+  operator --> git
+  ci -. signed release identity .-> registry
+  manifests --> argo
+  registry --> k3s
+  users --> edge --> tunnel
+  worker --> probes
+  velero --> object
+
+  classDef actor fill:#172554,stroke:#60a5fa,color:#eff6ff,stroke-width:2px
+  classDef supplyNode fill:#312e81,stroke:#a5b4fc,color:#eef2ff
+  classDef controlNode fill:#3f1d2e,stroke:#fb7185,color:#fff1f2
+  classDef runtimeNode fill:#064e3b,stroke:#34d399,color:#ecfdf5
+  classDef dataNode fill:#422006,stroke:#fbbf24,color:#fffbeb
+  classDef externalNode fill:#292524,stroke:#a8a29e,color:#fafaf9
+  class operator,users actor
+  class git,ci,nix,manifests,registry supplyNode
+  class vip,k3s,argo,policy,secrets controlNode
+  class tunnel,gateway,apps,status,worker,metrics,dashboards runtimeNode
+  class longhorn,postgres,velero dataNode
+  class edge,object,probes externalNode
 ```
 
 Nix owns the host and render-time graph. Argo CD owns reconciliation of the
