@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  homelab,
   ...
 }:
 {
@@ -12,12 +11,16 @@
   variable.cloudflare_account_id = {
     type = "string";
     sensitive = true;
-    default = homelab.cloudflareAccountId;
   };
   variable.cloudflare_zone_id = {
     type = "string";
     sensitive = true;
-    default = homelab.cloudflareZoneId;
+  };
+  variable.public_domain = {
+    type = "string";
+  };
+  variable.private_route_cidr = {
+    type = "string";
   };
   resource = {
     cloudflare_zero_trust_tunnel_cloudflared.homelab = {
@@ -30,11 +33,11 @@
       tunnel_id = config.resource.cloudflare_zero_trust_tunnel_cloudflared.homelab "id";
       config.ingress = [
         {
-          hostname = "whoami.${homelab.domain}";
+          hostname = "whoami.\${var.public_domain}";
           service = "http://cilium-gateway-public.gateways.svc.cluster.local:80";
         }
         {
-          hostname = "status.${homelab.domain}";
+          hostname = "status.\${var.public_domain}";
           service = "http://cilium-gateway-public.gateways.svc.cluster.local:80";
         }
         { service = "http_status:404"; }
@@ -43,12 +46,12 @@
     cloudflare_zero_trust_tunnel_cloudflared_route.homelab_admin = {
       account_id = config.variable.cloudflare_account_id;
       tunnel_id = config.resource.cloudflare_zero_trust_tunnel_cloudflared.homelab "id";
-      network = homelab.network.privateRouteCidr;
+      network = config.variable.private_route_cidr;
       comment = "Homelab administration through WARP";
     };
     cloudflare_dns_record = lib.genAttrs [ "whoami" "status" ] (name: {
       zone_id = config.variable.cloudflare_zone_id;
-      name = "${name}.${homelab.domain}";
+      name = "${name}.\${var.public_domain}";
       type = "CNAME";
       content = "\${cloudflare_zero_trust_tunnel_cloudflared.homelab.id}.cfargotunnel.com";
       proxied = true;

@@ -20,6 +20,14 @@ type Status struct {
 	LatencyMS  int       `json:"latencyMs"`
 }
 
+type Transition struct {
+	Status         string    `json:"status"`
+	PreviousStatus *string   `json:"previousStatus,omitempty"`
+	ObservedAt     time.Time `json:"observedAt"`
+	LatencyMS      int       `json:"latencyMs"`
+	Message        string    `json:"message,omitempty"`
+}
+
 type Observation struct {
 	ID         string
 	Name       string
@@ -33,6 +41,27 @@ type Observation struct {
 type Reader interface {
 	Ping(context.Context) error
 	ListStatuses(context.Context) ([]Status, error)
+	ListTransitions(context.Context, string, int) ([]Transition, error)
+}
+
+func (s *Store) ListTransitions(ctx context.Context, serviceID string, limit int) ([]Transition, error) {
+	rows, err := s.pool.Query(ctx, `
+SELECT t.status, t.previous_status, t.observed_at, t.latency_ms, t.message
+FROM status_transitions AS t
+JOIN services AS s ON s.id = t.service_id
+WHERE t.service_id = $1 AND s.public = true
+ORDER BY t.observed_at DESC
+LIMIT $2`, serviceID, limit)
+	if err != nil {
+		return nil, fmt.Errorf("query transitions: %w", err)
+	}
+	defer rows.Close()
+
+	transitions, err := pgx.CollectRows(rows, pgx.RowToStructByPos[Transition])
+	if err != nil {
+		return nil, fmt.Errorf("collect transitions: %w", err)
+	}
+	return transitions, nil
 }
 
 type Store struct {

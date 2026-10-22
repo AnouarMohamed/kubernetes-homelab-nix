@@ -6,6 +6,9 @@ import (
 	"io"
 	"log/slog"
 	"net/http"
+	"slices"
+	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/config"
@@ -23,14 +26,16 @@ type Worker struct {
 	client      *http.Client
 	targets     []config.Target
 	interval    time.Duration
+	concurrency int
+	lastCycle   atomic.Int64
 	up          *prometheus.GaugeVec
 	duration    *prometheus.HistogramVec
 	transitions *prometheus.CounterVec
 }
 
-func New(recorder Recorder, client *http.Client, targets []config.Target, interval time.Duration, registry *prometheus.Registry) *Worker {
+func New(recorder Recorder, client *http.Client, targets []config.Target, interval time.Duration, concurrency int, registry *prometheus.Registry) *Worker {
 	worker := &Worker{
-		recorder: recorder, client: client, targets: targets, interval: interval,
+		recorder: recorder, client: client, targets: targets, interval: interval, concurrency: concurrency,
 		up:          prometheus.NewGaugeVec(prometheus.GaugeOpts{Name: "sentinel_probe_up", Help: "Whether the latest service probe succeeded."}, []string{"service"}),
 		duration:    prometheus.NewHistogramVec(prometheus.HistogramOpts{Name: "sentinel_probe_duration_seconds", Help: "Service probe latency.", Buckets: prometheus.DefBuckets}, []string{"service"}),
 		transitions: prometheus.NewCounterVec(prometheus.CounterOpts{Name: "sentinel_status_transitions_total", Help: "Recorded service health transitions."}, []string{"service", "status"}),
@@ -54,12 +59,29 @@ func (w *Worker) Run(ctx context.Context) error {
 }
 
 func (w *Worker) runCycle(ctx context.Context) {
+	semaphore := make(chan struct{}, w.concurrency)
+	var group sync.WaitGroup
 	for _, target := range w.targets {
 		if ctx.Err() != nil {
-			return
+			break
 		}
-		w.probe(ctx, target)
+		semaphore <- struct{}{}
+		group.Add(1)
+		go func(target config.Target) {
+			defer group.Done()
+			defer func() { <-semaphore }()
+			w.probe(ctx, target)
+		}(target)
 	}
+	group.Wait()
+	if ctx.Err() == nil {
+		w.lastCycle.Store(time.Now().UnixNano())
+	}
+}
+
+func (w *Worker) Ready(maxAge time.Duration) bool {
+	completed := w.lastCycle.Load()
+	return completed != 0 && time.Since(time.Unix(0, completed)) <= maxAge
 }
 
 func (w *Worker) probe(ctx context.Context, target config.Target) {
@@ -69,16 +91,13 @@ func (w *Worker) probe(ctx context.Context, target config.Target) {
 	status, message := "operational", ""
 	request, err := http.NewRequestWithContext(ctx, http.MethodGet, target.URL, nil)
 	if err == nil {
+		request.Header.Set("User-Agent", "homelab-sentinel/1")
 		var response *http.Response
 		response, err = w.client.Do(request)
 		if err == nil {
 			_, _ = io.CopyN(io.Discard, response.Body, 4096)
 			_ = response.Body.Close()
-			if response.StatusCode >= 500 {
-				status, message = "down", fmt.Sprintf("HTTP %d", response.StatusCode)
-			} else if response.StatusCode >= 400 {
-				status, message = "degraded", fmt.Sprintf("HTTP %d", response.StatusCode)
-			}
+			status, message = classifyStatus(response.StatusCode, target.ExpectedStatuses)
 		}
 	}
 	if err != nil {
@@ -103,4 +122,15 @@ func (w *Worker) probe(ctx context.Context, target config.Target) {
 		w.transitions.WithLabelValues(target.ID, status).Inc()
 		slog.InfoContext(ctx, "service status changed", "service", target.ID, "status", status)
 	}
+}
+
+func classifyStatus(statusCode int, expected []int) (string, string) {
+	if (len(expected) == 0 && statusCode >= 200 && statusCode < 300) || slices.Contains(expected, statusCode) {
+		return "operational", ""
+	}
+	message := fmt.Sprintf("HTTP %d", statusCode)
+	if statusCode >= 300 && statusCode < 500 {
+		return "degraded", message
+	}
+	return "down", message
 }

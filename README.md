@@ -78,7 +78,7 @@ Kubernetes context and is never run by CI.
 
 | Path | Responsibility |
 | --- | --- |
-| `nix/config.nix` | Non-secret topology, versions, image digests, placeholders |
+| `nix/config.nix` | Non-secret three-node hardware, LAN topology, versions, and image digests |
 | `nix/modules/os` | NixOS, disks, k3s, firewall, host hardening |
 | `nix/modules/k8s` | Platform and application resources |
 | `nix/policies` | Admission, verification, and runtime guardrails |
@@ -100,7 +100,7 @@ The exact migration evidence and exceptions are tracked in
 [`docs/nix-migration.md`](docs/nix-migration.md). Before deploying, read the
 [`architecture`](docs/architecture.md), [`security model`](docs/security.md),
 [`operating guide`](docs/operations.md), and
-[`bring-up placeholders`](docs/nix-bringup.md).
+[`deployment contract`](docs/deployment.md).
 
 ## Non-goals
 

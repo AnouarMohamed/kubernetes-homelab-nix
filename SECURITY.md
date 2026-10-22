@@ -19,6 +19,6 @@ are supported. Older images and forks may not receive fixes.
 ## Scope
 
 Build definitions, NixOS modules, Kubernetes policy, CI workflows, Sentinel,
-and published GHCR images are in scope. The placeholder environment and any
+and published GHCR images are in scope. The reference environment and any
 third-party deployment using changed overlays are not operated by this project.
 

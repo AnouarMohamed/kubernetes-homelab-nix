@@ -2251,7 +2251,7 @@
     };
     data = {
       "targets.json" =
-        "[{\"id\":\"whoami\",\"name\":\"Public edge\",\"url\":\"https://whoami.\${CONFIG_DOMAIN}/health\",\"public\":true}]";
+        "[{\"id\":\"whoami\",\"name\":\"Public edge\",\"url\":\"https://whoami.\${CONFIG_DOMAIN}/health\",\"public\":true,\"expectedStatuses\":[200]}]";
     };
   }
   {
@@ -2559,6 +2559,10 @@
                 {
                   name = "PROBE_TIMEOUT";
                   value = "5s";
+                }
+                {
+                  name = "PROBE_WORKERS";
+                  value = "4";
                 }
                 {
                   name = "OTEL_EXPORTER_OTLP_ENDPOINT";

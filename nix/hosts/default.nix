@@ -4,6 +4,7 @@
     ../modules/homelab-options.nix
     ../modules/os
     ./disko.nix
+    ./hardware-profile.nix
   ];
 
   networking.hostName = node.name;

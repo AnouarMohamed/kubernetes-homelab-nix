@@ -20,7 +20,11 @@ in
     role = "server";
     inherit (node) clusterInit;
     serverAddr = if node.clusterInit then "" else "https://${cfg.network.controlPlaneVip}:6443";
-    tokenFile = config.sops.secrets.k3s-token.path;
+    tokenFile =
+      if cfg.sopsFile != null then
+        config.sops.secrets.k3s-token.path
+      else
+        "/var/lib/homelab-secrets/k3s-token";
     nodeName = node.name;
     nodeIP = node.address;
     disable = [

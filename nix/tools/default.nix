@@ -1,12 +1,16 @@
 { homelab }:
 {
   sops = {
-    creation_rules = [
-      {
-        path_regex = "secrets/.*\\.(json|yaml)$";
-        age = homelab.ageRecipient;
-      }
-    ];
+    creation_rules =
+      if homelab.ageRecipient == null then
+        [ ]
+      else
+        [
+          {
+            path_regex = "secrets/.*\\.(json|yaml)$";
+            age = homelab.ageRecipient;
+          }
+        ];
   };
   renovate = {
     extends = [ "config:recommended" ];
@@ -21,10 +25,6 @@
   gitleaks = {
     title = "kubernetes-homelab-nix";
     extend.useDefault = true;
-    allowlist = {
-      description = "Build-only placeholder ciphertext";
-      paths = [ "secrets/placeholder.json" ];
-    };
   };
   markdownlint = {
     default = true;

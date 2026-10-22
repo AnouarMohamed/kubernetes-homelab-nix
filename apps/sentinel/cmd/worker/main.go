@@ -39,6 +39,14 @@ func main() {
 	}
 	defer func() { _ = shutdownTelemetry(context.Background()) }()
 	registry := prometheus.NewRegistry()
+	client := &http.Client{
+		Timeout:   cfg.ProbeTimeout,
+		Transport: otelhttp.NewTransport(http.DefaultTransport),
+		CheckRedirect: func(_ *http.Request, _ []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	worker := probe.New(store, client, cfg.Targets, cfg.ProbeInterval, cfg.ProbeWorkers, registry)
 	metricsMux := http.NewServeMux()
 	metricsMux.Handle("GET /metrics", promhttp.HandlerFor(registry, promhttp.HandlerOpts{}))
 	metricsMux.HandleFunc("GET /healthz", func(w http.ResponseWriter, _ *http.Request) {
@@ -47,7 +55,7 @@ func main() {
 	metricsMux.HandleFunc("GET /readyz", func(w http.ResponseWriter, request *http.Request) {
 		readyCtx, cancel := context.WithTimeout(request.Context(), 2*time.Second)
 		defer cancel()
-		if err := store.Ping(readyCtx); err != nil {
+		if err := store.Ping(readyCtx); err != nil || !worker.Ready(2*cfg.ProbeInterval) {
 			http.Error(w, "unavailable", http.StatusServiceUnavailable)
 			return
 		}
@@ -68,8 +76,7 @@ func main() {
 		defer cancel()
 		_ = metricsServer.Shutdown(shutdownCtx)
 	}()
-	client := &http.Client{Timeout: cfg.ProbeTimeout, Transport: otelhttp.NewTransport(http.DefaultTransport)}
-	if err := probe.New(store, client, cfg.Targets, cfg.ProbeInterval, registry).Run(ctx); err != nil {
+	if err := worker.Run(ctx); err != nil {
 		slog.Error("run probe worker", "error", err)
 		os.Exit(1)
 	}

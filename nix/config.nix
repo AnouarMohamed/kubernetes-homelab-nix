@@ -1,6 +1,20 @@
+let
+  hardwareProfile = {
+    cpuModel = "Intel Core i7-8650U";
+    cores = 4;
+    threads = 8;
+    memoryGiB = 32;
+    diskModel = "Geonix Supersonic 512GB";
+    diskSizeGB = 512;
+    installDisk = "/dev/disk/by-path/pci-0000:00:17.0-ata-3";
+    interface = "enp0s31f6";
+  };
+in
 {
-  domain = "placeholder.example.invalid";
-  acmeEmail = "admin@placeholder.example.invalid";
+  # The committed profile is a runnable, private-LAN reference. Public DNS,
+  # ACME, Cloudflare and encrypted secrets are supplied by a private module.
+  domain = "lab.home.arpa";
+  acmeEmail = "ops@lab.home.arpa";
   timezone = "Africa/Casablanca";
   adminUser = "operator";
   repository = "https://github.com/AnouarMohamed/kubernetes-homelab-nix.git";
@@ -16,37 +30,34 @@
   };
 
   network = {
-    adminCidr = "192.0.2.0/24";
-    privateRouteCidr = "192.0.2.0/24";
+    adminCidr = "10.10.0.0/24";
+    privateRouteCidr = "10.10.0.0/24";
     podCidr = "10.42.0.0/16";
     serviceCidr = "10.43.0.0/16";
-    controlPlaneVip = "192.0.2.10";
+    controlPlaneVip = "10.10.0.10";
     loadBalancerPool = {
-      start = "192.0.2.20";
-      stop = "192.0.2.39";
+      start = "10.10.0.20";
+      stop = "10.10.0.39";
     };
   };
 
   nodes = [
     {
       name = "node1";
-      address = "192.0.2.11";
-      interface = "enp1s0";
-      installDisk = "/dev/disk/by-id/REPLACE_WITH_NODE1_INSTALL_DISK";
+      address = "10.10.0.11";
+      inherit (hardwareProfile) interface installDisk;
       clusterInit = true;
     }
     {
       name = "node2";
-      address = "192.0.2.12";
-      interface = "enp1s0";
-      installDisk = "/dev/disk/by-id/REPLACE_WITH_NODE2_INSTALL_DISK";
+      address = "10.10.0.12";
+      inherit (hardwareProfile) interface installDisk;
       clusterInit = false;
     }
     {
       name = "node3";
-      address = "192.0.2.13";
-      interface = "enp1s0";
-      installDisk = "/dev/disk/by-id/REPLACE_WITH_NODE3_INSTALL_DISK";
+      address = "10.10.0.13";
+      inherit (hardwareProfile) interface installDisk;
       clusterInit = false;
     }
   ];
@@ -55,8 +66,8 @@
     defaultClass = "longhorn";
     databaseClass = "longhorn-database";
     longhornDiskPath = "/var/lib/longhorn";
-    s3Endpoint = "https://s3.placeholder.example.invalid";
-    s3Bucket = "placeholder-homelab-backups";
+    s3Endpoint = "http://minio.storage.svc.cluster.local:9000";
+    s3Bucket = "homelab-backups";
   };
 
   replicas = {
@@ -65,16 +76,16 @@
     databases = 3;
   };
 
-  sshAuthorizedKey = "REPLACE_WITH_SSH_ED25519_PUBLIC_KEY";
-  ageRecipient = "REPLACE_WITH_AGE_RECIPIENT";
-  cloudflareAccountId = "REPLACE_WITH_CLOUDFLARE_ACCOUNT_ID";
-  cloudflareZoneId = "REPLACE_WITH_CLOUDFLARE_ZONE_ID";
+  inherit hardwareProfile;
+  sshAuthorizedKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBL8S/X6p5keaSfccTIWn3X79hRZkhm/cBvrH5UnN4n m.anouar@mundiapolis.ma";
+  ageRecipient = null;
+  sopsFile = null;
   hostTunnel = {
     # Application ingress is owned by the Kubernetes cloudflared deployment.
     # Enable a host tunnel only for a separately provisioned private-route
     # tunnel; reusing the application tunnel would create two control planes.
     enable = false;
-    tunnelId = "REPLACE_WITH_HOST_TUNNEL_ID";
+    tunnelId = null;
   };
 
   images = {

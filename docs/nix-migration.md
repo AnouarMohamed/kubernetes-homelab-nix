@@ -18,7 +18,7 @@ YAML is not loaded at evaluation time.
 
 | Source | Nix destination | Strategy |
 | --- | --- | --- |
-| `config/homelab.yaml` | `nix/config.nix`, `nix/modules/homelab-options.nix` | Typed placeholder configuration |
+| `config/homelab.yaml` | `nix/config.nix`, `nix/modules/homelab-options.nix` | Typed three-node reference configuration |
 | `infra/ansible/**` | `nix/hosts`, `nix/modules/os` | NixOS and disko modules |
 | Kubernetes YAML | `nix/modules/k8s`, `nix/policies` | Kubenix resources and custom resources |
 | Helm/Kustomize values | Component modules | Nix attrsets and pinned charts |
@@ -92,7 +92,7 @@ catalog.
   errors, and 236 explicitly skipped resources under the pinned schema model.
 - All 10 Kyverno positive/negative expectations passed without policy-load
   errors. Nix formatting, statix, deadnix, shellcheck, generated-file drift,
-  semantic-parity, placeholder, handwritten-YAML, and secret-leak gates passed.
+  semantic-parity, site-contract, handwritten-YAML, and secret-leak gates passed.
 - Sentinel unit tests with race detection, `go vet`, and both generated GitHub
   Actions workflows were validated for this worktree.
 - Public multi-architecture Sentinel `v0.2.0` images were published to GHCR by
@@ -112,7 +112,7 @@ catalog.
 | Argo CD and Rollouts | Rendered with one valid repository root | Live reconciliation unverified |
 | Longhorn | Host prerequisites and resources build | Disk loss/rebuild unverified |
 | CloudNativePG and Velero | CRDs/resources validated where schemas exist | S3 backup/restore unverified |
-| OpenBao and External Secrets | Placeholder references only | Real provider/rotation unverified |
+| OpenBao and External Secrets | Secret references render without plaintext | Real provider/rotation unverified |
 | Kyverno and Trivy | Policy tests and resources in the check graph | Runtime enforcement observation unverified |
 | Observability | Rules, dashboards, and operators render | Alert delivery/SLO measurement unverified |
 | Applications | Images and manifests build | User acceptance and state restore unverified |

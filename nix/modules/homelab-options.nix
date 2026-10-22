@@ -36,6 +36,16 @@ in
       minor = mkOption { type = types.strMatching "[0-9]+[.][0-9]+"; };
     };
     images = mkOption { type = types.attrsOf types.str; };
+    hardwareProfile = {
+      cpuModel = mkOption { type = types.str; };
+      cores = mkOption { type = types.ints.positive; };
+      threads = mkOption { type = types.ints.positive; };
+      memoryGiB = mkOption { type = types.ints.positive; };
+      diskModel = mkOption { type = types.str; };
+      diskSizeGB = mkOption { type = types.ints.positive; };
+      installDisk = mkOption { type = types.str; };
+      interface = mkOption { type = types.str; };
+    };
     nodes = mkOption { type = types.listOf nodeType; };
     network = {
       adminCidr = mkOption { type = types.str; };
@@ -83,15 +93,23 @@ in
       default = { };
     };
     sshAuthorizedKey = mkOption { type = types.str; };
-    ageRecipient = mkOption { type = types.str; };
-    cloudflareAccountId = mkOption { type = types.str; };
-    cloudflareZoneId = mkOption { type = types.str; };
+    ageRecipient = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+    };
+    sopsFile = mkOption {
+      type = types.nullOr types.path;
+      default = null;
+    };
     hostTunnel = {
       enable = mkOption {
         type = types.bool;
         default = false;
       };
-      tunnelId = mkOption { type = types.str; };
+      tunnelId = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+      };
     };
   };
 
@@ -105,12 +123,20 @@ in
       message = "Exactly one node must initialize the embedded-etcd cluster.";
     }
     {
-      assertion = builtins.all (node: lib.hasPrefix "/dev/disk/by-id/" node.installDisk) cfg.nodes;
-      message = "Every installation disk must use a stable /dev/disk/by-id path.";
+      assertion = builtins.all (node: lib.hasPrefix "/dev/disk/by-" node.installDisk) cfg.nodes;
+      message = "Every installation disk must use a stable /dev/disk/by-* path.";
     }
     {
       assertion = lib.hasPrefix cfg.kubernetes.minor cfg.kubernetes.version;
       message = "homelab.kubernetes.version must belong to homelab.kubernetes.minor.";
+    }
+    {
+      assertion = !cfg.hostTunnel.enable || cfg.hostTunnel.tunnelId != null;
+      message = "homelab.hostTunnel.tunnelId is required when the host tunnel is enabled.";
+    }
+    {
+      assertion = cfg.sopsFile == null || cfg.ageRecipient != null;
+      message = "homelab.ageRecipient is required when homelab.sopsFile is configured.";
     }
   ];
 }

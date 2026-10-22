@@ -7,16 +7,18 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"strconv"
 	"time"
 )
 
 var targetIDPattern = regexp.MustCompile(`^[a-z][a-z0-9-]{0,62}$`)
 
 type Target struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	URL    string `json:"url"`
-	Public bool   `json:"public"`
+	ID               string `json:"id"`
+	Name             string `json:"name"`
+	URL              string `json:"url"`
+	Public           bool   `json:"public"`
+	ExpectedStatuses []int  `json:"expectedStatuses,omitempty"`
 }
 
 type Config struct {
@@ -26,6 +28,7 @@ type Config struct {
 	OTLPEndpoint  string
 	ProbeInterval time.Duration
 	ProbeTimeout  time.Duration
+	ProbeWorkers  int
 	Targets       []Target
 }
 
@@ -52,6 +55,10 @@ func Load(requireTargets bool) (Config, error) {
 	if cfg.ProbeTimeout >= cfg.ProbeInterval {
 		return Config{}, errors.New("PROBE_TIMEOUT must be shorter than PROBE_INTERVAL")
 	}
+	cfg.ProbeWorkers, err = integerFromEnv("PROBE_WORKERS", 4, 1, 32)
+	if err != nil {
+		return Config{}, err
+	}
 
 	if !requireTargets {
 		return cfg, nil
@@ -75,8 +82,33 @@ func Load(requireTargets bool) (Config, error) {
 		if parseErr != nil || parsed.Scheme != "https" || parsed.Host == "" || parsed.User != nil {
 			return Config{}, fmt.Errorf("target %q must use an HTTPS URL without user information", target.ID)
 		}
+		if len(target.ExpectedStatuses) > 16 {
+			return Config{}, fmt.Errorf("target %q has more than 16 expected statuses", target.ID)
+		}
+		statusSeen := make(map[int]struct{}, len(target.ExpectedStatuses))
+		for _, status := range target.ExpectedStatuses {
+			if status < 100 || status > 599 {
+				return Config{}, fmt.Errorf("target %q has invalid expected status %d", target.ID, status)
+			}
+			if _, exists := statusSeen[status]; exists {
+				return Config{}, fmt.Errorf("target %q repeats expected status %d", target.ID, status)
+			}
+			statusSeen[status] = struct{}{}
+		}
 	}
 	return cfg, nil
+}
+
+func integerFromEnv(name string, fallback, minimum, maximum int) (int, error) {
+	value := os.Getenv(name)
+	if value == "" {
+		return fallback, nil
+	}
+	parsed, err := strconv.Atoi(value)
+	if err != nil || parsed < minimum || parsed > maximum {
+		return 0, fmt.Errorf("%s must be an integer between %d and %d", name, minimum, maximum)
+	}
+	return parsed, nil
 }
 
 func envOrDefault(name, fallback string) string {

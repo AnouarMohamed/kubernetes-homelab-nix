@@ -1,7 +1,7 @@
 { node, ... }:
 {
-  # Destructive installation is impossible until each node's stable disk ID is
-  # replaced in the private deployment configuration.
+  # The identical machines use the same controller/port path. The installer
+  # must still confirm the model and capacity before destructive partitioning.
   disko.devices.disk.main = {
     type = "disk";
     device = node.installDisk;

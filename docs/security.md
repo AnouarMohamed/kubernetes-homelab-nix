@@ -57,8 +57,10 @@ prints that context, requires an interactive confirmation unless
 5. Rotate the source value, confirm reconciliation, then revoke the previous
    value. Treat logs and generated support bundles as potentially sensitive.
 
-The committed `secrets/placeholder.json` is intentionally non-decryptable and
-contains no usable material.
+No encrypted secret document is committed by the reference profile. A private
+deployment supplies `homelab.sopsFile` and `homelab.ageRecipient` together;
+without them SOPS activation is disabled and k3s expects its token at the
+root-only runtime path documented in the deployment contract.
 
 ## Vulnerability response
 

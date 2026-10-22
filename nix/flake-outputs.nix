@@ -67,12 +67,10 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
       ${pkgs.bash}/bin/bash ${./checks/no-handwritten-yaml.sh} ${inputs.self}
       touch "$out"
     '';
-    placeholders =
-      pkgs.runCommand "documented-placeholders" { nativeBuildInputs = [ pkgs.ripgrep ]; }
-        ''
-          ${pkgs.bash}/bin/bash ${./checks/placeholders.sh} ${inputs.self}
-          touch "$out"
-        '';
+    siteContract = pkgs.runCommand "site-contract" { nativeBuildInputs = [ pkgs.ripgrep ]; } ''
+      ${pkgs.bash}/bin/bash ${./checks/site-contract.sh} ${inputs.self}
+      touch "$out"
+    '';
     semanticParity = pkgs.runCommand "semantic-parity" { nativeBuildInputs = [ pkgs.ripgrep ]; } ''
       ${pkgs.bash}/bin/bash ${./checks/semantic-parity.sh} ${inputs.self}
       touch "$out"
@@ -150,7 +148,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
       inherit
         manifests
         noYaml
-        placeholders
+        siteContract
         semanticParity
         manifestIntegrity
         kubeconform

@@ -2,11 +2,15 @@ package api
 
 import (
 	"context"
+	"crypto/rand"
 	"embed"
 	"encoding/json"
+	"fmt"
 	"io/fs"
 	"log/slog"
 	"net/http"
+	"regexp"
+	"strconv"
 	"time"
 
 	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
@@ -14,6 +18,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
+
+var serviceIDPattern = regexp.MustCompile(`^[a-z][a-z0-9-]{0,62}$`)
 
 //go:embed assets
 var assets embed.FS
@@ -32,8 +38,8 @@ func New(store database.Reader, registry *prometheus.Registry) http.Handler {
 		}, []string{"route", "class"}),
 	}
 	registry.MustRegister(server.requests)
-	for _, route := range []string{"healthz", "readyz", "status"} {
-		for _, class := range []string{"2xx", "5xx"} {
+	for _, route := range []string{"healthz", "readyz", "status", "summary", "history"} {
+		for _, class := range []string{"2xx", "4xx", "5xx"} {
 			server.requests.WithLabelValues(route, class).Add(0)
 		}
 	}
@@ -41,13 +47,72 @@ func New(store database.Reader, registry *prometheus.Registry) http.Handler {
 	mux.HandleFunc("GET /healthz", server.health)
 	mux.HandleFunc("GET /readyz", server.ready)
 	mux.HandleFunc("GET /api/v1/status", server.status)
+	mux.HandleFunc("GET /api/v1/summary", server.summary)
+	mux.HandleFunc("GET /api/v1/services/{id}/history", server.history)
 	mux.Handle("GET /metrics", promhttp.HandlerFor(registry, promhttp.HandlerOpts{}))
 	assetFS, err := fs.Sub(assets, "assets")
 	if err != nil {
 		panic(err)
 	}
 	mux.Handle("GET /", http.FileServer(http.FS(assetFS)))
-	return securityHeaders(otelhttp.NewHandler(mux, "sentinel-http"))
+	handler := securityHeaders(otelhttp.NewHandler(mux, "sentinel-http"))
+	return requestID(recoverPanics(accessLog(handler)))
+}
+
+func (s *Server) summary(w http.ResponseWriter, request *http.Request) {
+	ctx, cancel := context.WithTimeout(request.Context(), 3*time.Second)
+	defer cancel()
+	statuses, err := s.store.ListStatuses(ctx)
+	if err != nil {
+		slog.ErrorContext(ctx, "summarize statuses", "error", err)
+		s.requests.WithLabelValues("summary", "5xx").Inc()
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "summary unavailable"})
+		return
+	}
+	counts := map[string]int{"operational": 0, "degraded": 0, "down": 0}
+	overall := "operational"
+	for _, service := range statuses {
+		counts[service.Status]++
+		if service.Status == "down" || (service.Status == "degraded" && overall == "operational") {
+			overall = service.Status
+		}
+	}
+	s.requests.WithLabelValues("summary", "2xx").Inc()
+	writeJSON(w, http.StatusOK, map[string]any{
+		"overall": overall, "counts": counts, "total": len(statuses), "generatedAt": time.Now().UTC(),
+	})
+}
+
+func (s *Server) history(w http.ResponseWriter, request *http.Request) {
+	serviceID := request.PathValue("id")
+	if !serviceIDPattern.MatchString(serviceID) {
+		s.requests.WithLabelValues("history", "4xx").Inc()
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid service id"})
+		return
+	}
+	limit := 50
+	if raw := request.URL.Query().Get("limit"); raw != "" {
+		parsed, err := strconv.Atoi(raw)
+		if err != nil || parsed < 1 || parsed > 200 {
+			s.requests.WithLabelValues("history", "4xx").Inc()
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "limit must be between 1 and 200"})
+			return
+		}
+		limit = parsed
+	}
+	ctx, cancel := context.WithTimeout(request.Context(), 3*time.Second)
+	defer cancel()
+	transitions, err := s.store.ListTransitions(ctx, serviceID, limit)
+	if err != nil {
+		slog.ErrorContext(ctx, "list transitions", "service", serviceID, "error", err)
+		s.requests.WithLabelValues("history", "5xx").Inc()
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "history unavailable"})
+		return
+	}
+	s.requests.WithLabelValues("history", "2xx").Inc()
+	writeJSON(w, http.StatusOK, map[string]any{
+		"serviceId": serviceID, "transitions": transitions, "generatedAt": time.Now().UTC(),
+	})
 }
 
 func (s *Server) health(w http.ResponseWriter, _ *http.Request) {
@@ -96,6 +161,54 @@ func securityHeaders(next http.Handler) http.Handler {
 		w.Header().Set("Referrer-Policy", "no-referrer")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("X-Frame-Options", "DENY")
+		next.ServeHTTP(w, request)
+	})
+}
+
+type responseWriter struct {
+	http.ResponseWriter
+	status int
+}
+
+func (w *responseWriter) WriteHeader(status int) {
+	w.status = status
+	w.ResponseWriter.WriteHeader(status)
+}
+
+func requestID(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, request *http.Request) {
+		var value [16]byte
+		if _, err := rand.Read(value[:]); err != nil {
+			value = [16]byte{}
+		}
+		id := fmt.Sprintf("%x", value)
+		w.Header().Set("X-Request-ID", id)
+		next.ServeHTTP(w, request.WithContext(context.WithValue(request.Context(), requestIDKey{}, id)))
+	})
+}
+
+type requestIDKey struct{}
+
+func accessLog(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, request *http.Request) {
+		started := time.Now()
+		writer := &responseWriter{ResponseWriter: w, status: http.StatusOK}
+		next.ServeHTTP(writer, request)
+		slog.InfoContext(request.Context(), "http request",
+			"request_id", request.Context().Value(requestIDKey{}),
+			"method", request.Method, "path", request.URL.Path,
+			"status", writer.status, "duration_ms", time.Since(started).Milliseconds())
+	})
+}
+
+func recoverPanics(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, request *http.Request) {
+		defer func() {
+			if recovered := recover(); recovered != nil {
+				slog.ErrorContext(request.Context(), "recovered request panic", "panic", recovered)
+				writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal server error"})
+			}
+		}()
 		next.ServeHTTP(w, request)
 	})
 }
