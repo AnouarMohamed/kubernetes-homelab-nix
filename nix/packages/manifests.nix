@@ -6,8 +6,9 @@
 }:
 let
   charts = import ../lib/charts.nix { inherit pkgs; };
+  bootstrapCrds = import ../lib/crds.nix { inherit pkgs; };
   substitute = import ../lib/substitute.nix { inherit lib homelab; };
-  kubernetes = kubenix.evalModules.${pkgs.system} {
+  kubernetes = kubenix.evalModules.${pkgs.stdenv.hostPlatform.system} {
     module = import ../modules/k8s/all.nix;
     specialArgs = { inherit homelab; };
   };
@@ -18,6 +19,7 @@ let
       chart,
       values,
       valuesOverride ? { },
+      namespaceMissingKinds ? [ ],
     }:
     let
       renderedValues = lib.recursiveUpdate (substitute (builtins.head values)) valuesOverride;
@@ -25,15 +27,35 @@ let
     in
     pkgs.runCommand "${name}-helm-manifests.yaml"
       {
-        nativeBuildInputs = [ pkgs.kubernetes-helm ];
+        nativeBuildInputs = [
+          pkgs.kubernetes-helm
+          pkgs.yq-go
+        ];
       }
       ''
         helm template ${name} ${chart} \
           --namespace ${namespace} \
+          --kube-version ${homelab.kubernetes.version} \
+          --api-versions cert-manager.io/v1 \
+          --api-versions gateway.networking.k8s.io/v1 \
+          --api-versions cilium.io/v2 \
+          --api-versions cilium.io/v2alpha1 \
           --include-crds \
           --no-hooks \
           --values ${valuesFile} \
-          | sed -E 's/(rollme: )"[[:alnum:]]{5}"/\1"nix-pinned"/' > "$out"
+          | sed -E 's/(rollme: )"[[:alnum:]]{5}"/\1"nix-pinned"/' \
+          > rendered.yaml
+        ${lib.optionalString (namespaceMissingKinds != [ ]) ''
+          yq eval '(
+            select(
+              .metadata.namespace == null
+              and .kind == "${lib.concatStringsSep "\" or .kind == \"" namespaceMissingKinds}"
+            ) | .metadata.namespace
+          ) = "${namespace}"' rendered.yaml > "$out"
+        ''}
+        ${lib.optionalString (namespaceMissingKinds == [ ]) ''
+          cp rendered.yaml "$out"
+        ''}
       '';
   releases = [
     {
@@ -78,6 +100,7 @@ let
       namespace = "openbao";
       chart = charts.openbao;
       values = import ../modules/k8s/values/openbao.nix;
+      namespaceMissingKinds = [ "NetworkPolicy" ];
     }
     {
       name = "external-secrets";
@@ -170,7 +193,9 @@ pkgs.runCommand "kubernetes-homelab-manifests.yaml" { } ''
   {
     echo '# GENERATED - DO NOT EDIT'
     echo '# Source: Nix modules in nix/modules/k8s'
+    cat ${bootstrapCrds}
+    echo '---'
     cat ${kubernetes.config.kubernetes.resultYAML}
     ${lib.concatMapStringsSep "\n" (chart: "cat ${chart}") renderedCharts}
-  } > "$out"
+  } | sed -E 's/[[:space:]]+$//' > "$out"
 ''

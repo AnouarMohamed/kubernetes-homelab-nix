@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"gitlab.com/homelab/sentinel/internal/database"
-	"gitlab.com/homelab/sentinel/migrations"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/migrations"
 )
 
 func TestStoreRoundTrip(t *testing.T) {

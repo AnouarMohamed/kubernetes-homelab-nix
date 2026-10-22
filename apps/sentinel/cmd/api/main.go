@@ -10,12 +10,12 @@ import (
 	"syscall"
 	"time"
 
+	apihttp "github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/api"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/config"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/telemetry"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/migrations"
 	"github.com/prometheus/client_golang/prometheus"
-	apihttp "gitlab.com/homelab/sentinel/internal/api"
-	"gitlab.com/homelab/sentinel/internal/config"
-	"gitlab.com/homelab/sentinel/internal/database"
-	"gitlab.com/homelab/sentinel/internal/telemetry"
-	"gitlab.com/homelab/sentinel/migrations"
 )
 
 func main() {

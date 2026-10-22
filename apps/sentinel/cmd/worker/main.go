@@ -9,12 +9,12 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/config"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/probe"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/telemetry"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"gitlab.com/homelab/sentinel/internal/config"
-	"gitlab.com/homelab/sentinel/internal/database"
-	"gitlab.com/homelab/sentinel/internal/probe"
-	"gitlab.com/homelab/sentinel/internal/telemetry"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 

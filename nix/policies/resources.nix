@@ -24,11 +24,11 @@
         "app.kubernetes.io/component" = "policy-engine";
         "app.kubernetes.io/part-of" = "homelab";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -42,11 +42,11 @@
         "app.kubernetes.io/component" = "vulnerability-scanner";
         "app.kubernetes.io/part-of" = "homelab";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -259,7 +259,7 @@
               annotations = {
                 summary = "Trivy reports a critical container-image vulnerability";
                 description = "Review the Trivy report and rebuild or replace the affected image.";
-                runbook_url = "https://gitlab.com/\${CONFIG_GITLAB_PROJECT_PATH}/-/blob/main/docs/runbooks/respond-to-security-findings.md#critical-container-vulnerability-detected";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-security-findings.md#critical-container-vulnerability-detected";
               };
             }
           ];
@@ -286,7 +286,7 @@
         };
       };
       validationActions = [
-        "Audit"
+        "Deny"
       ];
       matchConstraints = {
         namespaceSelector = {
@@ -357,7 +357,7 @@
         };
       };
       validationActions = [
-        "Audit"
+        "Deny"
       ];
       matchConstraints = {
         namespaceSelector = {
@@ -416,7 +416,7 @@
         };
       };
       validationActions = [
-        "Audit"
+        "Deny"
       ];
       matchConstraints = {
         namespaceSelector = {
@@ -469,7 +469,7 @@
         };
       };
       validationActions = [
-        "Audit"
+        "Deny"
       ];
       matchConstraints = {
         namespaceSelector = {
@@ -522,7 +522,9 @@
       };
     };
     spec = {
-      validationFailureAction = "Audit";
+      # Kyverno calls its deny-on-violation mode "Enforce"; the native
+      # Kubernetes ValidatingPolicy objects above correctly use "Deny".
+      validationFailureAction = "Enforce";
       background = false;
       rules = [
         {
@@ -601,7 +603,7 @@
         };
       };
       validationActions = [
-        "Audit"
+        "Deny"
       ];
       matchConstraints = {
         namespaceSelector = {
@@ -654,7 +656,7 @@
         };
       };
       validationActions = [
-        "Audit"
+        "Deny"
       ];
       matchConstraints = {
         namespaceSelector = {
@@ -688,7 +690,7 @@
       ];
       validations = [
         {
-          expression = "variables.allContainers.all(container, container.image.startsWith('\${CONFIG_GITLAB_REGISTRY_PATH}/'))";
+          expression = "variables.allContainers.all(container, container.image.startsWith('\${CONFIG_GHCR_REGISTRY_PATH}/'))";
           message = "Signed application namespaces may pull only from the configured GitLab registry.";
         }
       ];
@@ -700,7 +702,7 @@
     metadata = {
       name = "verify-signed-images";
       annotations = {
-        "policies.kyverno.io/title" = "Verify GitLab keyless image signatures";
+        "policies.kyverno.io/title" = "Verify GitHub Actions keyless image signatures";
         "policies.kyverno.io/category" = "Software supply chain";
         "policies.kyverno.io/severity" = "high";
       };
@@ -716,6 +718,9 @@
         };
       };
       validationActions = [
+        # Promotion to Deny is gated on the first workflow-published, keyless-
+        # signed release. Keeping this one policy in Audit avoids making the
+        # currently referenced migration images unschedulable.
         "Audit"
       ];
       matchConstraints = {
@@ -744,18 +749,18 @@
       };
       matchImageReferences = [
         {
-          glob = "\${CONFIG_GITLAB_REGISTRY_PATH}/homelab-sentinel-*";
+          glob = "\${CONFIG_GHCR_REGISTRY_PATH}/homelab-sentinel-*";
         }
       ];
       attestors = [
         {
-          name = "gitlab-main";
+          name = "github-main";
           cosign = {
             keyless = {
               identities = [
                 {
-                  subject = "\${CONFIG_GITLAB_CI_IDENTITY}";
-                  issuer = "https://gitlab.com";
+                  subject = "\${CONFIG_GITHUB_CI_IDENTITY}";
+                  issuer = "https://token.actions.githubusercontent.com";
                 }
               ];
             };
@@ -767,8 +772,8 @@
       ];
       validations = [
         {
-          expression = "images.containers.map(image, verifyImageSignatures(image, [attestors.gitlab-main])).all(result, result > 0)";
-          message = "The image must have a valid GitLab main-branch keyless signature.";
+          expression = "images.containers.map(image, verifyImageSignatures(image, [attestors.github-main])).all(result, result > 0)";
+          message = "The image must have a valid GitHub Actions main-branch keyless signature.";
         }
       ];
     };

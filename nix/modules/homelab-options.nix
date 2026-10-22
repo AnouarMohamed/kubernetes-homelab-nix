@@ -7,6 +7,7 @@ let
       name = mkOption { type = types.str; };
       address = mkOption { type = types.str; };
       interface = mkOption { type = types.str; };
+      installDisk = mkOption { type = types.str; };
       clusterInit = mkOption {
         type = types.bool;
         default = false;
@@ -22,10 +23,18 @@ in
       type = types.str;
       default = "UTC";
     };
+    adminUser = mkOption {
+      type = types.strMatching "[a-z_][a-z0-9_-]*";
+      default = "operator";
+    };
     repository = mkOption { type = types.str; };
     projectPath = mkOption { type = types.str; };
     registryPath = mkOption { type = types.str; };
     ciIdentity = mkOption { type = types.str; };
+    kubernetes = {
+      version = mkOption { type = types.strMatching "[0-9]+[.][0-9]+[.][0-9]+"; };
+      minor = mkOption { type = types.strMatching "[0-9]+[.][0-9]+"; };
+    };
     images = mkOption { type = types.attrsOf types.str; };
     nodes = mkOption { type = types.listOf nodeType; };
     network = {
@@ -77,6 +86,13 @@ in
     ageRecipient = mkOption { type = types.str; };
     cloudflareAccountId = mkOption { type = types.str; };
     cloudflareZoneId = mkOption { type = types.str; };
+    hostTunnel = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+      tunnelId = mkOption { type = types.str; };
+    };
   };
 
   config.assertions = [
@@ -87,6 +103,14 @@ in
     {
       assertion = builtins.length (builtins.filter (node: node.clusterInit) cfg.nodes) == 1;
       message = "Exactly one node must initialize the embedded-etcd cluster.";
+    }
+    {
+      assertion = builtins.all (node: lib.hasPrefix "/dev/disk/by-id/" node.installDisk) cfg.nodes;
+      message = "Every installation disk must use a stable /dev/disk/by-id path.";
+    }
+    {
+      assertion = lib.hasPrefix cfg.kubernetes.minor cfg.kubernetes.version;
+      message = "homelab.kubernetes.version must belong to homelab.kubernetes.minor.";
     }
   ];
 }

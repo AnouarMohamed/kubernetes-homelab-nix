@@ -51,7 +51,9 @@
         };
       };
       admissionWebhooks = {
+        certManager.enabled = true;
         patch = {
+          enabled = false;
           image = {
             tag = "1.8.9";
             sha = "58e4ac2e15bf7785eb00ac90d03f9be1ff3f2fe0add6c71b54af6e5c80031148";

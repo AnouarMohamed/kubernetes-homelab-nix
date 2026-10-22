@@ -27,12 +27,17 @@ let
   testFile = yaml.generate "kyverno-test.yaml" testDefinition;
 in
 pkgs.runCommand "kyverno-policy-tests" { nativeBuildInputs = [ pkgs.kyverno ]; } ''
+  set -o pipefail
   mkdir suite
   cp ${testFile} suite/kyverno-test.yaml
   cp ${valuesFile} suite/values.yaml
   ${builtins.concatStringsSep "\n" (
     map (entry: "cp ${entry.file} suite/${entry.name}") (namedPolicyFiles ++ namedResourceFiles)
   )}
-  kyverno test suite
+  kyverno test suite 2>&1 | tee kyverno-test.log
+  if grep --fixed-strings --quiet 'ERROR:' kyverno-test.log; then
+    echo "Kyverno reported a policy load error" >&2
+    exit 1
+  fi
   touch "$out"
 ''

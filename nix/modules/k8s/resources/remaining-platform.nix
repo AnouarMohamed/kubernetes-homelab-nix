@@ -95,11 +95,11 @@
         "app.kubernetes.io/component" = "progressive-delivery";
         "app.kubernetes.io/part-of" = "homelab-platform";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -323,11 +323,11 @@
         "app.kubernetes.io/part-of" = "resilience-testing";
         "policy.homelab.dev/profile" = "infrastructure";
         "pod-security.kubernetes.io/enforce" = "privileged";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -345,11 +345,11 @@
         "app.kubernetes.io/part-of" = "resilience-testing";
         "policy.homelab.dev/profile" = "application";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -950,11 +950,11 @@
         "app.kubernetes.io/component" = "tunnel";
         "app.kubernetes.io/part-of" = "edge-access";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -1232,11 +1232,11 @@
         "app.kubernetes.io/component" = "edge-routing";
         "app.kubernetes.io/part-of" = "edge-access";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }

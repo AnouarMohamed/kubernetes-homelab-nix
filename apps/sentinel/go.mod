@@ -1,4 +1,4 @@
-module gitlab.com/homelab/sentinel
+module github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel
 
 go 1.26.0
 

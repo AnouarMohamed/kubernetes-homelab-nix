@@ -4,4 +4,9 @@ result-*
 .envrc.local
 .devenv/
 .pre-commit-config.yaml
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+coverage.xml
 

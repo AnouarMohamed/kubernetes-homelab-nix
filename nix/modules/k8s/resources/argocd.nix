@@ -84,7 +84,7 @@
     spec = {
       description = "Namespaced applications sourced from apps/ only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -251,7 +251,7 @@
     spec = {
       description = "Argo Rollouts controller and CRDs only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -343,7 +343,7 @@
     spec = {
       description = "Certificates, DNS, Gateways, and outbound Cloudflare tunnel only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -499,7 +499,7 @@
     spec = {
       description = "Argo CD bootstrap and self-management only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -602,7 +602,7 @@
     spec = {
       description = "Keycloak identity resources only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -707,7 +707,7 @@
     spec = {
       description = "Metrics, logs, traces, probes, dashboards, SLOs, and notifications.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -871,7 +871,7 @@
     spec = {
       description = "Cluster networking and platform controllers only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -997,7 +997,7 @@
     spec = {
       description = "Admission policy, continuous security scanning, and posture reporting.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -1125,7 +1125,7 @@
     spec = {
       description = "Chaos Mesh controllers and the isolated sacrificial namespace only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -1236,7 +1236,7 @@
     spec = {
       description = "OpenBao, External Secrets, and their bounded bootstrap resources.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -1360,7 +1360,7 @@
     spec = {
       description = "Storage, database backup, cluster backup, and bounded verification only.";
       sourceRepos = [
-        "\${CONFIG_GITLAB_REPOSITORY_URL}"
+        "\${CONFIG_GITHUB_REPOSITORY_URL}"
       ];
       destinations = [
         {
@@ -1656,7 +1656,7 @@
     spec = {
       project = "policy";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "policies/standards/audit";
         plugin = {
@@ -1700,7 +1700,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/alloy";
         plugin = {
@@ -1743,7 +1743,7 @@
     spec = {
       project = "delivery";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/argo-rollouts";
         plugin = {
@@ -1787,7 +1787,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/argocd-notifications";
         plugin = {
@@ -1830,7 +1830,7 @@
     spec = {
       project = "gitops";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/argocd";
         plugin = {
@@ -1875,7 +1875,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/blackbox";
         plugin = {
@@ -1918,7 +1918,7 @@
     spec = {
       project = "gitops";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "clusters/homelab/bootstrap/repository-credentials";
         plugin = {
@@ -1963,7 +1963,7 @@
     spec = {
       project = "edge";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/cert-manager";
         plugin = {
@@ -2007,7 +2007,7 @@
     spec = {
       project = "resilience-testing";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/chaos-mesh";
         plugin = {
@@ -2051,7 +2051,7 @@
     spec = {
       project = "platform";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/cilium";
         plugin = {
@@ -2106,7 +2106,7 @@
     spec = {
       project = "edge";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/cloudflared";
         plugin = {
@@ -2150,7 +2150,7 @@
     spec = {
       project = "storage";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/cloudnative-pg";
         plugin = {
@@ -2194,7 +2194,7 @@
     spec = {
       project = "edge";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "clusters/homelab/bootstrap/edge-secrets";
         plugin = {
@@ -2238,7 +2238,7 @@
     spec = {
       project = "edge";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/external-dns";
         plugin = {
@@ -2282,7 +2282,7 @@
     spec = {
       project = "runtime-secrets";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/external-secrets";
         plugin = {
@@ -2326,7 +2326,7 @@
     spec = {
       project = "edge";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/gateways";
         plugin = {
@@ -2370,7 +2370,7 @@
     spec = {
       project = "identity";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/keycloak/resources";
         plugin = {
@@ -2414,7 +2414,7 @@
     spec = {
       project = "policy";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "policies/kyverno";
         plugin = {
@@ -2458,7 +2458,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/loki";
         plugin = {
@@ -2501,7 +2501,7 @@
     spec = {
       project = "storage";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/longhorn";
         plugin = {
@@ -2545,7 +2545,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/bootstrap";
         plugin = {
@@ -2588,7 +2588,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/runtime-secrets";
         plugin = {
@@ -2631,7 +2631,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/resources";
         plugin = {
@@ -2674,7 +2674,7 @@
     spec = {
       project = "runtime-secrets";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/openbao";
         plugin = {
@@ -2718,7 +2718,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/otel-collector";
         plugin = {
@@ -2761,7 +2761,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/prometheus-stack";
         plugin = {
@@ -2805,7 +2805,7 @@
     spec = {
       project = "runtime-secrets";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "clusters/homelab/bootstrap/runtime-secrets";
         plugin = {
@@ -2849,7 +2849,7 @@
     spec = {
       project = "runtime-secrets";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/runtime-secrets";
         plugin = {
@@ -2893,7 +2893,7 @@
     spec = {
       project = "applications";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "apps/sentinel/overlays/staging";
         plugin = {
@@ -2937,7 +2937,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/sloth";
         plugin = {
@@ -2980,7 +2980,7 @@
     spec = {
       project = "storage";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/snapshot-controller";
         plugin = {
@@ -3024,7 +3024,7 @@
     spec = {
       project = "storage";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "clusters/homelab/bootstrap/storage-secrets";
         plugin = {
@@ -3068,7 +3068,7 @@
     spec = {
       project = "storage";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/storage-verification";
         plugin = {
@@ -3112,7 +3112,7 @@
     spec = {
       project = "observability";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "observability/tempo";
         plugin = {
@@ -3155,7 +3155,7 @@
     spec = {
       project = "policy";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "policies/trivy";
         plugin = {
@@ -3199,7 +3199,7 @@
     spec = {
       project = "storage";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "platform/velero";
         plugin = {
@@ -3243,7 +3243,7 @@
     spec = {
       project = "policy";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "policies/bootstrap";
         plugin = {
@@ -3286,7 +3286,7 @@
     spec = {
       project = "policy";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "policies/resources";
         plugin = {
@@ -3334,7 +3334,7 @@
       generators = [
         {
           git = {
-            repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+            repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
             revision = "main";
             directories = [
               {
@@ -3359,7 +3359,7 @@
         spec = {
           project = "applications";
           source = {
-            repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+            repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
             targetRevision = "main";
             path = "{{.path.path}}";
             plugin = {
@@ -3402,7 +3402,7 @@
     spec = {
       project = "gitops";
       source = {
-        repoURL = "\${CONFIG_GITLAB_REPOSITORY_URL}";
+        repoURL = "\${CONFIG_GITHUB_REPOSITORY_URL}";
         targetRevision = "main";
         path = "clusters/homelab/bootstrap";
         plugin = {
@@ -3440,11 +3440,11 @@
         "app.kubernetes.io/part-of" = "homelab-platform";
         "runtime-secrets.homelab.dev/openbao-ca" = "true";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3457,11 +3457,11 @@
         "app.kubernetes.io/name" = "cert-manager";
         "app.kubernetes.io/part-of" = "edge-access";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3474,11 +3474,11 @@
         "app.kubernetes.io/name" = "external-dns";
         "app.kubernetes.io/part-of" = "edge-access";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3491,11 +3491,11 @@
         "app.kubernetes.io/name" = "cloudflare";
         "app.kubernetes.io/part-of" = "edge-access";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3537,11 +3537,11 @@
         "app.kubernetes.io/component" = "secrets-server";
         "app.kubernetes.io/part-of" = "runtime-secrets";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3555,11 +3555,11 @@
         "app.kubernetes.io/component" = "secrets-controller";
         "app.kubernetes.io/part-of" = "runtime-secrets";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3692,11 +3692,11 @@
         "app.kubernetes.io/component" = "storage";
         "app.kubernetes.io/part-of" = "homelab";
         "pod-security.kubernetes.io/enforce" = "privileged";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3710,11 +3710,11 @@
         "app.kubernetes.io/component" = "database-operator";
         "app.kubernetes.io/part-of" = "homelab";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3728,11 +3728,11 @@
         "app.kubernetes.io/component" = "backup";
         "app.kubernetes.io/part-of" = "homelab";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3746,11 +3746,11 @@
         "app.kubernetes.io/component" = "test";
         "app.kubernetes.io/part-of" = "storage";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }

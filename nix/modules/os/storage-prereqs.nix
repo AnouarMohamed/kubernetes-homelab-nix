@@ -15,6 +15,7 @@
   systemd.services.iscsid = {
     description = "Open-iSCSI daemon for Longhorn";
     wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     serviceConfig = {
       Type = "notify";

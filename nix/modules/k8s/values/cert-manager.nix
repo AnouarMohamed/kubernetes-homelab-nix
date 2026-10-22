@@ -1,6 +1,7 @@
 # Generated once from /home/anouar/kubernetes-homelab/platform/cert-manager/configure-cert-manager.yaml
 [
   {
+    image.digest = "sha256:416a2d76870d996460e62bd7f521bf14fa017be9e3e904aab92163a331fcb61a";
     crds = {
       enabled = true;
       keep = true;
@@ -30,6 +31,7 @@
       };
     };
     webhook = {
+      image.digest = "sha256:d8b3961b51c8c7320633f8208dc46bf88aa13804d0f7cbe48a096b2c523cee42";
       replicaCount = 2;
       podDisruptionBudget = {
         enabled = true;
@@ -50,6 +52,7 @@
       };
     };
     cainjector = {
+      image.digest = "sha256:ccf6b919ec0500745a47a910118f834f9636d0aac1ff221245cd2557ed8c7c98";
       enabled = true;
       replicaCount = 2;
       podDisruptionBudget = {

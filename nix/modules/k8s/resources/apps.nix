@@ -362,7 +362,7 @@
               };
               annotations = {
                 summary = "Homepage is unavailable";
-                runbook_url = "https://gitlab.\${CONFIG_DOMAIN}/\${CONFIG_GITLAB_PROJECT_PATH}/-/blob/main/docs/runbooks/operate-self-hosted-apps.md";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/operate-self-hosted-apps.md";
               };
             }
           ];
@@ -445,11 +445,11 @@
         "app.kubernetes.io/part-of" = "homelab-applications";
         "policy.homelab.dev/profile" = "application";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -679,7 +679,7 @@
               };
               annotations = {
                 summary = "Uptime Kuma is unavailable";
-                runbook_url = "https://gitlab.\${CONFIG_DOMAIN}/\${CONFIG_GITLAB_PROJECT_PATH}/-/blob/main/docs/runbooks/operate-self-hosted-apps.md";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/operate-self-hosted-apps.md";
               };
             }
           ];
@@ -803,11 +803,11 @@
         "app.kubernetes.io/part-of" = "homelab-applications";
         "policy.homelab.dev/profile" = "application";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -1456,7 +1456,7 @@
               };
               annotations = {
                 summary = "Vaultwarden is unavailable";
-                runbook_url = "https://gitlab.\${CONFIG_DOMAIN}/\${CONFIG_GITLAB_PROJECT_PATH}/-/blob/main/docs/runbooks/operate-self-hosted-apps.md";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/operate-self-hosted-apps.md";
               };
             }
           ];
@@ -1741,11 +1741,11 @@
         "runtime-secrets.homelab.dev/openbao-ca" = "true";
         "policy.homelab.dev/profile" = "application";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -2022,11 +2022,11 @@
         "homelab.anouar.dev/public-gateway-access" = "true";
         "policy.homelab.dev/profile" = "application";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -2885,7 +2885,7 @@
               severity = "critical";
             };
             annotations = {
-              runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/operate-sentinel.md#availability-budget-burn";
+              runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/operate-sentinel.md#availability-budget-burn";
             };
           };
         }
@@ -2974,7 +2974,7 @@
               };
               annotations = {
                 summary = "Homelab Sentinel probe worker is not being scraped.";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/operate-sentinel.md#probe-worker-missing";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/operate-sentinel.md#probe-worker-missing";
               };
             }
           ];
@@ -3472,11 +3472,11 @@
         "policy.homelab.dev/profile" = "application";
         "policy.homelab.dev/supply-chain" = "signed";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3493,11 +3493,11 @@
         "policy.homelab.dev/profile" = "application";
         "policy.homelab.dev/supply-chain" = "signed";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -3708,11 +3708,11 @@
         "runtime-secrets.homelab.dev/openbao-ca" = "true";
         "policy.homelab.dev/profile" = "application";
         "pod-security.kubernetes.io/enforce" = "restricted";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -4255,7 +4255,7 @@
               };
               annotations = {
                 summary = "Keycloak has no available replica";
-                runbook_url = "https://gitlab.\${CONFIG_DOMAIN}/\${CONFIG_GITLAB_PROJECT_PATH}/-/blob/main/docs/runbooks/recover-sso.md";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/recover-sso.md";
               };
             }
           ];

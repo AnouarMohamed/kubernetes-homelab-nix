@@ -3,10 +3,10 @@ let
   replacements = {
     CONFIG_DOMAIN = homelab.domain;
     CONFIG_ACME_EMAIL = homelab.acmeEmail;
-    CONFIG_GITLAB_REPOSITORY_URL = homelab.repository;
-    CONFIG_GITLAB_PROJECT_PATH = homelab.projectPath;
-    CONFIG_GITLAB_REGISTRY_PATH = homelab.registryPath;
-    CONFIG_GITLAB_CI_IDENTITY = homelab.ciIdentity;
+    CONFIG_GITHUB_REPOSITORY_URL = homelab.repository;
+    CONFIG_GITHUB_PROJECT_PATH = homelab.projectPath;
+    CONFIG_GHCR_REGISTRY_PATH = homelab.registryPath;
+    CONFIG_GITHUB_CI_IDENTITY = homelab.ciIdentity;
     CONFIG_CONTROL_PLANE_VIP = homelab.network.controlPlaneVip;
     CONFIG_LOAD_BALANCER_POOL_START = homelab.network.loadBalancerPool.start;
     CONFIG_LOAD_BALANCER_POOL_STOP = homelab.network.loadBalancerPool.stop;

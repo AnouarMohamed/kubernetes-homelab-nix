@@ -9,17 +9,21 @@
     curl
     git
     jq
-    kubectl
   ];
 
   users.mutableUsers = false;
-  users.users.root.openssh.authorizedKeys.keys = [ config.homelab.sshAuthorizedKey ];
+  users.users.${config.homelab.adminUser} = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [ config.homelab.sshAuthorizedKey ];
+  };
   services.openssh = {
     enable = true;
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
-      PermitRootLogin = "prohibit-password";
+      PermitRootLogin = "no";
+      AllowUsers = [ config.homelab.adminUser ];
     };
   };
 }

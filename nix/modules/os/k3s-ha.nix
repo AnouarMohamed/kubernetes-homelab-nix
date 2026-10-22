@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.homelab;
   node = lib.findFirst (
@@ -8,6 +13,10 @@ in
 {
   services.k3s = {
     enable = true;
+    # nixpkgs at the locked revision exposes 1.35.8+k3s1 here. Pin the
+    # attribute explicitly so a future default alias cannot silently move the
+    # control plane to a different Kubernetes minor.
+    package = pkgs.k3s_1_35;
     role = "server";
     inherit (node) clusterInit;
     serverAddr = if node.clusterInit then "" else "https://${cfg.network.controlPlaneVip}:6443";

@@ -19,6 +19,6 @@ in
   ];
   kubenix.project = "kubernetes-homelab-nix";
   kubernetes = {
-    version = "1.36";
+    version = homelab.kubernetes.minor;
   };
 }

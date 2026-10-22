@@ -5,7 +5,7 @@
 let
   sentinel = pkgs.buildGoModule {
     pname = "homelab-sentinel";
-    version = "0.1.0";
+    version = "0.2.0";
     src = self + /apps/sentinel;
     vendorHash = "sha256-v1TY5m0+gwlUmf80KElo2NS5rrh+fNyLXHlvp5KSU+g=";
     subPackages = [
@@ -16,6 +16,11 @@ let
       "-s"
       "-w"
     ];
+    # Go may create its cache below HOME. Keep that state inside the build
+    # directory so unsandboxed builders do not leak /homeless-shelter.
+    preBuild = ''
+      export HOME="$TMPDIR"
+    '';
   };
   image =
     name: command:

@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"gitlab.com/homelab/sentinel/internal/database"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 

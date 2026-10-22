@@ -23,6 +23,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
     generatedConfigs = pkgs.runCommand "homelab-generated-configs" { } ''
       mkdir -p "$out/.github/workflows"
       { echo '# GENERATED - DO NOT EDIT'; cat ${yamlFormat.generate "ci.yaml" ciConfig.github}; } > "$out/.github/workflows/ci.yaml"
+      { echo '# GENERATED - DO NOT EDIT'; cat ${yamlFormat.generate "release-images.yaml" ciConfig.githubRelease}; } > "$out/.github/workflows/release-images.yaml"
       { echo '# GENERATED - DO NOT EDIT'; cat ${yamlFormat.generate "gitlab-ci.yml" ciConfig.gitlab}; } > "$out/.gitlab-ci.yml"
       { echo '# GENERATED - DO NOT EDIT'; cat ${yamlFormat.generate "sops.yaml" toolConfig.sops}; } > "$out/.sops.yaml"
       cp ${jsonFormat.generate "renovate.json" toolConfig.renovate} "$out/renovate.json"
@@ -53,6 +54,15 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         echo "Rendered manifests to rendered/all.yaml"
       '';
     };
+    bootstrap = pkgs.writeShellApplication {
+      name = "bootstrap-cluster";
+      runtimeInputs = [
+        pkgs.git
+        pkgs.kubectl
+        pkgs.yq-go
+      ];
+      text = builtins.readFile ../scripts/bootstrap-cluster.sh;
+    };
     noYaml = pkgs.runCommand "no-handwritten-yaml" { nativeBuildInputs = [ pkgs.findutils ]; } ''
       ${pkgs.bash}/bin/bash ${./checks/no-handwritten-yaml.sh} ${inputs.self}
       touch "$out"
@@ -67,6 +77,16 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
       ${pkgs.bash}/bin/bash ${./checks/semantic-parity.sh} ${inputs.self}
       touch "$out"
     '';
+    manifestIntegrity =
+      let
+        python = pkgs.python3.withPackages (pythonPackages: [ pythonPackages.pyyaml ]);
+      in
+      pkgs.runCommand "manifest-integrity" { nativeBuildInputs = [ python ]; } ''
+        python ${../tools/manifest_integrity.py} ${manifests} \
+          --repository-root ${inputs.self} \
+          --kubernetes-minor ${homelab.kubernetes.minor}
+        touch "$out"
+      '';
     kubeconform = pkgs.runCommand "kubeconform" { nativeBuildInputs = [ pkgs.kubeconform ]; } ''
       kubeconform -strict -summary -ignore-missing-schemas \
         -schema-location 'file://${schemas}/builtin/{{.ResourceKind}}{{.KindSuffix}}.json' \
@@ -82,6 +102,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
       pkgs.runCommand "generated-config-drift" { nativeBuildInputs = [ pkgs.diffutils ]; }
         ''
           diff -u ${inputs.self}/.github/workflows/ci.yaml ${generatedConfigs}/.github/workflows/ci.yaml
+          diff -u ${inputs.self}/.github/workflows/release-images.yaml ${generatedConfigs}/.github/workflows/release-images.yaml
           diff -u ${inputs.self}/.gitlab-ci.yml ${generatedConfigs}/.gitlab-ci.yml
           diff -u ${inputs.self}/.sops.yaml ${generatedConfigs}/.sops.yaml
           diff -u ${inputs.self}/renovate.json ${generatedConfigs}/renovate.json
@@ -103,7 +124,27 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
     };
     apps = {
       render = flake-utils.lib.mkApp { drv = render; };
+      bootstrap = flake-utils.lib.mkApp { drv = bootstrap; };
       default = flake-utils.lib.mkApp { drv = render; };
+    };
+    devShells.default = pkgs.mkShellNoCC {
+      packages = [
+        pkgs.actionlint
+        pkgs.cosign
+        pkgs.deadnix
+        pkgs.git
+        pkgs.gitleaks
+        pkgs.go
+        pkgs.kubeconform
+        pkgs.kubectl
+        pkgs.kubernetes-helm
+        pkgs.nixfmt-tree
+        pkgs.shellcheck
+        pkgs.statix
+        pkgs.syft
+        pkgs.yq-go
+        (pkgs.python3.withPackages (pythonPackages: [ pythonPackages.pyyaml ]))
+      ];
     };
     checks = {
       inherit
@@ -111,6 +152,7 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         noYaml
         placeholders
         semanticParity
+        manifestIntegrity
         kubeconform
         drift
         configDrift
@@ -136,6 +178,10 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
         gitleaks dir --no-banner --redact --config ${inputs.self}/.gitleaks.toml ${inputs.self}
         touch "$out"
       '';
+      shellcheck = pkgs.runCommand "shellcheck" { nativeBuildInputs = [ pkgs.shellcheck ]; } ''
+        shellcheck ${../scripts}/*.sh ${./checks}/*.sh
+        touch "$out"
+      '';
       inherit (sentinelPackages) sentinel;
       inherit (sentinelPackages) sentinel-api-image;
       inherit (sentinelPackages) sentinel-worker-image;
@@ -149,6 +195,16 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
   }
 )
 // {
+  nixosModules = {
+    homelab-options = ./modules/homelab-options.nix;
+    homelab-os = ./modules/os;
+    default = {
+      imports = [
+        ./modules/homelab-options.nix
+        ./modules/os
+      ];
+    };
+  };
   nixosConfigurations = builtins.listToAttrs (
     map (node: {
       inherit (node) name;
@@ -166,5 +222,6 @@ flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
   lib = {
     inherit homelab;
     helpers = import ./lib { inherit (nixpkgs) lib; };
+    kubenixModules.default = ./modules/k8s/all.nix;
   };
 }

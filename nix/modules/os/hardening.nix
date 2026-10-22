@@ -36,12 +36,10 @@ in
   networking.firewall = {
     enable = true;
     allowPing = false;
-    # Global ports are limited to SSH and the API; application ingress is via
-    # Cloudflare Tunnel and Cilium, never an inbound router port.
-    allowedTCPPorts = [
-      22
-      6443
-    ];
+    # No globally reachable TCP listener. Administrative SSH and Kubernetes API
+    # traffic are accepted only from the declared administration network, while
+    # the remaining control-plane ports are restricted to the three peers.
+    allowedTCPPorts = [ ];
     extraInputRules = lib.concatStringsSep "\n" (
       map (
         address:
@@ -50,6 +48,7 @@ in
         } } accept comment \"k3s peer\""
       ) peerAddresses
       ++ [
+        "ip saddr ${config.homelab.network.adminCidr} tcp dport { 22, 6443 } accept comment \"homelab administration\""
         "ip saddr ${config.homelab.network.podCidr} accept comment \"pod network\""
         "ip saddr ${config.homelab.network.serviceCidr} accept comment \"service network\""
       ]

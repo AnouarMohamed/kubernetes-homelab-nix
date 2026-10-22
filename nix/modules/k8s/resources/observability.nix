@@ -36,11 +36,11 @@
         "app.kubernetes.io/part-of" = "homelab";
         "runtime-secrets.homelab.dev/openbao-ca" = "true";
         "pod-security.kubernetes.io/enforce" = "privileged";
-        "pod-security.kubernetes.io/enforce-version" = "v1.36";
+        "pod-security.kubernetes.io/enforce-version" = "v1.35";
         "pod-security.kubernetes.io/audit" = "restricted";
-        "pod-security.kubernetes.io/audit-version" = "v1.36";
+        "pod-security.kubernetes.io/audit-version" = "v1.35";
         "pod-security.kubernetes.io/warn" = "restricted";
-        "pod-security.kubernetes.io/warn-version" = "v1.36";
+        "pod-security.kubernetes.io/warn-version" = "v1.35";
       };
     };
   }
@@ -70,7 +70,7 @@
               };
               annotations = {
                 summary = "Alert pipeline heartbeat";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#watchdog";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#watchdog";
               };
             }
             {
@@ -82,7 +82,7 @@
               };
               annotations = {
                 summary = "Node exporter target is unavailable";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#node-down";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#node-down";
               };
             }
             {
@@ -94,7 +94,7 @@
               };
               annotations = {
                 summary = "Embedded etcd leadership is unstable";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#etcd-leader-changes";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#etcd-leader-changes";
               };
             }
             {
@@ -106,7 +106,7 @@
               };
               annotations = {
                 summary = "A node reports disk pressure";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#disk-pressure";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#disk-pressure";
               };
             }
             {
@@ -118,7 +118,7 @@
               };
               annotations = {
                 summary = "A managed certificate expires within fourteen days";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#certificate-expiry";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#certificate-expiry";
               };
             }
             {
@@ -130,7 +130,7 @@
               };
               annotations = {
                 summary = "An Argo CD application remains out of sync";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#argo-cd-out-of-sync";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#argo-cd-out-of-sync";
               };
             }
             {
@@ -142,7 +142,7 @@
               };
               annotations = {
                 summary = "A backup or snapshot job failed";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#backup-failure";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#backup-failure";
               };
             }
             {
@@ -154,7 +154,7 @@
               };
               annotations = {
                 summary = "A Longhorn volume is degraded";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#longhorn-degraded";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#longhorn-degraded";
               };
             }
             {
@@ -166,7 +166,7 @@
               };
               annotations = {
                 summary = "A container restarted repeatedly";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#container-restarts";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#container-restarts";
               };
             }
             {
@@ -178,7 +178,7 @@
               };
               annotations = {
                 summary = "Kubernetes API p99 latency exceeds one second";
-                runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#api-latency";
+                runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#api-latency";
               };
             }
           ];
@@ -220,7 +220,7 @@
               severity = "critical";
             };
             annotations = {
-              runbook_url = "\${CONFIG_GITLAB_REPOSITORY_URL}/-/blob/main/docs/runbooks/respond-to-platform-alerts.md#slo-budget-burn";
+              runbook_url = "https://github.com/\${CONFIG_GITHUB_PROJECT_PATH}/blob/main/docs/runbooks/respond-to-platform-alerts.md#slo-budget-burn";
             };
           };
         }

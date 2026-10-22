@@ -1,8 +1,10 @@
-_: {
-  # Build-only layout. A real deployment must override the disk by-id value.
+{ node, ... }:
+{
+  # Destructive installation is impossible until each node's stable disk ID is
+  # replaced in the private deployment configuration.
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/disk/by-id/REPLACE_WITH_INSTALL_DISK";
+    device = node.installDisk;
     content = {
       type = "gpt";
       partitions = {

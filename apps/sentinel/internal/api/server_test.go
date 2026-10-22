@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
 	"github.com/prometheus/client_golang/prometheus"
-	"gitlab.com/homelab/sentinel/internal/database"
 )
 
 type fakeStore struct {

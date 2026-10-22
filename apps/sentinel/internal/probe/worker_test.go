@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/config"
+	"github.com/AnouarMohamed/kubernetes-homelab-nix/apps/sentinel/internal/database"
 	"github.com/prometheus/client_golang/prometheus"
-	"gitlab.com/homelab/sentinel/internal/config"
-	"gitlab.com/homelab/sentinel/internal/database"
 )
 
 type memoryRecorder struct {

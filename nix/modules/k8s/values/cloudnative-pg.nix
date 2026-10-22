@@ -1,6 +1,7 @@
 # Generated once from /home/anouar/kubernetes-homelab/platform/cloudnative-pg/configure-cloudnative-pg.yaml
 [
   {
+    image.tag = "1.30.1@sha256:923c267ec29636db3bee20f993d0ec4973fa22998e1adad37da79e4d32b5bc07";
     replicaCount = 2;
     resources = {
       requests = {
