@@ -32,7 +32,7 @@ of the rendered deployment artifact.
 ## Deliberate exceptions
 
 The image-signature admission policy remains in `Audit` during migration. The
-configured Sentinel `v0.2.0` images were manually published from the documented
+configured Sentinel `v0.3.0` images were manually published from the documented
 worktree with SBOM and provenance attestations, but outside GitHub OIDC and are
 therefore not keyless signed. A `Deny` rule would make them unschedulable.
 Promote it to `Deny` only after a workflow-published release is verified against

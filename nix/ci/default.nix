@@ -89,7 +89,7 @@
     "on" = {
       push.tags = [ "sentinel-v*" ];
       workflow_dispatch.inputs.version = {
-        description = "Immutable release tag, for example v0.2.0";
+        description = "Immutable release tag, for example v0.3.0";
         required = true;
         type = "string";
       };

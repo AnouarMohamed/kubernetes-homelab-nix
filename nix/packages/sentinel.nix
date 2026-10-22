@@ -5,9 +5,12 @@
 let
   sentinel = pkgs.buildGoModule {
     pname = "homelab-sentinel";
-    version = "0.2.0";
+    version = "0.3.0";
     src = self + /apps/sentinel;
     vendorHash = "sha256-v1TY5m0+gwlUmf80KElo2NS5rrh+fNyLXHlvp5KSU+g=";
+    # This portable-Nix environment advertises unreachable IPv6 routes. Use
+    # libc's address ordering while fetching the fixed-output Go module graph.
+    env.GODEBUG = "netdns=cgo";
     subPackages = [
       "cmd/api"
       "cmd/worker"

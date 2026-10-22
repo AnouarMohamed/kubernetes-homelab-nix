@@ -95,7 +95,7 @@ catalog.
   semantic-parity, site-contract, handwritten-YAML, and secret-leak gates passed.
 - Sentinel unit tests with race detection, `go vet`, and both generated GitHub
   Actions workflows were validated for this worktree.
-- Public multi-architecture Sentinel `v0.2.0` images were published to GHCR by
+- Public multi-architecture Sentinel `v0.3.0` images were published to GHCR by
   immutable digest with linux/amd64 and linux/arm64 payloads, SBOMs, and
   provenance attestations. The signature exception is documented in
   `docs/security.md`.

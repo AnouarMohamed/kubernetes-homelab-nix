@@ -8,19 +8,17 @@
     source = "cloudflare/cloudflare";
     version = "5.27.0";
   };
-  variable.cloudflare_account_id = {
-    type = "string";
-    sensitive = true;
-  };
-  variable.cloudflare_zone_id = {
-    type = "string";
-    sensitive = true;
-  };
-  variable.public_domain = {
-    type = "string";
-  };
-  variable.private_route_cidr = {
-    type = "string";
+  variable = {
+    cloudflare_account_id = {
+      type = "string";
+      sensitive = true;
+    };
+    cloudflare_zone_id = {
+      type = "string";
+      sensitive = true;
+    };
+    public_domain.type = "string";
+    private_route_cidr.type = "string";
   };
   resource = {
     cloudflare_zero_trust_tunnel_cloudflared.homelab = {
