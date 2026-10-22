@@ -25,6 +25,10 @@ storage must be exercised in the target environment before serving real users.
 - **Supply-chain evidence:** Sentinel images are multi-architecture, include
   BuildKit provenance and SBOM attestations, and the release workflow applies
   keyless Sigstore signatures.
+- **A real Go service:** Sentinel runs bounded concurrent probes, persists
+  samples and transitions in PostgreSQL, exposes windowed SLO/error-budget
+  analytics, emits Prometheus metrics and OpenTelemetry traces, and ships with
+  race-tested unit and database integration suites.
 - **Fail-closed integrity checks:** duplicate identities, absent namespaces,
   missing CRDs, floating images, version skew, leaked build artifacts, and
   broken GitOps paths fail validation.

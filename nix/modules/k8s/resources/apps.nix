@@ -2565,6 +2565,10 @@
                   value = "4";
                 }
                 {
+                  name = "OBSERVATION_RETENTION";
+                  value = "720h";
+                }
+                {
                   name = "OTEL_EXPORTER_OTLP_ENDPOINT";
                   value = "http://otel-collector-opentelemetry-collector.monitoring.svc:4318/v1/traces";
                 }
@@ -2750,8 +2754,8 @@
             }
             {
               path = {
-                type = "Exact";
-                value = "/api/v1/status";
+                type = "PathPrefix";
+                value = "/api/v1/";
               };
             }
           ];

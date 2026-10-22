@@ -22,14 +22,15 @@ type Target struct {
 }
 
 type Config struct {
-	DatabaseURL   string
-	ListenAddr    string
-	MetricsAddr   string
-	OTLPEndpoint  string
-	ProbeInterval time.Duration
-	ProbeTimeout  time.Duration
-	ProbeWorkers  int
-	Targets       []Target
+	DatabaseURL          string
+	ListenAddr           string
+	MetricsAddr          string
+	OTLPEndpoint         string
+	ProbeInterval        time.Duration
+	ProbeTimeout         time.Duration
+	ProbeWorkers         int
+	ObservationRetention time.Duration
+	Targets              []Target
 }
 
 func Load(requireTargets bool) (Config, error) {
@@ -58,6 +59,13 @@ func Load(requireTargets bool) (Config, error) {
 	cfg.ProbeWorkers, err = integerFromEnv("PROBE_WORKERS", 4, 1, 32)
 	if err != nil {
 		return Config{}, err
+	}
+	cfg.ObservationRetention, err = durationFromEnv("OBSERVATION_RETENTION", 30*24*time.Hour)
+	if err != nil {
+		return Config{}, err
+	}
+	if cfg.ObservationRetention < 24*time.Hour {
+		return Config{}, errors.New("OBSERVATION_RETENTION must be at least 24h")
 	}
 
 	if !requireTargets {

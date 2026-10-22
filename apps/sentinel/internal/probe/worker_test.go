@@ -25,11 +25,13 @@ func (r *memoryRecorder) RecordObservation(_ context.Context, observation databa
 	return true, nil
 }
 
+func (r *memoryRecorder) PruneObservations(context.Context, time.Time) (int64, error) { return 0, nil }
+
 func TestProbeClassifiesServerFailure(t *testing.T) {
 	server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusBadGateway) }))
 	defer server.Close()
 	recorder := &memoryRecorder{}
-	worker := New(recorder, server.Client(), []config.Target{{ID: "site", Name: "Site", URL: server.URL, Public: true}}, time.Minute, 2, prometheus.NewRegistry())
+	worker := New(recorder, server.Client(), []config.Target{{ID: "site", Name: "Site", URL: server.URL, Public: true}}, time.Minute, 2, 30*24*time.Hour, prometheus.NewRegistry())
 	worker.runCycle(context.Background())
 	if len(recorder.observations) != 1 || recorder.observations[0].Status != "down" {
 		t.Fatalf("unexpected observations: %#v", recorder.observations)
@@ -64,7 +66,7 @@ func TestWorkerReadinessRequiresFreshCompletedCycle(t *testing.T) {
 	recorder := &memoryRecorder{}
 	server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusNoContent) }))
 	defer server.Close()
-	worker := New(recorder, server.Client(), []config.Target{{ID: "site", Name: "Site", URL: server.URL}}, time.Minute, 1, prometheus.NewRegistry())
+	worker := New(recorder, server.Client(), []config.Target{{ID: "site", Name: "Site", URL: server.URL}}, time.Minute, 1, 30*24*time.Hour, prometheus.NewRegistry())
 	if worker.Ready(time.Minute) {
 		t.Fatal("worker was ready before its first cycle")
 	}

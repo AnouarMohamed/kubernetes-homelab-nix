@@ -5,7 +5,7 @@
 let
   sentinel = pkgs.buildGoModule {
     pname = "homelab-sentinel";
-    version = "0.3.0";
+    version = "0.4.0";
     src = self + /apps/sentinel;
     vendorHash = "sha256-v1TY5m0+gwlUmf80KElo2NS5rrh+fNyLXHlvp5KSU+g=";
     # This portable-Nix environment advertises unreachable IPv6 routes. Use
@@ -40,6 +40,6 @@ let
 in
 {
   inherit sentinel;
-  sentinel-api-image = image "homelab-sentinel-api" "api";
-  sentinel-worker-image = image "homelab-sentinel-worker" "worker";
+  sentinel-api-image = image "homelab-nix-sentinel-api" "api";
+  sentinel-worker-image = image "homelab-nix-sentinel-worker" "worker";
 }

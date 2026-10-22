@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"embed"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/fs"
 	"log/slog"
@@ -38,7 +39,7 @@ func New(store database.Reader, registry *prometheus.Registry) http.Handler {
 		}, []string{"route", "class"}),
 	}
 	registry.MustRegister(server.requests)
-	for _, route := range []string{"healthz", "readyz", "status", "summary", "history"} {
+	for _, route := range []string{"healthz", "readyz", "status", "summary", "history", "slo"} {
 		for _, class := range []string{"2xx", "4xx", "5xx"} {
 			server.requests.WithLabelValues(route, class).Add(0)
 		}
@@ -49,6 +50,7 @@ func New(store database.Reader, registry *prometheus.Registry) http.Handler {
 	mux.HandleFunc("GET /api/v1/status", server.status)
 	mux.HandleFunc("GET /api/v1/summary", server.summary)
 	mux.HandleFunc("GET /api/v1/services/{id}/history", server.history)
+	mux.HandleFunc("GET /api/v1/services/{id}/slo", server.slo)
 	mux.Handle("GET /metrics", promhttp.HandlerFor(registry, promhttp.HandlerOpts{}))
 	assetFS, err := fs.Sub(assets, "assets")
 	if err != nil {
@@ -57,6 +59,56 @@ func New(store database.Reader, registry *prometheus.Registry) http.Handler {
 	mux.Handle("GET /", http.FileServer(http.FS(assetFS)))
 	handler := securityHeaders(otelhttp.NewHandler(mux, "sentinel-http"))
 	return requestID(recoverPanics(accessLog(handler)))
+}
+
+func (s *Server) slo(w http.ResponseWriter, request *http.Request) {
+	serviceID := request.PathValue("id")
+	if !serviceIDPattern.MatchString(serviceID) {
+		s.requests.WithLabelValues("slo", "4xx").Inc()
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid service id"})
+		return
+	}
+	windows := map[string]time.Duration{
+		"1h": time.Hour, "6h": 6 * time.Hour, "24h": 24 * time.Hour,
+		"7d": 7 * 24 * time.Hour, "30d": 30 * 24 * time.Hour,
+	}
+	windowName := request.URL.Query().Get("window")
+	if windowName == "" {
+		windowName = "24h"
+	}
+	window, ok := windows[windowName]
+	if !ok {
+		s.requests.WithLabelValues("slo", "4xx").Inc()
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "window must be one of 1h, 6h, 24h, 7d, or 30d"})
+		return
+	}
+	objective := 99.9
+	if raw := request.URL.Query().Get("objective"); raw != "" {
+		parsed, err := strconv.ParseFloat(raw, 64)
+		if err != nil || parsed < 90 || parsed > 99.999 {
+			s.requests.WithLabelValues("slo", "4xx").Inc()
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "objective must be between 90 and 99.999"})
+			return
+		}
+		objective = parsed
+	}
+	end := time.Now().UTC()
+	ctx, cancel := context.WithTimeout(request.Context(), 3*time.Second)
+	defer cancel()
+	result, err := s.store.ServiceSLO(ctx, serviceID, end.Add(-window), end, objective)
+	if errors.Is(err, database.ErrNotFound) {
+		s.requests.WithLabelValues("slo", "4xx").Inc()
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "service not found"})
+		return
+	}
+	if err != nil {
+		slog.ErrorContext(ctx, "calculate service SLO", "service", serviceID, "error", err)
+		s.requests.WithLabelValues("slo", "5xx").Inc()
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "SLO unavailable"})
+		return
+	}
+	s.requests.WithLabelValues("slo", "2xx").Inc()
+	writeJSON(w, http.StatusOK, result)
 }
 
 func (s *Server) summary(w http.ResponseWriter, request *http.Request) {

@@ -46,7 +46,7 @@ func main() {
 			return http.ErrUseLastResponse
 		},
 	}
-	worker := probe.New(store, client, cfg.Targets, cfg.ProbeInterval, cfg.ProbeWorkers, registry)
+	worker := probe.New(store, client, cfg.Targets, cfg.ProbeInterval, cfg.ProbeWorkers, cfg.ObservationRetention, registry)
 	metricsMux := http.NewServeMux()
 	metricsMux.Handle("GET /metrics", promhttp.HandlerFor(registry, promhttp.HandlerOpts{}))
 	metricsMux.HandleFunc("GET /healthz", func(w http.ResponseWriter, _ *http.Request) {

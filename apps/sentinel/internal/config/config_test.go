@@ -42,3 +42,19 @@ func TestLoadRejectsDuplicateExpectedStatus(t *testing.T) {
 		t.Fatal("Load accepted a duplicate expected status")
 	}
 }
+
+func TestLoadObservationRetention(t *testing.T) {
+	t.Setenv("DATABASE_URL", "postgres://sentinel:test@database/sentinel")
+	t.Setenv("OBSERVATION_RETENTION", "168h")
+	cfg, err := Load(false)
+	if err != nil {
+		t.Fatalf("Load returned an error: %v", err)
+	}
+	if cfg.ObservationRetention.Hours() != 168 {
+		t.Fatalf("unexpected retention: %s", cfg.ObservationRetention)
+	}
+	t.Setenv("OBSERVATION_RETENTION", "1h")
+	if _, err := Load(false); err == nil {
+		t.Fatal("Load accepted observation retention shorter than 24h")
+	}
+}

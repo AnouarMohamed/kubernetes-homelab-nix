@@ -41922,6 +41922,8 @@ spec:
               value: 5s
             - name: PROBE_WORKERS
               value: "4"
+            - name: OBSERVATION_RETENTION
+              value: 720h
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: http://otel-collector-opentelemetry-collector.monitoring.svc:4318/v1/traces
           image: ghcr.io/anouarmohamed/homelab-sentinel-worker:v0.3.0@sha256:065d789e6cd7c2cbecee979e636920e35c3ed19477ded3f7122c00babe48e253
@@ -45540,9 +45542,9 @@ spec:
         - path:
             type: Exact
             value: /status.js
-        - path:
-            type: Exact
-            value: /api/v1/status
+          - path:
+              type: PathPrefix
+              value: /api/v1/
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute

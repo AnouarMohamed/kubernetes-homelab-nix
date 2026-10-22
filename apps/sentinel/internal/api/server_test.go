@@ -17,12 +17,17 @@ type fakeStore struct {
 	pingErr     error
 	statuses    []database.Status
 	transitions []database.Transition
+	slo         database.SLO
+	sloErr      error
 }
 
 func (f fakeStore) Ping(context.Context) error                              { return f.pingErr }
 func (f fakeStore) ListStatuses(context.Context) ([]database.Status, error) { return f.statuses, nil }
 func (f fakeStore) ListTransitions(context.Context, string, int) ([]database.Transition, error) {
 	return f.transitions, nil
+}
+func (f fakeStore) ServiceSLO(context.Context, string, time.Time, time.Time, float64) (database.SLO, error) {
+	return f.slo, f.sloErr
 }
 
 func TestStatusResponseDoesNotExposeTargetURLs(t *testing.T) {
@@ -85,6 +90,47 @@ func TestReadinessFailsClosed(t *testing.T) {
 	recorder := httptest.NewRecorder()
 	handler.ServeHTTP(recorder, request)
 	if recorder.Code != http.StatusServiceUnavailable {
+		t.Fatalf("unexpected status: %d", recorder.Code)
+	}
+}
+
+func TestSLOResponse(t *testing.T) {
+	want := database.SLO{ServiceID: "site", SampleCount: 1000, GoodCount: 999, AvailabilityPercent: 99.9, ObjectivePercent: 99.9, ErrorBudgetRemainingPercent: 0, BurnRate: 1, LatencyP95MS: 42}
+	handler := New(fakeStore{slo: want}, prometheus.NewRegistry())
+	recorder := httptest.NewRecorder()
+	handler.ServeHTTP(recorder, httptest.NewRequest(http.MethodGet, "/api/v1/services/site/slo?window=7d&objective=99.9", nil))
+	if recorder.Code != http.StatusOK {
+		t.Fatalf("unexpected status: %d", recorder.Code)
+	}
+	var got database.SLO
+	if err := json.Unmarshal(recorder.Body.Bytes(), &got); err != nil {
+		t.Fatalf("decode response: %v", err)
+	}
+	if got.SampleCount != want.SampleCount || got.LatencyP95MS != want.LatencyP95MS {
+		t.Fatalf("unexpected SLO: %#v", got)
+	}
+}
+
+func TestSLORejectsInvalidParameters(t *testing.T) {
+	handler := New(fakeStore{}, prometheus.NewRegistry())
+	for _, path := range []string{
+		"/api/v1/services/INVALID/slo",
+		"/api/v1/services/site/slo?window=forever",
+		"/api/v1/services/site/slo?objective=100",
+	} {
+		recorder := httptest.NewRecorder()
+		handler.ServeHTTP(recorder, httptest.NewRequest(http.MethodGet, path, nil))
+		if recorder.Code != http.StatusBadRequest {
+			t.Fatalf("%s returned %d", path, recorder.Code)
+		}
+	}
+}
+
+func TestSLONotFound(t *testing.T) {
+	handler := New(fakeStore{sloErr: database.ErrNotFound}, prometheus.NewRegistry())
+	recorder := httptest.NewRecorder()
+	handler.ServeHTTP(recorder, httptest.NewRequest(http.MethodGet, "/api/v1/services/missing/slo", nil))
+	if recorder.Code != http.StatusNotFound {
 		t.Fatalf("unexpected status: %d", recorder.Code)
 	}
 }

@@ -52,6 +52,16 @@
         runs-on = "ubuntu-24.04";
         timeout-minutes = 15;
         defaults.run.working-directory = "apps/sentinel";
+        services.postgres = {
+          image = "docker.io/library/postgres:17.6-bookworm@sha256:f3bd19c606e442c3d7bdfa8002e03fe260a1023351e0ea4598032022b68dd6e3";
+          env = {
+            POSTGRES_DB = "sentinel_test";
+            POSTGRES_USER = "sentinel";
+            POSTGRES_PASSWORD = "sentinel-test-only";
+          };
+          ports = [ "5432:5432" ];
+          options = "--health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10";
+        };
         steps = [
           { uses = "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803"; }
           {
@@ -68,6 +78,11 @@
           {
             name = "Static analysis";
             run = "go vet ./...";
+          }
+          {
+            name = "PostgreSQL integration tests";
+            env.DATABASE_URL = "postgres://sentinel:sentinel-test-only@127.0.0.1:5432/sentinel_test?sslmode=disable";
+            run = "go test -race -tags=integration ./internal/database";
           }
           {
             name = "Upload coverage";
@@ -89,7 +104,7 @@
     "on" = {
       push.tags = [ "sentinel-v*" ];
       workflow_dispatch.inputs.version = {
-        description = "Immutable release tag, for example v0.3.0";
+        description = "Immutable release tag, for example v0.4.0";
         required = true;
         type = "string";
       };
@@ -115,6 +130,19 @@
       };
       steps = [
         { uses = "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803"; }
+        {
+          name = "Validate immutable SemVer release";
+          env.REQUESTED_VERSION = "\${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}";
+          run = ''
+            set -euo pipefail
+            version="''${REQUESTED_VERSION#sentinel-}"
+            if [[ ! "$version" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+              echo "Release must be canonical SemVer such as v0.4.0; got: $version" >&2
+              exit 1
+            fi
+            echo "RELEASE_VERSION=$version" >> "$GITHUB_ENV"
+          '';
+        }
         { uses = "docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130"; }
         { uses = "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f"; }
         {
@@ -126,13 +154,22 @@
           };
         }
         {
+          name = "Refuse to overwrite an existing release";
+          env.IMAGE = "ghcr.io/anouarmohamed/homelab-nix-sentinel-\${{ matrix.component }}";
+          run = ''
+            if docker buildx imagetools inspect "$IMAGE:$RELEASE_VERSION" >/dev/null 2>&1; then
+              echo "Refusing to overwrite immutable image $IMAGE:$RELEASE_VERSION" >&2
+              exit 1
+            fi
+          '';
+        }
+        {
           id = "meta";
           uses = "docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051";
           "with" = {
-            images = "ghcr.io/anouarmohamed/homelab-sentinel-\${{ matrix.component }}";
+            images = "ghcr.io/anouarmohamed/homelab-nix-sentinel-\${{ matrix.component }}";
             tags = ''
-              type=match,pattern=sentinel-(v.*),group=1
-              type=raw,value=''${{ inputs.version }},enable=''${{ github.event_name == 'workflow_dispatch' }}
+              type=raw,value=''${{ env.RELEASE_VERSION }}
               type=sha,prefix=sha-
             '';
           };
@@ -160,7 +197,7 @@
         { uses = "sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6"; }
         {
           name = "Keyless-sign the immutable index";
-          env.IMAGE = "ghcr.io/anouarmohamed/homelab-sentinel-\${{ matrix.component }}";
+          env.IMAGE = "ghcr.io/anouarmohamed/homelab-nix-sentinel-\${{ matrix.component }}";
           run = ''
             cosign sign --yes "$IMAGE@''${{ steps.build.outputs.digest }}"
           '';

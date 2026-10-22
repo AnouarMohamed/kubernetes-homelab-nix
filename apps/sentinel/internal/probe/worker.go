@@ -19,6 +19,7 @@ import (
 
 type Recorder interface {
 	RecordObservation(context.Context, database.Observation) (bool, error)
+	PruneObservations(context.Context, time.Time) (int64, error)
 }
 
 type Worker struct {
@@ -27,34 +28,54 @@ type Worker struct {
 	targets     []config.Target
 	interval    time.Duration
 	concurrency int
+	retention   time.Duration
 	lastCycle   atomic.Int64
 	up          *prometheus.GaugeVec
 	duration    *prometheus.HistogramVec
 	transitions *prometheus.CounterVec
+	pruned      prometheus.Counter
 }
 
-func New(recorder Recorder, client *http.Client, targets []config.Target, interval time.Duration, concurrency int, registry *prometheus.Registry) *Worker {
+func New(recorder Recorder, client *http.Client, targets []config.Target, interval time.Duration, concurrency int, retention time.Duration, registry *prometheus.Registry) *Worker {
 	worker := &Worker{
-		recorder: recorder, client: client, targets: targets, interval: interval, concurrency: concurrency,
+		recorder: recorder, client: client, targets: targets, interval: interval, concurrency: concurrency, retention: retention,
 		up:          prometheus.NewGaugeVec(prometheus.GaugeOpts{Name: "sentinel_probe_up", Help: "Whether the latest service probe succeeded."}, []string{"service"}),
 		duration:    prometheus.NewHistogramVec(prometheus.HistogramOpts{Name: "sentinel_probe_duration_seconds", Help: "Service probe latency.", Buckets: prometheus.DefBuckets}, []string{"service"}),
 		transitions: prometheus.NewCounterVec(prometheus.CounterOpts{Name: "sentinel_status_transitions_total", Help: "Recorded service health transitions."}, []string{"service", "status"}),
+		pruned:      prometheus.NewCounter(prometheus.CounterOpts{Name: "sentinel_observations_pruned_total", Help: "Probe observations removed by retention maintenance."}),
 	}
-	registry.MustRegister(worker.up, worker.duration, worker.transitions)
+	registry.MustRegister(worker.up, worker.duration, worker.transitions, worker.pruned)
 	return worker
 }
 
 func (w *Worker) Run(ctx context.Context) error {
+	w.prune(ctx)
 	w.runCycle(ctx)
 	ticker := time.NewTicker(w.interval)
 	defer ticker.Stop()
+	maintenance := time.NewTicker(6 * time.Hour)
+	defer maintenance.Stop()
 	for {
 		select {
 		case <-ctx.Done():
 			return nil
 		case <-ticker.C:
 			w.runCycle(ctx)
+		case <-maintenance.C:
+			w.prune(ctx)
 		}
+	}
+}
+
+func (w *Worker) prune(ctx context.Context) {
+	deleted, err := w.recorder.PruneObservations(ctx, time.Now().UTC().Add(-w.retention))
+	if err != nil {
+		slog.ErrorContext(ctx, "prune observations", "error", err)
+		return
+	}
+	w.pruned.Add(float64(deleted))
+	if deleted > 0 {
+		slog.InfoContext(ctx, "pruned observations", "count", deleted)
 	}
 }
 

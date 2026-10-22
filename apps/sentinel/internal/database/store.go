@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io/fs"
 	"sort"
@@ -38,10 +39,64 @@ type Observation struct {
 	Message    string
 }
 
+var ErrNotFound = errors.New("service not found")
+
+type SLO struct {
+	ServiceID                   string    `json:"serviceId"`
+	WindowStart                 time.Time `json:"windowStart"`
+	WindowEnd                   time.Time `json:"windowEnd"`
+	SampleCount                 int64     `json:"sampleCount"`
+	GoodCount                   int64     `json:"goodCount"`
+	AvailabilityPercent         float64   `json:"availabilityPercent"`
+	ObjectivePercent            float64   `json:"objectivePercent"`
+	ErrorBudgetRemainingPercent float64   `json:"errorBudgetRemainingPercent"`
+	BurnRate                    float64   `json:"burnRate"`
+	LatencyP50MS                float64   `json:"latencyP50Ms"`
+	LatencyP95MS                float64   `json:"latencyP95Ms"`
+	LatencyP99MS                float64   `json:"latencyP99Ms"`
+}
+
 type Reader interface {
 	Ping(context.Context) error
 	ListStatuses(context.Context) ([]Status, error)
 	ListTransitions(context.Context, string, int) ([]Transition, error)
+	ServiceSLO(context.Context, string, time.Time, time.Time, float64) (SLO, error)
+}
+
+func (s *Store) ServiceSLO(ctx context.Context, serviceID string, start, end time.Time, objective float64) (SLO, error) {
+	result := SLO{ServiceID: serviceID, WindowStart: start, WindowEnd: end, ObjectivePercent: objective}
+	err := s.pool.QueryRow(ctx, `
+WITH visible_service AS (
+    SELECT id FROM services WHERE id = $1 AND public = true
+)
+SELECT
+    count(o.id),
+    count(o.id) FILTER (WHERE o.status = 'operational'),
+    COALESCE(percentile_cont(0.50) WITHIN GROUP (ORDER BY o.latency_ms), 0),
+    COALESCE(percentile_cont(0.95) WITHIN GROUP (ORDER BY o.latency_ms), 0),
+    COALESCE(percentile_cont(0.99) WITHIN GROUP (ORDER BY o.latency_ms), 0)
+FROM visible_service AS s
+LEFT JOIN probe_observations AS o
+  ON o.service_id = s.id AND o.observed_at >= $2 AND o.observed_at < $3
+GROUP BY s.id`, serviceID, start, end).Scan(
+		&result.SampleCount, &result.GoodCount, &result.LatencyP50MS,
+		&result.LatencyP95MS, &result.LatencyP99MS,
+	)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return SLO{}, ErrNotFound
+	}
+	if err != nil {
+		return SLO{}, fmt.Errorf("query service SLO: %w", err)
+	}
+	if result.SampleCount == 0 {
+		return result, nil
+	}
+	result.AvailabilityPercent = float64(result.GoodCount) / float64(result.SampleCount) * 100
+	allowedBadFraction := 1 - objective/100
+	badFraction := 1 - result.AvailabilityPercent/100
+	result.BurnRate = badFraction / allowedBadFraction
+	result.ErrorBudgetRemainingPercent = (allowedBadFraction - badFraction) / allowedBadFraction * 100
+	return result, nil
 }
 
 func (s *Store) ListTransitions(ctx context.Context, serviceID string, limit int) ([]Transition, error) {
@@ -149,10 +204,24 @@ observed_at = EXCLUDED.observed_at, latency_ms = EXCLUDED.latency_ms, message = 
 		observation.Message); err != nil {
 		return false, fmt.Errorf("upsert current status: %w", err)
 	}
+	if _, err = tx.Exec(ctx, `
+INSERT INTO probe_observations (service_id, status, observed_at, latency_ms, message)
+VALUES ($1, $2, $3, $4, $5)`, observation.ID, observation.Status,
+		observation.ObservedAt, observation.LatencyMS, observation.Message); err != nil {
+		return false, fmt.Errorf("insert probe observation: %w", err)
+	}
 	if err = tx.Commit(ctx); err != nil {
 		return false, fmt.Errorf("commit observation: %w", err)
 	}
 	return changed, nil
+}
+
+func (s *Store) PruneObservations(ctx context.Context, before time.Time) (int64, error) {
+	result, err := s.pool.Exec(ctx, `DELETE FROM probe_observations WHERE observed_at < $1`, before)
+	if err != nil {
+		return 0, fmt.Errorf("prune probe observations: %w", err)
+	}
+	return result.RowsAffected(), nil
 }
 
 func (s *Store) Migrate(ctx context.Context, migrations fs.FS) error {

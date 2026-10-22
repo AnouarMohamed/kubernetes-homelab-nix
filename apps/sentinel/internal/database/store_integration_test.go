@@ -59,6 +59,20 @@ func TestStoreRoundTrip(t *testing.T) {
 	if changed {
 		t.Fatal("unchanged observation created a second transition")
 	}
+	slo, err := store.ServiceSLO(ctx, observation.ID, now.Add(-time.Minute), now.Add(time.Minute), 99.9)
+	if err != nil {
+		t.Fatalf("calculate SLO: %v", err)
+	}
+	if slo.SampleCount != 2 || slo.GoodCount != 2 || slo.AvailabilityPercent != 100 {
+		t.Fatalf("unexpected SLO: %#v", slo)
+	}
+	deleted, err := store.PruneObservations(ctx, now.Add(time.Second))
+	if err != nil {
+		t.Fatalf("prune observations: %v", err)
+	}
+	if deleted < 2 {
+		t.Fatalf("pruned %d observations, want at least 2", deleted)
+	}
 	statuses, err := store.ListStatuses(ctx)
 	if err != nil {
 		t.Fatalf("list statuses: %v", err)
